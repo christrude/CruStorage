@@ -1,0 +1,77 @@
+<div class="col-md-12 school-comparison">
+  <h2>Cruvita School Info for {{location | titleCase}}
+    <a href="#" ng-click="printDocument()" title="Download/Print PDF">
+      <fa name="print"></fa>
+    </a>
+  </h2>
+
+  <div cg-busy="pdfPromise"></div>
+
+  <span class="top-right">
+    <p class="pull-right">{{agent.name}} <br />{{agent.phone[0] | tel}} <br />{{agent.email}} <br />{{agent.website}}</p>
+    <span class="comparison-agent-info">
+      <img class="comparison-agent-pic" ng-if="agent.pictureLocation" ng-src="/api/images?url={{agent.pictureLocation}}&contentType={{agent.pictureType}}&hashed=true&userImage=true" ng-load="loadTrack(agent)" alt="Cruvita Home Sales Expert"/>
+    </span>
+  </span>
+  <div class="school-block" ng-repeat="school in comparedSchools">
+    <h2><a href ng-click="goToSchool(school.slug)">{{school.sch_name | ifElem}}</a></h2>
+
+    <div>{{school.address.street}}</div>
+    <div>{{school.address.city}}, {{school.address.state}} {{school.address.zip}}</div>
+    <div>{{school.phone | tel}}</div>
+    <div>{{school.gradeLow}} - {{school.gradeHigh}}</div>
+
+    <section class="grade-block well">
+      <h3> School Quality </h3>
+      <h5>Cruvita School Grade:
+        <span class="pull-right">
+          <div class="school-grade school-score img-rounded" ng-style="{backgroundColor: school.color}">{{school.grade}}</div>
+          <small tooltip="Cruvita School Score">{{school.score.overall | number: 2}}</small>
+        </span>
+      </h5>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th><em>City/County Rank</em></th>
+            <th><em>State Rank</em></th>
+            <th><em>National Rank</em></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{school.rank.county.rank | number}}/{{school.rank.county.total | number}}</td>
+            <td>{{school.rank.state.rank | number}}/{{school.rank.state.total | number}}</td>
+            <td>{{school.rank.nation.rank | number}}/{{school.rank.nation.total | number}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h4 class="school-rank medal" title="Medal of Excellence for this City/County"><img ng-src="{{setCountyRankImg(school)}}"></h4>
+      <h4 class="school-rank medal" title="Medal of Excellence for this State"><img ng-src="{{setStateRankImg(school)}}"></h4>
+      <h4 class="school-rank medal" title="Medal of Excellence for the Nation"><img ng-src="{{setNationRankImg(school)}}"></h4>
+    </section>
+
+    <section class="col-sm-12 data-section-1 well">
+      <h3> School Data </h3>
+      <article class="col-sm-12 school-data">
+        <h3 class="col-sm-12 col-xs-12">{{school.member}} <small>Total Students</small></h3>
+        <h3 class="col-sm-12 col-xs-12">{{school.stRatio | number:1}} <small>Student-Teacher Ratio</small></h3>
+        <h3 class="col-sm-12 col-xs-12">{{school.freeLunchP | decToPct}} <small>Eligible for Free Lunch</small></h3>
+        <h3 class="col-sm-12 col-xs-12">{{school.langAch}} <small>Language Scores</small></h3>
+        <h3 class="col-sm-12 col-xs-12">{{school.mathAch}} <small>Math Scores</small></h3>
+      </article>
+      <article class="col-sm-12">
+        <h4 class="center">Student Diversity: Ethnicity (%)</h4>
+        <canvas id="doughnut" class="chart chart-doughnut" chart-data="ethnicData[school.sch_name]" chart-labels="ethnicDataLabels" chart-colors="['#B90000', '#B93C00', '#009B64', '#B9B900', '#006CD5', '#8D005F', '#4B009C']"></canvas>
+      </article>
+      <article class="col-sm-12">
+        <h4 class="center">Student Diversity: Gender</h4>
+        <canvas id="pie" class="chart chart-pie" chart-data="genderData[school.sch_name]" chart-labels="genderDataLabels" chart-colours="['#2391FC', '#FF7212']"></canvas>
+      </article>
+    </section>
+  </div>
+
+  <section class="col-sm-12">
+    <h3>Information provided by Cruvita.com, for more info go to https://www.cruvita.com/tos</h3>
+  </section>
+</div>

@@ -1,0 +1,2 @@
+<div class="school-grade school-score img-rounded" ng-style="{backgroundColor: school.color}" ng-if="scoreExists(school.score.overall)" tooltip="{{school.score.overall | number : 2}}">{{school.grade}}</div>
+<div class="school-grade" ng-if="!scoreExists(school.score.overall)">No Score Available</div>

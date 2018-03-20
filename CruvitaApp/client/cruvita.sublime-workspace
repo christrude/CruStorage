@@ -1,0 +1,416 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "components/advanced-search-options/advanced-search-options.html",
+			"settings":
+			{
+				"buffer_size": 5761,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "components/advanced-search-options/advanced-search-options.scss",
+			"settings":
+			{
+				"buffer_size": 1115,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/app.scss",
+			"settings":
+			{
+				"buffer_size": 17952,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/main/main.scss",
+			"settings":
+			{
+				"buffer_size": 8063,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "components/navbar/navbar.html",
+			"settings":
+			{
+				"buffer_size": 1279,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_navbar.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/app.css",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/config.js",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/tos/tos.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/tos/tos.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/app.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/pp/pp.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/pp/pp.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/about/about.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/about/about.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/sales/sales.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/sales/sales.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/feedback/feedback.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/feedback/feedback.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/rankings/rankings.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/rankings/rankings.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/cruGallery/cruGallery.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/listing/listing.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/school/school.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/school/school.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/listing/listing.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/cruGallery/cruGallery.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/home/home.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/main/main.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/advanced-search-options/advanced-search-options.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/navbar/navbar.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/main/main.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/advanced-search-options/advanced-search-options.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/result/result.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/schools/schools.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/schools/schools.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/advanced-search-options/advanced-search-options.directive.js",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/index.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/home/home.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/bower_components/angular/angular.js",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/components/footer/footer.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/home/OLD_home.html",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/OLD_app.scss",
+		"/Users/mathewdaugherty/Desktop/Cruvita/CruvitaApp/client/app/home/OLD_home.scss"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"max-width: 767px",
+			"min-width: 860px",
+			"min-width: 768px",
+			".collapse",
+			".navbar",
+			"subnavbar",
+			".collapse",
+			"subnavbar-collapse.collapse",
+			"navbar-collapse.collapse",
+			"767px",
+			"768px",
+			"navbar",
+			".searchOptions",
+			"searchOptions",
+			"search-options",
+			"For Sale",
+			"Elem School",
+			".bumper",
+			"resist",
+			".resist",
+			".cruGallery",
+			"footer",
+			"top-info",
+			"sub-nav",
+			"advanced-search-options",
+			"table",
+			"schoolSelect",
+			".ngrs-range-slider",
+			".searchOptionsPanel",
+			"class=\"schoolSelect",
+			"class=\"search-term",
+			"sub-navbar",
+			"td",
+			"padding:8px;",
+			"padding: 8px;",
+			".table > thead > tr > th",
+			"head\n",
+			"%;\n",
+			"headerSearch-collapsed",
+			"#terms-of-service",
+			"#privacy-policy",
+			"#sales",
+			"#feedbackPage",
+			".rankings",
+			"#aboutPage",
+			"class=\"table table-hover",
+			".sub-navbar.drop",
+			"navbar",
+			".sub-navbar",
+			".drop",
+			".sub-navbar",
+			".headerSearch",
+			"bootstrap",
+			".navbar-collapse",
+			"footer",
+			"<footer",
+			".links"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"max-width: 860px",
+			"min-width: 861px",
+			"min-width: 860px",
+			"navbar",
+			"860px",
+			"861px",
+			"subnavbar"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "components/advanced-search-options/advanced-search-options.html",
+					"settings":
+					{
+						"buffer_size": 5761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								584,
+								584
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1189.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "components/advanced-search-options/advanced-search-options.scss",
+					"settings":
+					{
+						"buffer_size": 1115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1018,
+								1018
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2
+						},
+						"translation.x": 0.0,
+						"translation.y": 414.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/app.scss",
+					"settings":
+					{
+						"buffer_size": 17952,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17502,
+								17516
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 12844.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/main/main.scss",
+					"settings":
+					{
+						"buffer_size": 8063,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3546,
+								3546
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2292.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "components/navbar/navbar.html",
+					"settings":
+					{
+						"buffer_size": 1279,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								441,
+								441
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 240.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Map Fragment -->
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Left Content Drawer -->
+
+    <LinearLayout
+        android:id="@+id/left_drawer"
+        android:layout_width="@dimen/drawerWidth"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/translucent_white"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="2dp"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <!-- Right Content Drawer -->
+
+    <LinearLayout
+        android:id="@+id/right_drawer"
+        android:layout_width="@dimen/drawerWidth"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/translucent_white"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="2dp"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

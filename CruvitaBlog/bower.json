@@ -1,0 +1,26 @@
+{
+  "name": "CruvitaBlog",
+  "description": "Blog for Cruvita.com",
+  "main": "./core/index",
+  "authors": [
+    "Cruvita"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "real",
+    "estate",
+    "blog"
+  ],
+  "homepage": "http://blog.cruvita.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ghost-hunter": "*"
+  }
+}

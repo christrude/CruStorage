@@ -1,0 +1,6 @@
+<div class="schoolsPopover">
+  <a ng-href="school/{{mapModel.schoolWindow.model.slug}}">
+    <h6 ng-cloak>{{mapModel.schoolWindow.model.sch_name | titleCase | ifElem}}</h6>
+    <span ng-if="scoreExists(mapModel.schoolWindow.model.score.overall)">{{mapModel.schoolWindow.model.score.overall | number : 2}}</span>
+  </a>
+</div>

@@ -1,0 +1,52 @@
+<section class="rankings" ng-init="getRankings()">
+  <div class="col-md-12 no-padding">
+    <h1> Cruvita School Score Rankings <fa name="info-circle"class="rankings-info" ng-class="{hide: viewable}" ng-click="viewable = !viewable"></fa></h1>
+    <form ng-submit="getRankings()" class="col-md-12 form-group" ng-class="{ninja: !viewable}">
+      <div class="input-group input-group-lg rankings-search-bar">
+        <input type="text" ng-model="locationSelected" placeholder="Enter your city, county or zip code now!" uib-typeahead="address for address in getLocation($viewValue)" class="form-control" typeahead-wait-ms="800" typeahead-on-select="setArea()"><span class="input-group-btn"><button class="btn btn-lg btn-primary search-button" type="submit">Search</button></span>
+      </div>
+    </form>
+  </div>
+  <div class="col-xs-12 col-sm-4 pull-right">
+    <section class="rankings-homes" ng-if="nearbyHomes">
+      <h4>Homes in this Area</h4>
+      <nearby-homes list="nearbyHomes" school="true" link="link"></nearby-homes>
+    </section>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Rankings Page - adsense unit -->
+    <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-1505425252462582"
+    data-ad-slot="1833407508"
+    data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  <div class="col-xs-12 col-sm-8 pge-divider no-pad-left">
+    <div class="col-md-12  no-padding">
+  	  <uib-tabset class="position" ng-class="{ninja: !viewable}">
+  	    <uib-tab heading="{{tab.heading}}" ng-click="setEdLevel(tab.edLevel)" active="tab.active" ng-repeat="tab in tabs">
+  	    	<div schools="schools" cg-busy="schoolPromise" update-schools="getRankings()" ranking="true"></div>
+  	    </uib-tab>
+  	  </uib-tabset>
+    </div>
+    <div class="clearfix"></div>
+    <div class="well" ng-class="{ninja: !viewable}">
+      <p><fa ng-click="viewable = !viewable" name="close" class="closewell"></fa>
+      Cruvita School Score is derived by taking the most up to date information from The United States Department of Education, The United States Census Bureau, and current home sale trends. This score allows one to see how schools match up against one another based on the area of choice.</p>
+      <p>In addition to giving each school a unique score, we have also provided each school’s rank in their city/county, state, and the entire nation. The highest rated schools receive a <strong>Cruvita Medal of Excellence.</strong> Only the top 5% of the schools in an area receive a gold medal. The top 10% receive a silver medal and the top 25% receive a bronze medal.</p>
+      <p>To see the local Cruvita School Score rank OR to see where other schools rank enter the city or zip code below, and click Search!
+      </p>
+      <p></p>
+      <p>Cruvita also offers listings of homes for sale and rent in Virginia, Washington D.C., Maryland, North Carolina, and Florida. All the cities served can be found on our <a href="/areas">Cruvita Listing Areas page</a></p>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+</section>
+
+
+

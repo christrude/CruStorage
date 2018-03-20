@@ -1,0 +1,21 @@
+
+<ion-tabs class="tabs-positive tabs-icon-only">
+  <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+    <ion-content class="padding">
+		<ion-list>
+		  <ion-item ng-repeat="home in homes">
+		    <img ng-src="http://localhost:9000/api/images?url={{home.listing.photos[0].photo[0].mediaurl[0]}}">
+		  </ion-item>
+		</ion-list>
+		</ion-content>
+  </ion-tab>
+
+  <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+    <!-- Tab 2 content -->
+  </ion-tab>
+
+  <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+    <!-- Tab 3 content -->
+  </ion-tab>
+
+</ion-tabs>

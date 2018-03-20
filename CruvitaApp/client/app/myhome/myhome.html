@@ -1,0 +1,76 @@
+<section class="myhome" cg-busy="myHomePromise">
+	<div class='row'>
+		<div class='col-md-9'>
+			<ul class="nav nav-pills">
+			  <li role="presentation" ng-class="{active: tab.active}" ng-repeat="tab in tabs"><a href="#" ng-click="setTab(tab)">{{tab.label}}</a></li>
+			</ul>
+			<div ng-repeat='tab in tabs'>
+				<div ng-repeat='question in tab.questions track by $index' ng-if='tab.active && tab.activeQuestion === $index'>
+					<div>
+						<h2>{{question.value}}</h2>
+						<h5 ng-if='question.multiCardinal'>Create a prioritized list</h5>
+					</div>
+					<div class='row'>
+						<div class='col-md-7'>
+							<ul dnd-list="question.values" class="list-unstyled">
+						    <li ng-repeat="value in question.values track by $index"
+					        dnd-draggable="value"
+					        dnd-moved="question.values.splice($index, 1)"
+					        dnd-effect-allowed="move"
+					        dnd-selected="data.selected = value"
+					        ng-class="{'selected': data.selected === value}"
+									style='margin: 10px 0'
+					      >
+					        <dnd-nodrag>
+										<span ng-if='question.inputType === "search"'>
+	          					<span dnd-handle class="handle">{{$index + 1}}. </span>
+											<input type="text" ng-model="value.label" placeholder="Enter as many cities, counties, zip codes, or schools that you are interested in!" uib-typeahead="address for address in autocomplete.autocomplete($viewValue)" typeahead-wait-ms="400" typeahead-on-select="getResults(value)" style='width: 500px; display: inline-block' class="form-control">
+										</span>
+										<span ng-if='question.inputType === "input"'>
+											<input type="number" ng-model="value.value" class="form-control input-lg">
+										</span>
+										<span ng-if='question.inputType === "dropdown"'>
+											<select ng-model="value.value">
+									      <option value="{{option.value}}" ng-repeat='option in question.options track by $index'>{{option.label}}</option> 
+									    </select>
+										</span>
+										<span ng-if='question.inputType === "radio"'>
+											<div ng-repeat='option in question.options track by $index'>
+				  							<label>
+													<input type="radio" ng-model="value.value" value="{{option.value}}">
+													{{option.label}}
+												</label>
+											</div>
+										</span>
+
+										<span ng-click='addValue(question)' style='font-size: 24px' ng-if='question.multiCardinal' class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+										<span ng-click='removeValue(question)' style='font-size: 24px' ng-if='question.multiCardinal && question.values.length > 1' class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+									</dnd-nodrag>
+						    </li>
+							</ul>
+							<div ng-if='question.weights'>
+								<h3 ng-if='question.options'>How important is this to you?</h3>
+								<div ng-repeat='weight in question.weights track by $index'>
+	  							<label>
+										<input type="radio" ng-model="question.weight" ng-value="weight">
+										{{data.weightScale[$index]}}
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class='pull-left'>
+					<button class="btn btn-lg btn-primary" ng-click='backQuestion()' ng-if='activeTab.actionQuestion !== 0'>Back</button>
+				</div>
+				<div class='pull-right'>
+					<button class="btn btn-lg btn-primary" ng-click='submit()'>Finish Survey</button>
+					<button class="btn btn-lg btn-primary" ng-click='skipQuestion()'>Skip</button>
+					<button class="btn btn-lg btn-primary" ng-click='nextQuestion()'>Next</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

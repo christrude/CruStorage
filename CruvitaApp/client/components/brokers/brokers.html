@@ -1,0 +1,20 @@
+<section class="brokerList" sticky>
+  <div class="media breakbox">
+    <h5 class="media-heading" ng-if="school">Cruvita Premier Lender</h5>
+    <div class="media-left">
+      <a ng-href="/profile/{{broker.slug}}"><img class="agent-pic" ng-if="broker.pictureLocation" ng-src="/api/images?url={{broker.pictureLocation}}&contentType={{broker.pictureType}}&hashed=true&userImage=true" ng-load="loadTrack(broker)" alt="Cruvita Home Sales Expert"/>
+      <img class="agent-pic" ng-if="!broker.pictureLocation" src="assets/images/agent_placeholder_large.png" alt="Cruvita Home Sales Expert"/></a>
+      <img width="0" height="0" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="  ng-load="loadTrack(broker)"/>
+    </div>
+    <div class="media-body">
+      <ul class="agent-info">
+        <li class="agent-info-name"><fa name="male"></fa><a ng-href="/profile/{{broker.slug}}">{{broker.name}}</a></li>
+        <li class="agent-info-phone"><fa name="mobile-phone"></fa><a href="tel:+1{{broker.phone[0]}}" ng-click="clickTrackPhone(broker)">{{broker.phone[0] | tel}}</a></li>
+        <li class="agent-info-email"><fa name="envelope"></fa><a ng-href="mailto:{{broker.email}}?subject=Cruvita.com:  You have a new lead!" tooltip="{{broker.email}}" ng-click="clickTrackEmail(broker)">{{broker.email}}</a></li>
+        <li class="agent-info-web"><fa name="globe"></fa><a ng-href="{{broker.website}}" target="_blank" ng-click="clickTrackWebsite(broker)">{{broker.website}}</a></li>
+        <li class="agent-info-license"><fa name="certificate"></fa>NMLS#: {{broker.licenseNumber}}</li>
+        <li class="agent-info-license"><fa name="star"></fa>{{broker.realtyName}}</li>
+      </ul>
+    </div>
+  </div>
+</section>

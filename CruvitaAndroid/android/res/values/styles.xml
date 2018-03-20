@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Colors -->
+    <color name="white">#ffffff</color>
+    <color name="darkblue">#002e5c</color>
+
+    <!-- Translucent Colors -->
+    <color name="translucent_white">#77ffffff</color>
+</resources>

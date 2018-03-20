@@ -1,0 +1,71 @@
+
+<div class="school-rankings" ng-if="schools.results.length && ranking && !deviceDetector.isMobile()">
+  <table class="table table-hover" >
+    <thead>
+      <tr class="school-head">
+        <th class="lr title-align">Local Rank</th>
+        <th>School</th>
+
+        <th class="title-align">Cruvita School Grade</th>
+        <th class="csn title-align">City/County</th>
+        <th class="csn title-align">State</th>
+        <th class="csn title-align">Nation</th>
+        <th ng-if="map"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="school in schools.results track by $index" ng-mouseenter="school.onHover()" ng-mouseleave="school.offHover()" ng-class="{selected: school.selected}" class="school-result">
+        <td class="lr title-align">{{$index + 1 + (schools.current - 1)*schools.options.perPage}}</td>
+        <td class="min-width" ng-cloak>
+        <a ng-href="/school/{{school.slug}}">{{school.sch_name | titleCase | ifElem}}</a><br />
+          {{school.address.city | titleCase}}, {{school.address.state | titleCase}}
+        </td>
+        <td class="min-width title-align tableScore"><div ng-if="scoreExists(school.score.overall)"><school-grade school="school"></school-grade></div><div class="school-score pull-right" ng-if="!scoreExists(school.score.overall)">No Score Available</div></td>
+        <td class="title-align"><span tooltip="{{school.rank.county.rank}} out of {{school.rank.county.total}} in {{school.address.county}}">{{school.rank.county.rank}}<i class="medal" ng-class="setCountyRank(school)"></i></span></td>
+        <td class="title-align"><span tooltip="{{school.rank.state.rank}} out of {{school.rank.state.total}} in {{school.address.state}}">{{school.rank.state.rank}}<i class="medal" ng-class="setStateRank(school)"></i></span></td>
+        <td class="title-align"><span tooltip="{{school.rank.nation.rank}} out of {{school.rank.nation.total}} in the US">{{school.rank.nation.rank}}<i class="medal" ng-class="setNationRank(school)"></i></span></td>
+        <td ng-if="map">
+          <span ng-if="!school.hasBoundaries" class="btn btn-xs btn-warning btn-disabled">Specialty School</span>
+          <button class="btn btn-sm btn-primary" ng-click="activateSchool(school)" ng-if="!school.selected && school.hasBoundaries">Select</button>
+          <button class="btn btn-sm btn-danger" ng-click="deactivateSchool(school)" ng-disabled="!school.hasBoundaries" ng-if="school.selected">Unselect</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="school-rankings" ng-if="(schools.results.length && !ranking) || (schools.results.length && ranking && deviceDetector.isMobile())">
+  <div ng-repeat="school in schools.results track by $index" ng-mouseenter="school.onHover()" ng-mouseleave="school.offHover()" ng-class="{selected: school.selected}" class="school-result media">
+    <div class="media-left">
+      <h4><span class="ranking">{{$index + 1 + (schools.current - 1)*schools.options.perPage}}.&nbsp;</span><a ng-href="/school/{{school.slug}}" ng-cloak>{{school.sch_name | titleCase | ifElem}}</a></h4>
+      <h5>{{school.address.city | titleCase}}, {{school.address.state | titleCase}}</h5>
+
+      <div ng-if="map">
+        <button class="btn btn-sm btn-primary" ng-click="activateSchool(school)" ng-if="!school.selected">View Homes for this School</button>
+        <button class="btn btn-sm btn-danger" ng-click="deactivateSchool(school)" ng-disabled="!school.hasBoundaries" ng-if="school.selected">Deselect this School</button>
+      </div>
+    </div>
+    <div class="media-right">
+      <div class="score pull-right">
+				<school-grade school='school'></school-grade>
+      </div>
+      <div class="clearfix"></div>
+      <ul class="rankings-list">
+        <li tooltip="{{school.rank.county.rank}} out of {{school.rank.county.total}} in {{school.address.county}}"><i class="medal" ng-class="setCountyRank(school)"></i>{{school.rank.county.rank}} in the County/City</li>
+
+        <li tooltip="{{school.rank.state.rank}} out of {{school.rank.state.total}} in {{school.address.state}}"><i class="medal" ng-class="setStateRank(school)"></i>{{school.rank.state.rank}} in the State</li>
+
+        <li tooltip="{{school.rank.nation.rank}} out of {{school.rank.nation.total}} in the US"><i class="medal" ng-class="setNationRank(school)"></i>{{school.rank.nation.rank}} in the Nation</li>
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-if="map">
+      <p ng-if="!school.hasBoundaries" class="alert alert-warning specialty-school" role="alert"><strong>Note:</strong> This is a specialty school that does not have attendance boundaries.</p>
+    </div>
+  </div>
+</div>
+<div style="text-align:center;">
+  <uib-pagination ng-if="schools.last > 1" total-items="schools.count" items-per-page="20" ng-model="schools.current" ng-change="updateSchools()" max-size="5" rotate="false"></uib-pagination>
+</div>
+<div ng-if="!schools.results.length && !ranking" class="blurb">No Schools Found</div>

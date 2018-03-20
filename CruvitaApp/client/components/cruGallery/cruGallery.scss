@@ -1,0 +1,146 @@
+.cruGallery {
+  background-color: #fff;
+
+  .features {
+    padding: 5px;
+    font-size: 16px;
+
+    span {
+      padding: 0 5px;
+    }
+  }
+
+  ul{
+    padding:0;
+    margin:0;
+    white-space:nowrap;
+
+    li {
+      list-style: none;
+      display: inline-block;
+    }
+  }
+
+  .mainimageshell {
+    width: 100%;
+  }
+
+  .viewwindow {
+      width: 100%;
+      height: 405px;
+      position:relative;
+  }
+
+  .fullsizelist {
+      position:absolute;
+      width: 100%;
+      height: 100%;
+      top:0;
+      left:0;
+      @include noselect;
+
+      li {
+          @include noselect;
+          transition:  all .3s ease;
+          height: 100%;
+          position: absolute;
+          visibility: hidden;
+          opacity: 0;
+          width: 100%;
+
+          &.unhide{visibility: visible; opacity: 1;}
+
+          .arrow{
+              @include noselect;
+              background: $cru-blue;
+              border-radius: 3px;
+              position: absolute;
+              display: block;
+              top: 40%;
+              opacity: .8;
+              color: white;
+              cursor: pointer;
+              z-index: 1;
+
+              &.aleft{left: 0;}
+              &.aright{right: 0;}
+              span {@include noselect; font-size: 3rem; margin: 0 5px 5px; display: block;}
+          }
+
+          img {@include noselect; display: block; margin: 0 auto; max-height: 100%; position: relative; max-width: 100%;}
+      }
+      li.active {visibility: visible; opacity: 1;}
+  }
+
+  .bg {
+      padding:10px;
+      float:left;
+  }
+
+  .thumb {
+    height: 100px;
+    padding: 0;
+    margin: 3px;
+    cursor: pointer;
+
+    &.active {
+      border: 3px solid tint($cru-org, 20%);
+    }
+  }
+
+  .thumbswrapper {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      width: 100%;
+      height: 125px;
+      margin: 0px auto;
+      padding: 5px;
+      background-color: #EAEAEA;
+      border-top: 1px solid #ccc;
+      @include noselect;
+  }
+
+  .thumbwrapper {
+      float: left;
+      height: 100%;
+      @include noselect;
+  }
+
+  /* all sub 768px sizes */
+  @media only screen
+    and (max-width: 767px)  {
+
+    .thumbswrapper {
+      display: none;
+    }
+
+    .pge-divider {
+      padding: 0;
+    }
+
+    .fullsizelist li img.large {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .viewwindow {
+      height: 350px;
+    }
+  }
+
+  @media only screen
+    and (max-width: 480px)  {
+
+    .viewwindow {
+      height: 200px;
+    }
+  }
+
+  @media only screen
+    and (max-width: 340px)  {
+
+    .viewwindow {
+      height: 150px;
+    }
+  }
+}

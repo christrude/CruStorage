@@ -1,0 +1,111 @@
+<div class="modal-header">
+	<div class='row'>
+		<div class='col-md-9'>
+  		<h3>Agent Login/Registration</h3>
+		</div>
+		<div class='col-md-3'>
+  		<span class="close" ng-click="cancel()">&times;</span>
+		</div>
+	</div>
+</div>
+<div class="modal-body">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="showReg"> <strong>Register for a new account?</strong>
+    </label>
+  </div>
+  <form class="form" name="loginForm" ng-submit="login(loginForm)" ng-if="!showReg" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine || loginForm.email.$touched && loginForm.email.$pristine }">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" ng-model="user.email" required>
+      <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine || loginForm.email.$touched && loginForm.email.$pristine " class="help-block">Please enter your email address.</p>
+    </div>
+    <a class="pull-right" ng-click="resetPassword()">Forgot your password?</a>
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine || loginForm.password.$touched && loginForm.password.$pristine }">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" ng-model="user.password" required>
+    </div>
+    <div class="form-group has-error">
+      <p class="help-block" ng-show="loginForm.password.$invalid && !loginForm.password.$pristine || loginForm.password.$touched && loginForm.password.$pristine ">
+         Please enter your password.
+      </p>
+      <p class="alert alert-danger" ng-if="errors.err">{{ errors.err }}</p>
+      <p class="alert alert-success" ng-if="errors.success">{{ errors.success }}</p>
+    </div>
+    <div>
+      <button class="btn btn-primary btn-lg btn-login" type="submit" ng-disabled="loginForm.$invalid">
+        Login
+      </button>
+    </div>
+  </form>
+  <form class="form" name="regForm" ng-submit="register(regForm)" ng-if="showReg" novalidate>
+    <label style="color: #a94442;">All Fields are Required</label>
+    <div class="form-group" ng-class="{ 'has-error' : regForm.name.$invalid && !regForm.name.$pristine || regForm.name.$touched && regForm.name.$pristine }">
+      <label>Name</label>
+      <input type="text" name="name" class="form-control" ng-model="user.name" required>
+      <p ng-show="regForm.name.$invalid  && regForm.name.$touched || regForm.name.$touched && regForm.name.$pristine " class="help-block">Enter a name.</p>
+    </div>
+    <div class="form-group">
+      <label class="radio-inline">
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="realtor" ng-model="user.agentType" checked> Realtor?
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="mortgage" ng-model="user.agentType" checked>Mortgage Broker?
+      </label>
+    </div>
+
+    <div class="sub-group" ng-if="user.agentType === 'realtor'">
+      <div class="form-group" ng-class="{ 'has-error' : regForm.state.$invalid && !regForm.state.$pristine || regForm.state.$touched && regForm.state.$pristine }">
+        <label>Licensing State</label>
+        <states ng-model="user.state" name="state" id="selectState" required></states>
+        <p ng-show="regForm.state.$invalid  && regForm.state.$touched || regForm.state.$touched && regForm.state.$pristine " class="help-block">Enter a State.</p>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : regForm.licenseNumber.$invalid && !regForm.licenseNumber.$pristine || regForm.licenseNumber.$touched && regForm.licenseNumber.$pristine }">
+        <label>Realtor License Number</label>
+        <input type="text" name="licenseNumber" class="form-control" ng-model="user.licenseNumber" required>
+        <p ng-show="regForm.licenseNumber.$invalid  && regForm.licenseNumber.$touched || regForm.licenseNumber.$touched && regForm.licenseNumber.$pristine " class="help-block">Enter a valid license number.</p>
+      </div>
+    </div>
+
+    <div class="sub-group" ng-if="user.agentType === 'mortgage'">
+      <div class="form-group" ng-class="{ 'has-error' : regForm.state.$invalid && !regForm.state.$pristine || regForm.state.$touched && regForm.state.$pristine }">
+        <label>Licensing State</label>
+        <states ng-model="user.state" name="state" id="selectState"></states>
+        <p ng-show="regForm.state.$invalid  && regForm.state.$touched || regForm.state.$touched && regForm.state.$pristine " class="help-block">Enter a State.</p>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : regForm.licenseNumber.$invalid && !regForm.licenseNumber.$pristine || regForm.licenseNumber.$touched && regForm.licenseNumber.$pristine }">
+        <label>NMLS ID</label>
+        <input type="text" name="licenseNumber" class="form-control" ng-model="user.licenseNumber" required>
+      <p ng-show="regForm.licenseNumber.$invalid  && regForm.licenseNumber.$touched || regForm.licenseNumber.$touched && regForm.licenseNumber.$pristine " class="help-block">Enter a valid license number.</p>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : regForm.phone.$invalid && !regForm.phone.$pristine || regForm.phone.$touched && regForm.phone.$pristine }">
+      <label>Phone Number</label>
+      <input type="text" name="phone" class="form-control" ng-model="user.phone" ng-pattern="phonePattern" ng-required="requireTel">
+      <p ng-show="regForm.phone.$invalid && !regForm.phone.$pristine || regForm.phone.$touched && regForm.phone.$pristine " class="help-block">Enter a valid phone number and format.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid && !regForm.email.$pristine || regForm.email.$touched && regForm.email.$pristine }">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" ng-model="user.email" required>
+      <p ng-show="regForm.email.$invalid && !regForm.email.$pristine || regForm.email.$touched && regForm.email.$pristine " class="help-block">Enter a valid email.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid && !regForm.password.$pristine || regForm.password.$touched && regForm.password.$pristine }">
+      <label>Choose a Password</label>
+      <input type="password" name="password" class="form-control" ng-model="user.password" required ng-minlength="8">
+      <p ng-show="regForm.password.$invalid && !regForm.password.$pristine || regForm.password.$touched && regForm.password.$pristine " class="help-block">Password is required</p>
+      <p ng-show="regForm.password.$error.minlength" class="help-block">Password must be longer than 8 characters.</p>
+    </div>
+    <div class="checkbox" ng-class="{ 'has-error' : regForm.tospp.$invalid && !regForm.tospp.$pristine || regForm.tospp.$touched && regForm.tospp.$pristine }">
+      <label>
+        <input type="checkbox" name="tospp" ng-model="tospp" required>By checking this box, you agree to Cruvita's <a href="/pp" target="_blank">Privacy Policy</a> and <a href="/tos" target="_blank">Terms of Service</a>
+      </label>
+    </div>
+    <div class="clearfix"></div>
+    <div>{{form.$invalid}}
+      <button type="submit" class="btn btn-primary btn-lg btn-register" ng-disabled="regForm.$invalid">
+        Register
+      </button>
+    </div>
+  </form>
+<hr>
+</div>

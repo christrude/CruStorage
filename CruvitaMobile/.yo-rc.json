@@ -1,0 +1,36 @@
+{
+  "generator-angular-fullstack": {
+    "insertRoutes": true,
+    "registerRoutesFile": "server/routes.js",
+    "routesNeedle": "// Insert routes below",
+    "insertSockets": true,
+    "registerSocketsFile": "server/config/socketio.js",
+    "socketsNeedle": "// Insert sockets below",
+    "filters": {
+      "js": true,
+      "html": true,
+      "sass": true,
+      "ngroute": true,
+      "mongoose": true,
+      "auth": true,
+      "googleAuth": true,
+      "facebookAuth": true,
+      "twitterAuth": true
+    }
+  },
+  "generator-ng-component": {
+    "routeDirectory": "www/js/app/",
+    "directiveDirectory": "www/js/components/",
+    "filterDirectory": "www/js/components/",
+    "serviceDirectory": "www/js/components/",
+    "basePath": "client",
+    "filters": [
+      "ngroute"
+    ],
+    "extensions": [
+      "js",
+      "html",
+      "scss"
+    ]
+  }
+}

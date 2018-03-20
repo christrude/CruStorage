@@ -1,0 +1,36 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+{{! The big featured header }}
+<header class="main-header {{#if @blog.cover}}" style="background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}">
+    {{navigation}}
+
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+{{! The main content area on the homepage }}
+<main id="content" class="content" role="main">
+    <section id="results" class="searchResults"></section>
+
+    {{! The tag below includes the post loop - partials/loop.hbs }}
+    {{> "loop"}}
+
+</main>
+<sidebar class="fixedSidebar">
+    <a href="http://www.cruvita.com/?utm_source=Blog&utm_medium=Ad_Space&utm_campaign=Blog_Call_To_Action" target="_blank"><span class="ad"/></a>
+    <div class="adsbygoogle adsense">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1505425252462582"
+             data-ad-slot="9832743100"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</sidebar>
+<div class="clearfix"></div>
+
+

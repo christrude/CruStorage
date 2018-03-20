@@ -1,0 +1,25 @@
+<div class="results-pge">
+    <advanced-search-options ng-if="!deviceDetector.isMobile()"></advanced-search-options>
+    <section class="content">
+          <div class="col-md-7 col-sm-6 no-padding hideme" ng-if="!deviceDetector.isMobile()">
+                <map-results></map-results>
+          </div>
+          <div class="col-md-5 col-sm-6 no-padding">
+                <uib-tabset active="mapModel.active">
+                      <uib-tab heading="Schools" index="0" ng-click="switchTab('schools')" ng-if="!myhomes">
+                            <school-results></school-results>
+                      </uib-tab>
+                      <uib-tab heading="Homes" index="1" ng-click="switchTab('homes')">
+                            <home-results></home-results>
+                      </uib-tab>
+
+                      <uib-tab heading="Map" index="2" ng-click="switchTab('map')" ng-if="deviceDetector.isMobile()">
+                            <map-results></map-results>
+                      </uib-tab>
+                </uib-tabset>
+
+                <advanced-search-options ng-if="deviceDetector.isMobile()"></advanced-search-options>
+          </div>
+    </section>
+    <div class="clearfix"></div>
+</div>

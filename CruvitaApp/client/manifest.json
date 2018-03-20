@@ -1,0 +1,22 @@
+{
+  "short_name": "Cruvita",
+  "name": "Cruvita: Community. School. Home.",
+  "description": "The Leading Home Listing Site for School Rankings and Home Listings. Invest in your children’s future by investing in the right home.",
+  "icons": [
+    {
+      "src": "https://www.cruvita.com/assets/images/cruvita_logo_325x250.png",
+      "sizes": "325x250",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.cruvita.app"
+    }
+  ]
+}

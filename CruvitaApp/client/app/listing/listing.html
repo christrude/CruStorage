@@ -1,0 +1,218 @@
+<section class="listing container">
+  <!--   <a class="back" ng-href ng-click="goBack()"><i class="fa fa-chevron-left"></i> Back to Search Results</a>-->
+  <article ng-show="!listing" class="coverall">
+    <div class='uil-ring-css' style='transform:scale(.8);'><div></div></div>
+    <h2>Loading...</h2>
+  </article>
+  <header class="col-md-12 top-info">
+    <a class="back-left" ng-show="listingsScrollable && currentIndex > 1" ng-href="/listing/{{HomeModel.homes.results[currentIndex + -1].slug}}"><i class="fa fa-chevron-left"></i> Previous Listing</a>
+    <a class="back-right" ng-show="listingsScrollable && currentIndex < maxIndices" ng-href="/listing/{{HomeModel.homes.results[currentIndex + 1].slug}}">Next Listing <i class="fa fa-chevron-right"></i></a>
+
+    <h1 class="page-h1">
+      <span ng-if="listing.address.fullstreetaddress">{{listing.address.fullstreetaddress | titleCase}}<span ng-if="listing.address.unitnumber && listing.address.unitnumber[0]">, Unit {{listing.address.unitnumber[0]}},</span>
+      <span ng-if="listing.address.city">{{listing.address.city | titleCase}},</span>
+      <span ng-if="listing.address.stateorprovince">{{listing.address.stateorprovince}} </span>
+      <span ng-if="listing.address.postalcode">{{listing.address.postalcode}}</span>
+
+      <div class="secondary-info">
+        <span ng-if="listing.listprice[0]" class="price">{{listing.listprice[0] | currency: '$':0}}</span>
+        <span ng-if="listing && !listing.listprice[0]">Price Available Upon Request</span>
+        <span ng-if="listing.bedrooms[0]">&middot;</span>
+        <span ng-if="listing.bedrooms[0]">{{listing.bedrooms[0]}} BR</span>
+        <span ng-if="listing.bathrooms[0]">&middot;</span>
+        <span ng-if="listing.bathrooms[0]">{{listing.bathrooms[0]}} BA</span>
+        <span ng-if="listing.livingarea[0] > 0">&middot;</span>
+        <span ng-if="listing.livingarea[0] > 0">{{listing.livingarea[0]}} SQ FT</span>
+        <span ng-if="listing.status === 'inactive'">
+          <em>This home is no longer listed on Cruvita.  To find a similar home contact the Cruvita Home Specialist.</em>
+        </span>
+      </div>
+    </h1>
+  </header>
+
+  <section class="listing-container row">
+    <div class="col-md-7 pge-divider">
+      <div class="breadcrumb">
+        <span><a ng-href="/results?location={{goToState(listing.address.stateorprovince)}}&tab=homes">{{listing.address.stateorprovince}}</a></span>
+        <span><a ng-href="/results?location={{goToCity(listing.address.city, listing.address.stateorprovince)}}&tab=homes">{{listing.address.city}}</a></span>
+        <span>{{listing.address.fullstreetaddress}}</span>
+      </div>
+      <div class="pic-area">
+        <cru-gallery> </cru-gallery>
+      </div>
+
+      <button class="btn btn-success send-email contact-button"  ng-click="openContact(listing, lagent, agent)" ng-if="agent">See this house now!</button>
+      <button class="btn btn-success send-email contact-button" ng-click="openContact(listing, lagent)" ng-if="!agent">See this house now!</button>
+
+      <ul class="share-icons">
+        <li fb-like="share.Url"></li>
+        <li tweet="share.Name" tweet-url="share.Url"></li>
+        <li google-plus="share.Url"></li>
+      </ul>
+
+      <div class="listing-content">
+        <h3 class="price" ng-if="listing.listprice[0]">{{listing.listprice[0] | currency: '$':0}} </h3>
+        <h3 class="price" ng-if="listing && !listing.listprice[0]">Price Available Upon Request</h3>
+        <h4>{{listing.listingtitle[0] | titleCase}}</h4>
+
+
+        <p>{{listing.listingdescription[0]}}</p>
+        <h3 ng-if="listing.listingstatus[0] === 'Closed' || listing.listingstatus[0] === 'Pending'" class="statusWarning">{{listing.listingstatus[0]}}</h3>
+        <div class="school-map" id="map">
+          <ui-gmap-google-map options="mapOptions" center="map.center" zoom="map.zoom" draggable="true" ng-if="listing">
+            <ui-gmap-marker coords="map.coordinates" idKey='"0"' options="options"></ui-gmap-marker>
+          </ui-gmap-google-map>
+        </div>
+
+        <uib-accordion>
+          <div uib-accordion-group is-open="main.status.open">
+            <uib-accordion-heading>
+              <h4>Features <i class="pull-right fa" ng-class="{'fa-angle-down': main.status.open, 'fa-angle-right': !main.status.open}"></i></h4>
+            </uib-accordion-heading>
+            <ul class="listing-info">
+              <li ng-if="listing.detailedcharacteristics[0].isnewconstruction[0]">New Construction!</li>
+              <li ng-if="listing.bedrooms[0] > 0">Bedrooms: <span class="pull-right">{{listing.bedrooms[0]}}</span></li>
+              <li ng-if="listing.bathrooms[0] > 0">Bathrooms: <span class="pull-right">{{listing.bathrooms[0]}}</span></li>
+              <li ng-if="listing.detailedcharacteristics[0].numfloors[0]">Floors: <span class="pull-right">{{listing.detailedcharacteristics[0].numfloors[0]}}</span></li>
+              <li ng-if="listing.livingarea[0] > 0">Sq Ft: <span class="pull-right">{{listing.livingarea[0]}}</span></li>
+              <li ng-if="listing.lotsize[0] > 0">Lot Size: <span class="pull-right">{{listing.lotsize[0] | number : 2}} Acres</span></li>
+              <li ng-if="listing.yearbuilt[0] > 0">Built: <span class="pull-right">{{listing.yearbuilt[0]}}</span></li>
+              <li ng-if="cruvitaDate">Listed On Cruvita: <span class="pull-right">{{cruvitaDate | date:'MMMM d, y'}}</span></li>
+              <li>Property Type: <span class="pull-right">{{listing.propertysubtype[0]}}</span></li>
+              <li>Category: <span class="pull-right">{{listing.listingcategory}}</span></li>
+              <li>Status: <span class="pull-right">{{listing.listingstatus[0]}}</span></li>
+              <li ng-if="listing.foreclosurestatus[0]">Forclosure Status: <span class="pull-right">{{listing.foreclosurestatus[0]}}</span></li>
+              <li ng-if="listing.detailedcharacteristics[0].architecturestyle[0]">Architecture Style:
+                <ul>
+                  <li ng-repeat="arc in listing.detailedcharacteristics[0].architecturestyle">{{arc}}</li>
+                </ul>
+              </li>
+              <li ng-if="listing.taxes[0].tax[0].amount[0]">Estimated Taxes: <span class="pull-right">{{listing.taxes[0].tax[0].amount[0] | currency: US}}</span></li>
+              <li class="hoverReveal">Direct Link: <span class="pull-right"><span class="hiddenText">Hover for Link</span><a ng-href="{{listing.listingurl[0]}}" target="_blank" class="hiddenLink">Click Here</a></span></li>
+            </ul>
+
+            <h4>Other Features <i class="pull-right fa"></i></h4>
+            <ul>
+              <li ng-repeat="(k, v) in listing.detailedcharacteristics[0]" ng-if="v[0] === true">
+                {{k | has | titleCase}}
+              </li>
+              <li ng-if="listing.detailedcharacteristics[0].appliances.appliance[0]">Appliances:
+                <ul>
+                  <li ng-repeat="app in listing.detailedcharacteristics[0].appliances.appliance">{{app}}</li>
+                </ul>
+              </li>
+              <li ng-if="listing.detailedcharacteristics[0].coolingsystems[0].coolingsystem[0]">{{listing.detailedcharacteristics[0].coolingsystems[0].coolingsystem[0]}} Cooling</li>
+              <li ng-if="listing.detailedcharacteristics[0].heatingfuels[0].heatingfuel[0]">{{listing.detailedcharacteristics[0].heatingsystems[0].heatingsystems[0]}} Heating</li>
+              <li ng-if="listing.detailedcharacteristics[0].heatingsystems[0].heatingsystems[0]">{{listing.detailedcharacteristics[0].heatingsystems[0].heatingsystems[0]}} Heating</li>
+              <li ng-if="listing.detailedcharacteristics[0].exteriortypes[0].exteriortype[0]">Exterior Types:
+                <ul>
+                  <li ng-repeat="type in listing.detailedcharacteristics[0].exteriortypes[0].exteriortype">{{type}}</li>
+                </ul>
+              </li>
+              <li ng-if="listing.detailedcharacteristics[0].floorcoverings[0].floorcovering">Floor Coverings:
+                <ul>
+                  <li ng-repeat="floor in listing.detailedcharacteristics[0].floorcoverings[0].floorcovering">{{floor}}</li>
+                </ul>
+              </li>
+              <li ng-if="listing.detailedcharacteristics[0].numparkingspaces[0]">Parking Spaces: {{listing.detailedcharacteristics[0].numparkingspaces[0]}}</li>
+              <li ng-if="listing.detailedcharacteristics[0].rooftypes[0].rooftype[0] && listing.detailedcharacteristics[0].rooftypes[0].rooftype[0] !== 'Unknown'">{{listing.detailedcharacteristics[0].rooftypes[0].rooftype[0]}} roof</li>
+              <li ng-if="listing.detailedcharacteristics[0].rooms[0].room" class="rel"><a href ng-click="rooms = !rooms">{{listing.detailedcharacteristics[0].rooms[0].room.length}} Rooms</a><ul class="rooms" ng-class="{showRooms: rooms}"> <li ng-repeat="room in listing.detailedcharacteristics[0].rooms[0].room track by $index">{{room}}</li></ul></li>
+              <li ng-if="listing.detailedcharacteristics[0].viewtypes[0].viewtype[0]">{{listing.detailedcharacteristics[0].viewtypes[0].viewtype[0]}} View</li>
+              <li ng-if="listing.detailedcharacteristics[0].yearupdated[0]">Updated in {{listing.detailedcharacteristics[0].yearupdated[0]}}</li>
+            </ul>
+          </div>
+        </uib-accordion>
+      </div>
+
+    </div>
+
+    <div class="col-md-5 pge-divider no-pad-right">
+      <div class="premiere-agents" ng-if="!deviceDetector.ismobile()" ng-cloak>
+
+        <div class="col-sm-12 col-md-12 no-padding" ng-if="agent">
+          <h3>Contact an Agent</h3>
+          <show-agent agent="agent" location="location" slug="slug" zip="listing.address.postalcode" city="listing.address.city" state="listing.address.stateorprovince"></show-agent>
+
+          <general-contact to="[agent.email, lagent.email[0]]" subject="listing.address.fullstreetaddress" messages="messages" lkey="lkey" listing="true" chse="true" agent="agent" location="location" slug="slug" zip="listing.address.postalcode" city="listing.address.city" state="listing.address.stateorprovince"></general-contact>
+        </div>
+
+        <div class="col-sm-12 col-md-12 no-padding" ng-if="!agent">
+          <h3>Contact an Agent</h3>
+
+          <general-contact to="lagent.email[0]" subject="listing.address.fullstreetaddress" messages="messages" lkey="lkey" listing="true" chse="false" agent="lagent" location="location" slug="slug" zip="listing.address.postalcode" city="listing.address.city" state="listing.address.stateorprovince"></general-contact>
+
+          <div class="agent-filler well">
+            <h3>Real Estate Agents Do You Want More Leads?</h3>
+
+            <p>Exclusive ownership of zip codes is only $25/month. <strong>Click here to email <a ng-href="mailto:sales@cruvita.com?subject=Cruvita.com:  Interested in a Sales Opportunity!">sales@cruvita.com</a> or call 844.CRUVITA and ask for a Cruvita Agent to help you grow your business.</strong></p>
+          </div>
+        </div>
+
+        <div ng-if="broker" class="col-md-12 broker-block no-padding">
+          <h4>Contact a Mortgage Broker</h4>
+          <show-broker broker="broker" location="location" slug="school.slug" zip="listing.address.postalcode" city="listing.address.city" state="listing.address.stateorprovince"></show-broker>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+
+      <div class="score-block">
+        <h3>Schools Scores, Ranks, and Medals
+        <a href ng-click="goToCompare()" class="pull-right"><fa name="balance-scale" title="Compare Schools"></fa></a></h3>
+        <table>
+          <thead>
+            <tr>
+              <th><em>School</em></th>
+              <th><em>Grade</em></th>
+              <th><em>City/County Rank</em></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="school" school-ranking type="elementary" school="schools.elementary" ng-if="schools.elementary"></tr>
+            <tr class="school" school-ranking type="middle" school="schools.middle" ng-if="schools.middle"></tr>
+            <tr class="school" school-ranking type="high" school="schools.high" ng-if="schools.high"></tr>
+          </tbody>
+        </table>
+      </div>
+      <div ng-if="lagent.participantid[0]" class="listing-agent">
+        <h4>Listing Agent</h4>
+        <ul class="agent-info">
+          <li class="agent-info-name"><i class="fa fa-male"></i>{{lagent.firstname[0]}} {{lagent.lastname[0]}}</li>
+          <li><i class="fa fa-mobile-phone"></i><a href="tel:+{{lagent.primarycontactphone[0]}}" ng-click="lagentClick(lagent, 'phone')">{{lagent.primarycontactphone[0] | tel}}</a></li>
+          <li><i class="fa fa-phone"></i><a href="tel:+1{{lagent.officephone[0]}}" ng-click="lagentClick(lagent, 'phone')">{{lagent.officephone[0] | tel}}</a></li>
+          <li ng-if="lagent.fax[0]"><i class="fa fa-fax"></i>{{lagent.fax[0] | tel}}</li>
+          <li><i class="fa fa-envelope"></i><a ng-href="mailto:{{lagent.email[0]}}?subject=Cruvita.com:  You have a new lead!" ng-click="lagentClick(lagent, 'email')" tooltip="{{lagent.email[0]}}" title="{{lagent.email[0]}}">{{lagent.email[0]}}</a></li>
+          <li><i class="fa fa-globe"></i><a ng-href="{{lagent.websiteurl[0]}}" target="_blank" ng-click="lagentClick(lagent, 'website')" tooltip="{{lagent.websiteurl[0]}}" title="{{lagent.websiteurl[0]}}">{{lagent.websiteurl[0]}}</a></li>
+          <li><i class="fa fa-building"></i>{{listing.brokerage[0].name[0]}}</li>
+        </ul>
+      </div>
+      <div class="nearby-homes">
+        <h4>Similar Homes Nearby</h4>
+        <nearby-homes list="nearby" school="false"></nearby-homes>
+      </div>
+      <div class="disclaimer">
+        <p class="disc">{{listing.disclaimer[0]}}</p>
+        <p class="disc">School information is gathered from the US Department of Education. Last Updated on the Department of Education Website in July 2014, for more information go to <a href="www.ed.gov/edfacts" target="_blank">www.ed.gov/edfacts</a></p>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<script type="text/ng-template" id="contactContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Contact an Agent</h3>
+  </div>
+  <div class="modal-body">
+    <div ng-if="agent">
+      <general-contact to="[agent.email, lagent.email[0]]" subject="listing.address.fullstreetaddress" messages="messages" lkey="lkey" listing="true" chse="true" agent="agent" location="location" slug="slug" zip="listing.address.postalcode" city="listing.address.city" state="listing.address.stateorprovince"></general-contact>
+    </div>
+    <div ng-if="!agent">
+      <general-contact to="[lagent.email[0]]" subject="listing.address.fullstreetaddress" messages="messages" lkey="lkey" listing="true" chse="true" agent="lagent" location="location" slug="slug" zip="listing.address.postalcode" city="listing.address.city" state="listing.address.stateorprovince"></general-contact>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Close Window</button>
+  </div>
+</script>

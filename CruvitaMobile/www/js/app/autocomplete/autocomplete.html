@@ -1,0 +1,5 @@
+<ion-list can-swipe="true">
+  <ion-item ng-repeat="location in autocomplete.response" ng-click="setLocation(location)">
+		{{location.dispName}}
+  </ion-item>
+</ion-list>

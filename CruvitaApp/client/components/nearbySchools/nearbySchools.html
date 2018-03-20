@@ -1,0 +1,18 @@
+<article class="nearby-schools-container">
+  <div ng-repeat="school in list | limitTo: 6" class="nearby-school homepage-schools school" ng-if="schoolpage">
+    <a class="media" ng-href="/school/{{school.slug}}">
+      <div class="result-info">
+        <h4 title="{{school.sch_name| titleCase}}">
+          {{school.sch_name | titleCase}}
+        </h4>
+        <p class="schoolScore">
+          <school-grade school="school" class="score"></school-grade>
+          <small tooltip="Cruvita School Score">{{school.score.overall | number: 2}}</small>
+        </p>
+        <p>
+          {{school.address.city | titleCase}}, {{school.address.state | titleCase}}
+        </p>
+      </div>
+    </div>
+  </a>
+</article>

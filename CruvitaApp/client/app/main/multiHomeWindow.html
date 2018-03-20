@@ -1,0 +1,26 @@
+<div class="multi-popover">
+  <img class="mapThumb" ng-src="assets/images/homes_placeholder_multiple_small.png"   alt="Multi-Unit Photo Thumbnail Placeholder"/>
+  <h4>{{mapModel.homeWindow.model.listing.address.fullstreetaddress | titleCase}}</h4>
+  <small>Multiple Listings share this address.</small>
+
+  <table class="multiple-table table">
+    <thead>
+      <tr>
+        <th>Unit</th>
+        <th>Price</th>
+        <th>Beds</th>
+        <th>Baths</th>
+        <th>SqFt</th>
+      </tr>
+    </thead>
+    <tbody class="frame">
+      <tr ng-repeat="child in mapModel.homeWindow.model.multiple.children" ng-click="goToMultipleListing(child.slug, child.listing.address.unitnumber[0])">
+        <td>{{child.listing.address.unitnumber[0]}}</td>
+        <td>{{child.listing.listprice[0] | currency: '$':0}}</td>
+        <td>{{child.listing.bedrooms[0]}}</td>
+        <td>{{child.listing.bathrooms[0]}}</td>
+        <td>{{child.listing.livingarea[0]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

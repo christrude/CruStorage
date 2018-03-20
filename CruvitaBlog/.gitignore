@@ -1,0 +1,5 @@
+node_modules/
+.tmp
+.sass-cache
+.log
+.DS_Store

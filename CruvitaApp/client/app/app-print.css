@@ -1,0 +1,522 @@
+.school-block {
+  width: 30%;
+  font-size: 12px;
+  float: left;
+}
+
+
+
+
+/****************************************************/
+/************** App-wide Styles *******************/
+/**************************************************/
+/* apply a natural box layout model to all elements, but allowing components to change */
+html, body{
+  background-color: $bkgd;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+  min-height: 100%;
+  position: relative;
+}
+
+html {
+  h1 {
+    font-size: 2.6em;
+  }
+  h2 {
+    font-size: 2.15em;
+    font-weight: 300;
+  }
+  h3 {
+    font-size: 1.725em;
+    font-weight: 300;
+  }
+  h4 {
+    font-size: 1.285em;
+  }
+  h5 {
+    font-size: 1.285em;
+    font-weight: 300;
+  }
+  h6 {
+    font-size: .85em;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    position: relative;
+  }
+}
+
+.leaflet-map-pane, .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-tile-pane, .leaflet-tile-container, .leaflet-overlay-pane, .leaflet-shadow-pane, .leaflet-marker-pane, .leaflet-popup-pane, .leaflet-overlay-pane svg, .leaflet-zoom-box, .leaflet-image-layer, .leaflet-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+html body{
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  margin: 0 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6{ margin-top: 0;}
+
+.page-h1 {
+  font-size: 2.2em;
+  padding: 20px;
+  background-color: #fff;
+  margin: 0;
+  color: #39658C;
+  font-weight: 300;
+}
+
+.listing .page-h1, .school-profile .page-h1 {
+  padding: 20px 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-pad-left{
+  padding-left: 0;
+}
+
+.no-pad-right {
+  padding-right: 0;
+}
+
+.txt16 {
+  font-size: 16px;
+  font-weight: 200;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a, a:hover{text-decoration: none; cursor: pointer;}
+
+.breadcrumb {
+  span{
+    padding: 0 2px;
+    &:not(:first-child):before {
+      content: '\b7\a0\a0'; /* \b7 is a middot, \a0 is a space */
+    }
+  }
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.modal-backdrop {
+  height: 100%;
+}
+
+.rel{position:relative;}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.modal-dialog {
+  margin-top: 80px;
+}
+
+/**************************************************/
+/*********** Header/Navbar Related Styles *********/
+/**************************************************/
+.header {
+  height: 54px;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10000;
+
+  .navbar {
+    background-color: #002e5c;
+    border-bottom: 2px solid #174b79;
+    margin-bottom: 0;
+  }
+
+  .cruvitaLogo{
+    background: url('/assets/images/cruvita_logo_white-sm.png');
+    height: 50px;
+    width: 232px;
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+
+  .headerMenu {
+    float: right;
+    list-style: outside none none;
+    padding-left: 10px;
+    position: relative;
+    right: 10px;
+    top: 15px;
+
+    li {
+      display: inline-block;
+      transition: all .2s ease;
+
+      a {display: block; padding: 0 10px; text-decoration: none; color: #dcdcdc; transition: all .2s ease;}
+      a:hover {color: #fff;}
+    }
+  }
+
+  .collapse:not(.in) .headerMenu.logged{
+    top: 25px;
+  }
+
+
+  .headerSearch {
+    display:block;
+    padding: 12px 0 0;
+
+    .form-control {
+      height: 26px;
+      padding: 3px 10px;
+    }
+  }
+
+  .navbarHello {
+    color: #dcdcdc;
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: .75em;
+
+    p {margin: 0;}
+    a {color: #dcdcdc; transition: all .2s ease;}
+    a:hover {color: #fff;}
+    a.push-link{padding: 0 10px;}
+
+  }
+
+}
+
+.navbar-toggle {
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+.navbar-toggle span {
+  color: #fff;
+  font-size: 24px;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent;
+}
+
+.agent-filler {
+  margin: 15px 0;
+}
+
+/**************************************************/
+/*********** Footer Related Styles *********/
+/**************************************************/
+.footer {
+    background-color: #174b79;
+    border-top: 5px solid #093a65;
+    bottom: 0;
+    display: block;
+    height: 41px;
+    padding: 0 30px;
+    position: absolute;
+    width: 100%;
+
+  .footer-inner{
+    .version{color: shade($cru-blue, 20%);}
+
+    .social {
+      float: left;
+    }
+    .site {
+      float: right;
+    }
+
+    .links{
+        position: relative;
+        top: 7px;
+
+      .link {
+        padding: 0 15px;
+        display: inline;
+        cursor: pointer;
+        opacity: .7;
+        transition: all .2s ease;
+
+        &:hover{opacity: 1;}
+
+        i {
+          font-size: 24px;
+        }
+
+        a {color: #eee; text-decoration: none;}
+
+      }
+    }
+
+
+  }
+}
+
+/**************************************************/
+/************* Layout Related Styles **************/
+/**************************************************/
+.wrapper{
+  position: relative;
+  transition: all .5s;
+  margin-bottom: 54px;
+
+  &.drop {
+    top: 109px;
+  }
+}
+
+.wrap-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: tint($cru-blue, 20%);
+  background: radial-gradient(ellipse at center, #335779 60%,#0d4477 100%); /* W3C */
+  display: none;
+  z-index: 10000;
+}
+
+.bumper {
+  margin: 15px 0 0;
+  padding: 15px 0 0 15px;
+}
+
+.container-flex, .container-flex-col, .home-page {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  /* Safari and MS*/
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-justify-content: flex-start;
+  -webkit-align-items: stretch;
+  display: -ms-flexbox;
+  -ms-flex-direction: row;
+  -ms-flex-pack: justify;
+  -ms-flex-align: stretch;
+
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+
+  .col{
+    display: inline-block;
+  }
+
+  .col-100 {
+    width: 100%;
+  }
+  .col-75 {
+    width: 75%;
+  }
+  .col-66 {
+    width: 66.6%;
+  }
+  .col-50 {
+    width: 50%;
+  }
+
+  .col-33 {
+    width: 33.3%;
+  }
+  .col-25 {
+    width: 25%;
+  }
+}
+
+.back {
+  color: #BABABA;
+  font-size: .8em;
+  i{font-size: .8em;}
+}
+
+.container-flex-col{
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+}
+
+.center{margin: 0 auto;}
+
+.center {
+    text-align: center;
+}
+
+
+
+/**************************************************/
+/****************** Skin Styles *******************/
+/**************************************************/
+
+.btn-xl{
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  border-radius: 6px;
+  display: block;
+  margin: 15px auto;
+}
+
+
+.primary-color {
+  background-color: $primary-color;
+  color: white;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.super-score, .good-score, .above-avg-score, .avg-score, .below-avg-score {
+  border-radius: 5px;
+  padding: 2px 6px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .8);
+}
+
+.super-score {
+  background-color: $cru-green;
+}
+
+.good-score {
+  background-color: $cru-light-green;
+}
+
+.above-avg-score {
+  background-color: $cru-gold;
+}
+
+.avg-score {
+  background-color: $cru-org;
+}
+
+.below-avg-score {
+  background-color: $cru-red;
+}
+
+.medal, .icon{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: block;
+  vertical-align: bottom;
+}
+
+.medal-small, .icon{
+  display: inline-block;
+  margin: 0 5px;
+  width: 18px;
+  height: 18px;
+}
+
+.medal-med{
+  width: 64px;
+  height: 64px;
+}
+.medal-large{
+  width: 128px;
+  height: 128px;
+}
+
+.gold-small{
+  background-image: url('/assets/images/gold-small.png');
+}
+
+.silver-small{
+  background-image: url('/assets/images/silver-small.png');
+}
+
+.bronze-small{
+  background-image: url('/assets/images/bronze-small.png');
+}
+
+.gold-med{
+  background-image: url('/assets/images/gold-med.png');
+}
+
+.silver-med{
+  background-image: url('/assets/images/silver-med.png');
+}
+
+.bronze-med{
+  background-image: url('/assets/images/bronze-med.png');
+}
+.gold-large{
+  background-image: url('/assets/images/gold-large.png');
+}
+
+.silver-large{
+  background-image: url('/assets/images/silver-large.png');
+}
+
+.bronze-large{
+  background-image: url('/assets/images/bronze-large.png');
+}
+
+.score-sample {
+  background-image: url("/assets/images/ScoreSample.png");
+}
+
+.medal-sample {
+  background-image: url("/assets/images/MedalSample.png");
+}
+
+.school-icon{
+  background-image: url('/assets/images/favicon.png');
+}
+
+.home-icon{
+  background-image: url('/assets/images/houseicon.png');
+}
+
+.legend-scale{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: inline-block;
+  margin: 0 5px;
+  width: 137px;
+  height: 20px;
+  vertical-align: bottom;
+  background-image: url('/assets/images/legendscale2.png');
+}
+
+.score-sample, .medal-sample {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  height: 320px;
+  margin: 0 auto;
+  width: 100%;
+  z-index: 1;
+}

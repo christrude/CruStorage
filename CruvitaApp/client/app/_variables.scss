@@ -1,0 +1,33 @@
+$cru-blue: rgba(0, 46, 92, 1);
+$cru-green: rgba(0, 179, 0, 1);
+$cru-light-green: rgba(134, 179, 0, 1);
+$cru-org: rgba(216, 143, 78, 1);
+$cru-red: rgba(197, 0, 0, 1);
+
+$cru-gold: rgba(253, 219, 82, 1);
+$cru-silver: rgba(192, 192, 192, 1);
+$cru-bronze: rgba(216, 143, 78, 1);
+
+$bkgd: rgba(245, 245, 245, 1);
+$primary-color: #547;
+
+$gold-medal-large: url('/assets/images/gold-large.png');
+$gold-medal-med: url('/assets/images/gold-med.png');
+$gold-medal-small: url('/assets/images/gold-small.png');
+
+$silver-medal-large: url('/assets/images/silver-large.png');
+$silver-medal-med: url('/assets/images/silver-med.png');
+$silver-medal-small: url('/assets/images/silver-small.png');
+
+$bronze-medal-large: url('/assets/images/bronze-large.png');
+$bronze-medal-med: url('/assets/images/bronze-med.png');
+$bronze-medal-small: url('/assets/images/bronze-small.png');
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

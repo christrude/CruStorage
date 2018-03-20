@@ -1,0 +1,13 @@
+/bin/
+/gen/
+/build/
+/local.properties
+/build.gradle~
+.project
+.classpath
+.settings/
+.gradle/
+/lint.xml
+.gitignore~
+/project.properties
+/proguard-project.txt

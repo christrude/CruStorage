@@ -1,0 +1,160 @@
+.school-profile {
+  top: 60px;
+  position: relative;
+  padding-bottom: 25px;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -webkit-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  border-radius: 0 0 5px 5px;
+  width: 100%;
+
+  h3 {
+    height: 54px;
+  }
+
+  .post-adsense,{
+    display: block;
+    width: 300px;
+    height: 250px;
+    clear: both;
+  }
+
+  .banner-adsense{
+    display: block;
+    width: 320px;
+    height: 100px;
+  }
+
+  .school {
+    border-bottom: 1px solid #dfdfdf;
+    margin: 0 0 15px;
+    padding-bottom: 20px;
+  }
+  .cta{white-space: pre-wrap;}
+  .table{margin-top: 5px;}
+  .table td, .table th{text-align:center;}
+  .school-rank{margin: 0 auto; width: 48px; position: relative;}
+
+  .school-title-block{
+    display: block;
+    width: 100%;
+  }
+
+  .school-score{
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 2px 6px;
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
+
+  .school-score + small, .school-rank small{
+    bottom: -30px;
+    position: absolute;
+  }
+
+  small {display: block; margin-top: 5px; text-align: center;}
+  .school-map{
+    cursor: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: block;
+    width: 212px;
+    height:212px;
+    min-height: 100%;
+    min-width: 100%;
+    display: block;
+    margin: 15px 0 15px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .premiere-agents{
+    padding: 0 0 10px;
+    margin-top: 0;
+  }
+
+  .district{font-size: 1.1em;}
+
+  .pge-divider {
+    border-right: none;
+    margin: 0 0 15px 0;
+    min-height: 0;
+  }
+
+  @media (max-width: 1028px){
+
+    .agentList .media-body {
+      width: 60%;
+    }
+
+    .agentList .media-left {
+      margin-right: 5px;
+    }
+
+  }
+
+  @media (max-width: 990px){
+
+    .school-map{
+      margin: 15px 0 15px 0;
+    }
+
+  }
+
+  @media (max-width: 767px){
+    .no-pad-left, .no-pad-right {
+      padding: 0 15px;
+    }
+
+    .pge-divider {
+      border-right: none;
+      min-height: 0;
+
+      & > .col-md-4 {
+        margin: 20px 0;
+      }
+    }
+
+    .premiere-agents {
+      margin-top: 0;
+    }
+
+    .agentList {
+      border-top: 1px solid #ccc;
+      padding: 15px 0 0;
+    }
+
+    .col-xs-12 {
+      float: none !important;
+    }
+  }
+
+  @media (max-width: 560px){
+    .agentList .media-body {
+      width: 70%;
+    }
+  }
+
+  .data-section-1, .data-section-2 {
+    canvas {
+      max-height: 350px;
+      max-width: 350px;
+      margin: 0 auto;
+    }
+    h4{margin-bottom: 20px}
+    .school-data {
+      margin-top: 20px;
+      h2{ display: inline-block; text-align: center;}
+    }
+  }
+
+  .data-section-2 {
+
+  }
+}

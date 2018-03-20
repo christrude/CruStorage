@@ -1,0 +1,68 @@
+.admin{
+  top: 40px;
+  position: relative;
+  padding: 30px;
+
+  .headerCell {
+    padding: 15px 5px;
+    display: block;
+    width: auto;
+    cursor: pointer;
+
+    .sort {
+      float: right;
+    }
+  }
+}
+
+.zips{
+  padding-left: 0;
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  -moz-column-count: 3; /* Firefox */
+  column-count: 3;
+  .group{
+    list-style: none;
+    ul{padding-left: 10px;}
+  }
+}
+
+.paid-zips, .exp-zips, .api-key-creator {
+  h4 {border-bottom: 1px solid rgba(50, 50, 50, .4); padding-bottom: 3px;}
+  background-color: rgba(255, 255, 255, .7);
+  border: 1px solid rgba(50, 50, 50, .2);
+  border-radius: 10px;
+  margin: 15px 0;
+  padding: 5px 15px;
+}
+
+.site-stats {
+  margin: 15px 0;
+  padding: 5px 15px;
+}
+
+
+.paid-zips{
+  ul{
+    list-style: none;
+    padding-left: 0px;
+    li {display: inline-block; padding: 5px;}}
+}
+
+.exp-zips{
+  ul{
+    -webkit-column-count: 5; /* Chrome, Safari, Opera */
+    -moz-column-count: 5; /* Firefox */
+    column-count: 5;
+    list-style: none;
+    padding-left: 0px;
+  }
+  .warning{
+    color: orange;
+  }
+  .expires, .expires.warning{
+    color: red;
+  }
+}
+.check { color:rgb(91, 209, 71); margin: 0 auto; display: block;}
+.trash { color:rgb(209, 91, 71); margin: 0 auto; display: block;}
+.addInt { width: 300px; }

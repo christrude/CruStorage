@@ -1,0 +1,116 @@
+.rankings{
+  top: 50px;
+  position: relative;
+  padding: 25px 15px;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -webkit-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  border-radius: 0 0 5px 5px;
+
+  .well{
+    position:relative;
+    background-color: #eee;
+    font-size: .9rem;
+    letter-spacing: 1px;
+    overflow: hidden;
+    height: auto;
+
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+
+    strong {
+      color: tint ($cru-blue, 40%)
+    }
+  }
+
+  .well.ninja {
+    opacity: 0; height: 0; min-height: 0; padding: 0;
+  }
+
+  .rankings-search-bar {
+    padding: 10px 0 20px;
+  }
+
+  .john-legend .pull-left em{
+    display: none;
+  }
+
+  .rankings-info {
+    margin-left: 20px;
+    cursor: pointer;
+    color: tint($cru-blue, 20);
+    z-index: 5;
+  }
+
+  .closewell {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  .pge-divider{
+    min-height: 100vh;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .rankings-homes {
+    .nearby-homes-container {
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, .2);
+
+      .nearby-home {
+        width: 100%;
+
+        .resultThumb, .empty-slot {
+          max-height: 180px;
+          margin: 10px 0;
+        }
+
+        .text-overlay {
+          bottom: 10px;
+          background-color: rgba(0,0,0,0.4);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .nearby-home {
+          width: 45%;
+
+          .resultThumb, .empty-slot {
+            max-height: 100px;
+          }
+        }
+      }
+
+      @media (max-width: 400px) {
+        .nearby-home {
+          .text-overlay {
+            font-size: .75em;
+          }
+
+          .resultThumb, .empty-slot {
+            max-height: 90px;
+          }
+        }
+      }
+
+      @media (max-width: 375px) {
+        .nearby-home {
+
+          .resultThumb, &.empty-slot {
+            max-height: 70px;
+            font-size: 1.3em;
+          }
+        }
+      }
+    }
+  }
+}

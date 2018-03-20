@@ -1,0 +1,395 @@
+<div class="searchOptions desktop" ng-if="!deviceDetector.isMobile()">
+  <div class="col-md-offset-1 col-md-11 no-padding">
+    <ul class="advMenu nav navbar-nav">
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.sort.isopen" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{homeModel.homeSortField.label}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="updateHomeSort(choice)" ng-repeat="choice in config.homeSortFields">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="homeModel.homeSortField === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedSchoolFilters.edLevel.isopen" ng-show="mapModel.active === 0">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.schoolFilters.edLevel.label}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="schoolTypeChange(choice.value)" ng-repeat="choice in config.advancedSchoolFilters.edLevel.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.schoolFilters.edLevel.label === choice.label"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedSchoolFilters.score.isopen" ng-show="mapModel.active === 0">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.schoolFilters.score.label ? filterModel.schoolFilters.score.label : 'Score'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-menu-right dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="setScoreFilter(choice, 'score')" ng-repeat="choice in config.advancedSchoolFilters.score.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.schoolFilters.score === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.listingCategory.isopen" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.listingCategory.label}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'listingCategory')" ng-repeat="choice in config.advancedHomeFilters.listingCategory.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.listingCategory.label === choice.label"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.propertysubtype.isopen" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          Property Type <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu prpty-type" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-repeat="choice in config.advancedHomeFilters.propertysubtype.options">
+            <label><input type="checkbox" ng-change="updateOrFilter('propertysubtype', choice.value)" ng-model="filterModel.orFilters.propertysubtype[choice.value]"> {{choice.label}}</label>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.priceMin.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Sale'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.priceMin ? filterModel.homeFilters.priceMin.label : 'Min Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.priceMin.value" ng-blur="setHomeFilter(filterModel.homeFilters.priceMin.value, 'priceMin')" placeholder="Set Min Price">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'priceMin')" ng-repeat="choice in config.advancedHomeFilters.priceMin.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.priceMin === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.priceMax.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Sale'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.priceMax ? filterModel.homeFilters.priceMax.label : 'Max Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.priceMax.value" ng-blur="setHomeFilter(filterModel.homeFilters.priceMax.value, 'priceMax')" placeholder="Set Max Price">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'priceMax')" ng-repeat="choice in config.advancedHomeFilters.priceMax.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.priceMax === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.rentPriceMin.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Rent'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.rentPriceMin ? filterModel.homeFilters.rentPriceMin.label : 'Min Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.rentPriceMin.value" ng-blur="setHomeFilter(filterModel.homeFilters.rentPriceMin.value, 'rentPriceMin')">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'priceMin')" ng-repeat="choice in config.advancedHomeFilters.rentPriceMin.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.rentPriceMin === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.rentPriceMax.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Rent'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.rentPriceMax ? filterModel.homeFilters.rentPriceMax.label : 'Max Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.rentPriceMax.value" ng-blur="setHomeFilter(filterModel.homeFilters.rentPriceMax.value, 'rentPriceMax')">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'rentPriceMax')" ng-repeat="choice in config.advancedHomeFilters.rentPriceMax.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.rentPriceMax === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          More <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-menu-right more-dd-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Baths</label><br />
+              <select class="form-control" ng-change="homeModel.updateHomes()" ng-model="filterModel.homeFilters.bathMin" ng-options="filter.label for filter in config.advancedHomeFilters.bathMin.options">
+                  <option value="">{{filters.defaultText}}</option>
+                </select>
+
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Bedrooms</label><br />
+              <select class="form-control" ng-change="homeModel.updateHomes()" ng-model="filterModel.homeFilters.bedMin" ng-options="filter.label for filter in config.advancedHomeFilters.bedMin.options">
+                  <option value="">{{filters.defaultText}}</option>
+                </select>
+
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Square Feet</label><br />
+                <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.sqFtMin.value" ng-blur="homeModel.updateHomes()">
+                 -
+                <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.sqFtMax.value" ng-blur="homeModel.updateHomes()">
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Lot Size(Acres)</label><br />
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.lotMin.value" ng-blur="homeModel.updateHomes()">
+                 -
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.lotMax.value" ng-blur="homeModel.updateHomes()">
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Year Built</label><br />
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.yearMin.value" ng-blur="homeModel.updateHomes()">
+               -
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.yearMax.value" ng-blur="homeModel.updateHomes()">
+            </div>
+          </li>
+        </ul>
+      </li>
+      <!-- <li ng-click="saveSearch()">
+        |<a>Save Search</a>
+      </li> -->
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="searchOptions mobile" ng-if="deviceDetector.isMobile()">
+  <div class="navbar-header">
+    <div class="adv-menu-toggle" ng-click="menu.isCollapsed = !menu.isCollapsed">
+      Filters<span class="caret"></span>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" uib-collapse="menu.isCollapsed">
+    <ul class="advMenu nav navbar-nav">
+      <li class="dropdown" dropdown is-open="config.advancedHomeFilters.sort.isopen" ng-show="mapModel.activeTab === 1">
+        <a href class="dropdown-toggle" dropdown-toggle>
+          {{homeModel.homeSortField.label}} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li ng-click="updateHomeSort(choice)" ng-repeat="choice in config.homeSortFields">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="homeModel.homeSortField === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.sort.isopen" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{homeModel.homeSortField.label}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="updateHomeSort(choice)" ng-repeat="choice in config.homeSortFields">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="homeModel.homeSortField === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedSchoolFilters.edLevel.isopen" ng-show="mapModel.active === 0">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.schoolFilters.edLevel.label}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="schoolTypeChange(choice.value)" ng-repeat="choice in config.advancedSchoolFilters.edLevel.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.schoolFilters.edLevel === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedSchoolFilters.score.isopen" ng-show="mapModel.active === 0">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          Score {{filterModel.schoolFilters.score.label}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="setScoreFilter(choice, 'score')" ng-repeat="choice in config.advancedSchoolFilters.score.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.schoolFilters.score === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.listingCategory.isopen" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.listingCategory.label}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'listingCategory')" ng-repeat="choice in config.advancedHomeFilters.listingCategory.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.listingCategory === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.propertysubtype.isopen" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          Property Type <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu prpty-type" ng-click="$event.stopPropagation()">
+          <li role="menuitem" ng-repeat="choice in config.advancedHomeFilters.propertysubtype.options">
+            <label><input type="checkbox" ng-change="updateOrFilter('propertysubtype', choice.value)" ng-model="filterModel.orFilters.propertysubtype[choice.value]"> {{choice.label}}</label>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.priceMin.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Sale'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.priceMin ? filterModel.homeFilters.priceMin.label : 'Min Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.priceMin.value" ng-blur="setHomeFilter(filterModel.homeFilters.priceMin.value, 'priceMin')" placeholder="Set Min Price">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'priceMin')" ng-repeat="choice in config.advancedHomeFilters.priceMin.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.priceMin === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.priceMax.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Sale'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.priceMax ? filterModel.homeFilters.priceMax.label : 'Max Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.priceMax.value" ng-blur="setHomeFilter(filterModel.homeFilters.priceMax.value, 'priceMax')" placeholder="Set Max Price">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'priceMax')" ng-repeat="choice in config.advancedHomeFilters.priceMax.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.priceMax === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+        <li class="dropdown" dropdown is-open="config.advancedHomeFilters.priceMax.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Sale'" ng-show="mapModel.activeTab === 1">
+          <a href class="dropdown-toggle" dropdown-toggle>
+            {{filterModel.homeFilters.priceMax ? filterModel.homeFilters.priceMax.label : 'Max Price'}} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+            <li>
+              <div class="form-group">
+                <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.priceMax.value" ng-blur="setHomeFilter(filterModel.homeFilters.priceMax.value, 'priceMax')" placeholder="Set Max Price">
+              </div>
+            </li>
+            <li ng-click="setHomeFilter(choice, 'priceMax')" ng-repeat="choice in config.advancedHomeFilters.priceMax.options">
+              <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.priceMax === choice"></i></a>
+            </li>
+          </ul>
+        </li>
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.rentPriceMin.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Rent'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.rentPriceMin ? filterModel.homeFilters.rentPriceMin.label : 'Min Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.rentPriceMin.value" ng-blur="setHomeFilter(filterModel.homeFilters.rentPriceMin.value, 'rentPriceMin')">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'priceMin')" ng-repeat="choice in config.advancedHomeFilters.rentPriceMin.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.rentPriceMin === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown is-open="config.advancedHomeFilters.rentPriceMax.isopen" ng-if="filterModel.homeFilters.listingCategory.label === 'For Rent'" ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          {{filterModel.homeFilters.rentPriceMax ? filterModel.homeFilters.rentPriceMax.label : 'Max Price'}} <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.rentPriceMax.value" ng-blur="setHomeFilter(filterModel.homeFilters.rentPriceMax.value, 'rentPriceMax')">
+            </div>
+          </li>
+          <li role="menuitem" ng-click="setHomeFilter(choice, 'rentPriceMax')" ng-repeat="choice in config.advancedHomeFilters.rentPriceMax.options">
+            <a>{{choice.label}} <i class="fa fa-check" ng-if="filterModel.homeFilters.rentPriceMax === choice"></i></a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="dropdown" uib-dropdown ng-show="mapModel.active === 1">
+        <a href class="dropdown-toggle" uib-dropdown-toggle>
+          More <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-menu-right more-dd-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Baths</label><br />
+              <select class="form-control" ng-change="homeModel.updateHomes()" ng-model="filterModel.homeFilters.bathMin" ng-options="filter.label for filter in config.advancedHomeFilters.bathMin.options">
+                  <option value="">{{filters.defaultText}}</option>
+                </select>
+        <li class="dropdown" dropdown ng-show="mapModel.activeTab === 1">
+          <a href class="dropdown-toggle" dropdown-toggle>
+            More <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right more-dd-menu dropdown-scroll" ng-click="$event.stopPropagation()">
+            <li>
+              <div class="form-group">
+                <label class="control-label">Baths</label><br />
+                <select class="form-control" ng-change="homeModel.updateHomes()" ng-model="filterModel.homeFilters.bathMin" ng-options="filter.label for filter in config.advancedHomeFilters.bathMin.options">
+                    <option value="">{{filters.defaultText}}</option>
+                  </select>
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Bedrooms</label><br />
+              <select class="form-control" ng-change="homeModel.updateHomes()" ng-model="filterModel.homeFilters.bedMin" ng-options="filter.label for filter in config.advancedHomeFilters.bedMin.options">
+                  <option value="">{{filters.defaultText}}</option>
+                </select>
+
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Square Feet</label><br />
+                <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.sqFtMin.value" ng-blur="homeModel.updateHomes()">
+                 -
+                <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.sqFtMax.value" ng-blur="homeModel.updateHomes()">
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Lot Size(Acres)</label><br />
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.lotMin.value" ng-blur="homeModel.updateHomes()">
+                 -
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.lotMax.value" ng-blur="homeModel.updateHomes()">
+            </div>
+          </li>
+          <li role="menuitem">
+            <div class="form-group">
+              <label class="control-label">Year Built</label><br />
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.yearMin.value" ng-blur="homeModel.updateHomes()">
+               -
+              <input class="adv-textbox form-control" ng-model="filterModel.homeFilters.yearMax.value" ng-blur="homeModel.updateHomes()">
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li ng-click="saveSearch()">
+        |<a>Save Search</a>
+      </li>
+    </ul>
+  </div>

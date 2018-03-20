@@ -1,0 +1,522 @@
+@import '../_variables.scss';
+/**************************************************/
+/********** Results Page Styles *******************/
+/**************************************************/
+
+.map {
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  .map-overlay-alert{
+    position: absolute;
+    z-index: 10;
+    right: 10px;
+    top: 40px;
+
+    .btn-warning {
+      background-color: #fd9b10;
+      border-color: #d67d09;
+      color: #fff;
+    }
+  }
+}
+
+.popoverWindow, .multiPopoverWindow {
+  position: absolute;
+  height: 85px;
+  width: 220px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1 px solid #bbb;
+  background-color: white;
+  z-index: 9999;
+  display: none;
+}
+
+.multiPopoverWindow {
+  height: auto;
+  width: auto;
+}
+
+.popoverWindow:hover, .multiPopoverWindow:hover{
+  display: block !important;
+}
+
+.popoverWindow:after, .popoverWindow:before, .multiPopoverWindow:before, .multiPopoverWindow:after {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.bot-arrow.popoverWindow:after, .bot-arrow.popoverWindow:before, .bot-arrow.multiPopoverWindow:before, .bot-arrow.multiPopoverWindow:after {
+  top: 100%;
+  left: 50%;
+}
+
+.left-arrow.popoverWindow:after, .left-arrow.popoverWindow:before, .left-arrow.multiPopoverWindow:after, .left-arrow.multiPopoverWindow:before {
+  top: 100%;
+  left: 7%;
+}
+.right-arrow.popoverWindow:after, .right-arrow.popoverWindow:before, .right-arrow.multiPopoverWindow:before, .right-arrow.multiPopoverWindow:before {
+  top: 100%;
+  left: 93%;
+}
+.bot-arrow.popoverWindow:after, .left-arrow.popoverWindow:after, .right-arrow.popoverWindow:after, .bot-arrow.multiPopoverWindow:after, .left-arrow.multiPopoverWindow:after, .right-arrow.multiPopoverWindow:after {
+    border-top-color: #fff;
+}
+.bot-arrow.popoverWindow:before, .left-arrow.popoverWindow:before, .right-arrow.popoverWindow:before, .bot-arrow.multiPopoverWindow:before, .left-arrow.multiPopoverWindow:before, .right-arrow.multiPopoverWindow:before {
+    border-top-color: #bbb;
+}
+
+.top-arrow.popoverWindow:after, .top-arrow.popoverWindow:before, .top-arrow.multiPopoverWindow:after, .top-arrow.multiPopoverWindow:before {
+    bottom: 100%;
+    left: 50%;
+}
+
+.top-arrow.popoverWindow:after, .top-arrow.multiPopoverWindow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 10px;
+    margin-left: -10px;
+}
+.top-arrow.popoverWindow:before, .top-arrow.multiPopoverWindow:before {
+    border-color: rgba(187, 187, 187, 0);
+    border-bottom-color: #bbb;
+    border-width: 11px;
+    margin-left: -11px;
+}
+
+
+.popoverWindow:after, .multiPopoverWindow:after  {
+    border-color: rgba(255, 255, 255, 0);
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.popoverWindow:before, .multiPopoverWindow:before {
+    border-color: rgba(187, 187, 187, 0);
+    border-width: 11px;
+    margin-left: -11px;
+}
+
+.homesPopover, .schoolsPopover, .multi-popover {
+    padding: 0;
+    small {
+      font-size: 75%;
+      color: #8ae;
+    }
+    .mapThumb {
+        object-fit: cover;
+        height: 75px;
+        width: 75px;
+        display: block;
+        float: left;
+        padding-right: 10px;
+        vertical-align: top;
+    }
+
+    .popoverInfo, .multiple-table {
+        float: left;
+        display: block;
+        padding: 0 0 0 5px;
+        list-style-type: none;
+        width: 130px;
+        vertical-align: top;
+
+        li {
+            text-align: right;
+            display: block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 100%;
+        }
+    }
+
+
+    .multiple-table {
+      float: none;
+      width: auto;
+      font-size: .75em;
+
+      tbody tr {
+        cursor: pointer;
+      }
+
+      tbody tr:hover{background-color: #D1EAD1;}
+
+      .frame::-webkit-scrollbar {
+          -webkit-appearance: none;
+      }
+
+      .frame::-webkit-scrollbar:vertical {
+          width: 11px;
+      }
+
+      .frame::-webkit-scrollbar:horizontal {
+          height: 11px;
+      }
+
+      .frame::-webkit-scrollbar-thumb {
+          border-radius: 8px;
+          border: 2px solid white; /* should match background, can't be transparent */
+          background-color: rgba(0, 0, 0, .5);
+      }
+
+      .frame::-webkit-scrollbar-track {
+          background-color: #fff;
+          border-radius: 8px;
+      }
+    }
+
+    .closeInfoWindow{
+      position: absolute;
+      color: #cdcdcd;
+      font-size: .6rem;
+      top: -5px;
+      right: -10px;
+    }
+}
+
+.home-popup {
+    height: 60px;
+    width: 200px;
+    border: 1px solid black;
+    background-color: white;
+    margin-left: -88px;
+    margin-top: -49px;
+    z-index: 20000;
+}
+
+.custom-info-window{
+  width: 200px;
+  margin-top: 15px;
+  margin-left: -130px;
+  background-color: white;
+}
+
+.cc-button{
+  margin-top: 20px;
+  font-size: 1.5em;
+
+  a {
+    background-color: #174b79;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 10px;
+
+    &:hover, :focus {
+      background-color: #093a65;
+    }
+
+  }
+}
+
+.ddIframe {
+    border-bottom: 1px solid #ccc;
+    color: white;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    iframe { border: none;}
+    span { font-size: 1.5em; position: absolute; top: 0; right: 5px; cursor: pointer; color: #333; }
+}
+
+.results-pge {
+  top: 52px;
+  background-color: #dedede;
+  position: relative;
+
+  .nav>li>a:hover {
+    background-color: #ccc;
+  }
+}
+
+.search-term{
+  padding: 4px 10px;
+  display: inline-block;
+}
+
+.schoolList {
+  height: calc(100vh - 170px);
+  overflow-y: scroll;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  padding-top: 10px;
+  background-color: #fff;
+  min-height: 250px;
+}
+
+.homeList {
+  height: calc(100vh - 170px);
+  overflow-y: scroll;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  min-height: 250px;
+
+  .map-overlay{
+    width: 100%;
+    padding: 10px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    background-color: rgba(50, 50, 50,.8);
+    z-index: 98;
+    color: #F8F13D;
+    overflow:scroll;
+
+    h3, h4{
+      color: #F8F13D;
+      margin-top: 20px;
+      text-align: center;
+      width: 95%;
+      letter-spacing: 2px;
+      font-weight: 100;
+    }
+    h3{
+      text-align: left;
+    }
+  }
+
+
+
+  .homesHeader{
+    background-color: #c4df9b;
+    border: 1px solid #95b566;
+    color: #333;
+    display: block;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 1px;
+    padding: 3px 0;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.schoolList, .homeList {
+  .info {
+    padding: 10px 20px;
+
+    .score-sample, .medal-sample{
+      height: 150px;
+    }
+  }
+}
+
+.clickHere {
+  margin:10px;
+  text-align:center;
+  background: #fff;
+  padding:2px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.adSpace1 {
+  margin-top: 20px;
+}
+
+.thing-form {
+  margin: 20px 0;
+}
+
+#banner {
+  border-bottom: none;
+  margin-top: -20px;
+}
+
+#banner h1 {
+  font-size: 4rem;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.marker-result {
+    border-bottom: 1px solid #E5E5E5;
+    padding: 10px;
+}
+
+.right-panel {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.lead {
+  margin-bottom: -10px;
+  font-size: .9rem;
+}
+
+.main-content {
+
+}
+
+.filter-select {
+  padding: 6px;
+  width: 100%;
+}
+
+.school-image {
+  height: 80px;
+  width: 120px;
+}
+
+.angular-google-map-container {height: calc(100vh - 130px);}
+
+
+.info {
+  width: 100%;
+  border-top: 15px solid rgb(89, 116, 142);
+  padding: 50px 20px;
+  background-color: rgba(0, 66, 133, 0.45);
+  z-index: 10;
+
+  .score-sample, .medal-sample{
+    height: 240px;
+  }
+}
+
+/**
+ * iPad with portrait orientation.
+ */
+ // @media screen and (max-width: 768px) {
+ //    .map {
+ //      visibility: hidden;
+ //      height: 0;
+ //    }
+ // }
+
+@media all and (device-width: 767px) and (device-height: 1024px) and (orientation:portrait){
+  .angular-google-map-container { height: 448px;}
+  .homeList {
+    height: calc(1024px - 270px);
+  }
+}
+
+@media all and (device-width: 767px) and (device-height: 1024px) and (orientation:landscape){
+  .angular-google-map-container { height: 288px;}
+  .homeList {
+    height: calc(768px - 270px);
+  }
+}
+/**
+ * iPad Retina
+ */
+@media all and (device-width: 1536px) and (device-height: 2048px) and (orientation:portrait){
+  .angular-google-map-container { height: 896px;}
+  .homeList {
+    height: calc(2048px - 270px);
+  }
+}
+
+@media all and (device-width: 1536px) and (device-height: 2048px) and (orientation:landscape){
+  .angular-google-map-container { height: 672px;}
+  .homeList {
+    height: calc(768px - 270px);
+  }
+}
+
+/**
+ * iPhone 4,4s
+ */
+@media all and (device-width: 640px) and (device-height: 960px) and (orientation:portrait){
+  .angular-google-map-container { height: 360px;}
+  .homeList {
+    height: calc(960px - 270px);
+  }
+}
+@media all and (device-width: 640px) and (device-height: 960px) and (orientation:landscape){
+  .angular-google-map-container { height: 240px;}
+  .homeList {
+    height: calc(640px - 270px);
+  }
+}
+/**
+ * iPhone 5,5s
+ */
+@media all and (device-width: 640px) and (device-height: 1136px) and (orientation:portrait){
+  .angular-google-map-container { height: 444px;}
+  .homeList {
+    height: calc(1136px - 270px);
+  }
+}
+@media all and (device-width: 640px) and (device-height: 1136px) and (orientation:landscape){
+  .angular-google-map-container { height: 240px;}
+  .homeList {
+    height: calc(640px - 270px);
+  }
+}
+
+/**
+ * iPhone 6
+ */
+@media all and (device-width: 750px) and (device-height: 1334px) and (orientation:portrait){
+  .angular-google-map-container { height: 583px;}
+  .homeList {
+    height: calc(1334px - 270px);
+  }
+}
+
+@media all and (device-width: 750px) and (device-height: 1334px) and (orientation:landscape){
+  .angular-google-map-container { height: 282px;}
+  .homeList {
+    height: calc(750px - 270px);
+  }
+}
+/**
+ * iPhone 6+
+ */
+@media all and (device-width: 1080px) and (device-height: 1920px) and (orientation:portrait){
+  .angular-google-map-container { height: 840px;}
+  .homeList {
+    height: calc(1920px - 270px);
+  }
+}
+@media all and (device-width: 1080px) and (device-height: 1920px) and (orientation:landscape){
+  .angular-google-map-container { height: 472px;}
+  .homeList {
+    height: calc(1024px - 270px);
+  }
+}
+
+
+
+/**************************************************/
+/***************** Page Styles ********************/
+/**************************************************/
+
+
+.pge-divider {
+  border-right: 1px solid #ccc;
+  padding-top: 15px;
+  margin-top: 15px;
+  /*min-height: 720px;*/
+}
+
+/**************************************************/
+/********** Responsive Page Styles ****************/
+/**************************************************/
+
+@media screen and (max-width: 767px){
+  .pge-divider {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    min-height:0;
+    margin: 0;
+  }
+
+  .hideme{display: none;}
+  .schoolSelect{right: 25%;}
+  .searchOptionsLink, .searchOptionsPanel{right: 2%;}
+}
+
+
+

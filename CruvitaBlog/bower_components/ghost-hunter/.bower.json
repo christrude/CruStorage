@@ -1,0 +1,13 @@
+{
+  "name": "ghost-hunter",
+  "homepage": "https://github.com/jamalneufeld/ghostHunter",
+  "_release": "099b013e63",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "099b013e63c25b310b25a2025cce39064487214c"
+  },
+  "_source": "https://github.com/jamalneufeld/ghostHunter.git",
+  "_target": "*",
+  "_originalSource": "ghost-hunter"
+}

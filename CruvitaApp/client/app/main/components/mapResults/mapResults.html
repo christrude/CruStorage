@@ -1,0 +1,29 @@
+<div class="col-md-12 no-padding map" id="googleMap">
+  <div class="map" id="googleMap">
+    <div class="map-overlay-alert">
+      <button class="btn btn-default btn-sm btn-warning" ng-click="removeLocation()" ng-show="!mapModel.showAll">See all results </button>
+      <!-- <div ng-if="mapModel.map.polys.length > 0">
+        <button class="btn btn-danger" ng-click="clearPolygons()">Clear</button>
+        <button class="btn btn-success" ng-click="applyPolygons()">Apply</button>
+      </div> -->
+    </div>
+    <div class="popoverWindow {{mapModel.homeWindow.arrow}}-arrow" id="homePopoverWindow" ng-class="{show: mapModel.homeWindow.showWindow}" ng-style="{top: mapModel.homeWindow.top + 'px', left: mapModel.homeWindow.left + 'px'}">
+      <div ng-include="'app/main/homeWindow.html'"></div>
+    </div>
+    <div class="multiPopoverWindow {{mapModel.homeWindow.arrow}}-arrow" id="multiHomePopoverWindow" ng-class="{show: mapModel.homeWindow.showMultiWindow}" ng-style="{top: mapModel.homeWindow.top, left: mapModel.homeWindow.left}">
+      <div ng-include="'app/main/multiHomeWindow.html'"></div>
+    </div>
+    <div class="popoverWindow {{mapModel.schoolWindow.arrow}}-arrow" id="schoolPopoverWindow" ng-class="{show: mapModel.schoolWindow.showWindow}" ng-style="{top: mapModel.schoolWindow.top, left: mapModel.schoolWindow.left}">
+      <div ng-include="'app/main/schoolWindow.html'"></div>
+    </div>
+    <ui-gmap-google-map options="mapOptions" center="mapModel.map.center" zoom="mapModel.map.zoom" bounds="mapModel.map.bounds" draggable="true" dragging="mapModel.map.dragging" ng-if="mapModel.map.ready">
+      <!-- <ui-gmap-polyline path="map.polylines[0].path"></ui-gmap-polyline> -->
+      <ui-gmap-polylines path='"path"' models="mapModel.map.polylines" idKey='"_id"' static="true"></ui-gmap-polylines>
+      <!-- <ui-gmap-map-control template="draw.tpl.html" position="top-right" index="1" controller="mapWidgetCtrl"></ui-gmap-map-control> -->
+      <!-- <ui-gmap-free-draw-polygons polygons="map.polys" draw="map.draw"></ui-gmap-free-draw-polygons> -->
+     <!--  <ui-gmap-polygon path="polyline.path" ng-repeat="polyline in map.polylines" fill="{color: 'rgba(0, 46, 92 ,.2)', opacity: polyline.selected ? 1 : 0.0 }" stroke="{color: 'rgba(0, 84, 169, .3)', weight: 0}"></ui-gmap-polygon> -->
+      <ui-gmap-markers models="schoolModel.schools.results" coords="'coordinates'" idKey="'_id'" icon="'icon'" events="schoolEvents" click="'click'" ng-if="mapModel.active === 0 || mapModel.locationType === 'school' || (deviceDetector.isMobile() && mapModel.active === 2)"></ui-gmap-markers>
+      <ui-gmap-markers models="homeModel.homes.results" coords="'coordinates'" idKey="'_id'" icon="'icon'" shape="'markerShape'" click="'click'" events="homeEvents" ng-if="mapModel.active === 1 || (deviceDetector.isMobile() && mapModel.active === 2)"></ui-gmap-markers>
+    </ui-gmap-google-map>
+  </div>
+</div>

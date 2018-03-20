@@ -1,0 +1,320 @@
+
+.listing {
+  top: 44px;
+  position: relative;
+  padding-bottom: 25px;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -webkit-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  border-radius: 0 0 5px 5px;
+  width: 100%;
+
+  .top-info{
+    padding: 5px 10px 15px;
+    font-weight: 400;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    top: 52px;
+    left: 0;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(50, 50, 50, .5);
+
+    span {
+      display: inline-block;
+      vertical-align: top;
+      padding: 0 3px;
+    }
+  }
+
+  .listing-container {
+    top: 100px;
+    margin-bottom: 100px;
+    position: relative;
+
+    .modal-dialog {
+      margin-top: 180px;
+    }
+  }
+
+  .secondary-info {
+    display: inline-block;
+    color: #333;
+    font-size: .7em;
+  }
+
+  .pic-area {
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-bottom: 10px;
+  }
+
+  .back-left, .back-right{
+    cursor: pointer;
+    opacity: .5;
+    transition: all .2s ease;
+    position: absolute;
+    bottom: 0;
+    padding: 0 5px;
+    &:hover{opacity: 1;}
+  }
+
+  .back-left{
+    left: 0;
+  }
+  .back-right{
+    right: 0;
+  }
+
+  .price{
+    color: adjust-lightness($cru-blue, 20%);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .school-map {
+    .angular-google-map-container {
+      height: 200px;
+    }
+    .leaflet-top {z-index: 0;}
+    cursor: auto;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid #acacac;
+    margin-top: 15px;
+  }
+
+  .pge-divider {
+    background-color: #fff;
+  }
+
+  .pge-divider.no-pad-right {
+    border-right: none;
+  }
+
+  .score-block, .listing-agent, .premiere-agents, .agent-filler {
+    border-bottom: 1px solid #dfdfdf;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .premiere-agents {
+    background-color: rgba(25, 25, 25, .05);
+    border-top: 3px solid rgba(0, 125, 251, 0.69);
+  }
+
+  .generalContact {
+    padding: 0;
+  }
+
+  .send-email {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .contact-button {
+    font-size: 1.5em;
+    margin: 5px 0;
+  }
+
+  .broker-block {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 3px solid rgba(0, 125, 251, 0.69);
+  }
+
+  .panel-group {
+    margin-bottom: 20px;
+    margin-top: 15px;
+
+    .panel {
+      margin-bottom: 0;
+
+      .panel-heading{
+        padding: 2px 10px 1px;
+      }
+    }
+  }
+
+  .panel-default > .panel-heading {
+    background-color: #c4df9b;
+    color: #333;
+  }
+
+  .listing-content {
+    padding: 15px 15px 0 0;
+
+    p{
+      text-align: justify;
+      margin-bottom: 20px;
+    }
+  }
+
+  .hoverReveal{
+    .hiddenText{display: block;}
+    .hiddenLink{display: none;}
+
+    &:hover{
+      .hiddenText{display: none;}
+      .hiddenLink{display: block;}
+    }
+  }
+
+  .listing-info, .score-block, .listing-agent{
+    list-style-type: none;
+  }
+
+
+
+  .rooms{display: none;}
+
+  .showRooms{
+    display: block
+  }
+
+  .score-block {
+
+    table {
+      width: 100%;
+
+      td, th {
+         text-align: center;
+      }
+
+      td {
+        padding: 5px 0;
+      }
+
+      td:nth-of-type(1), th:nth-of-type(1) {
+        text-align: left;
+      }
+
+      td:nth-of-type(3), th:nth-of-type(3) {
+        text-align: right;
+      }
+    }
+  }
+
+  .school{
+    position: relative;
+    margin: 5px 0;
+
+    .school-name {
+      position: relative;
+    }
+
+    .school-score{
+      border-radius: 5px;
+      padding: 2px 6px;
+      color: white;
+    }
+  }
+
+  .listing-agent {
+    margin-bottom: 10px;
+
+    ul{
+      padding: 0;
+      list-style-type: none;
+      i{width: 20px;}
+      li{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow:hidden;
+      }
+    }
+  }
+
+  .disc{
+    border-top: 1px solid #dfdfdf;
+    color: #aaa;
+    padding-top: 15px;
+  }
+
+  .popover{
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    width: auto;
+    height: auto;
+    background-color: #eee;
+    box-shadow: 1px 1px 3px -1px rgba(0 , 0, 0, .5);
+    display: none;
+  }
+
+  .statusWarning{
+    text-align: center;
+    padding: 10px;
+    margin: 0 0 5px 0;
+    background-color: rgba(225, 100, 100, .9);
+    color: white;
+    text-shadow: 0 1px 1px rgba(50, 50, 50, .5);
+  }
+
+    @media (max-width:1040px){
+    .page-h1 {
+      font-size: 2em;
+      padding: 10px;
+    }
+
+    .listing-container {
+      top: 120px;
+      margin-bottom: 120px;
+    }
+
+    .secondary-info {
+      display: block;
+    }
+
+    .pic-area{
+      border: none;
+    }
+
+    .no-pad-left, .no-pad-right {
+      padding: 0 15px;
+    }
+
+    .top-info {
+      padding: 10px 5px 20px;
+      font-weight: 500;
+      font-size: 14px;
+      top: 50px;
+      width: 100%;
+    }
+
+    .listing-content {
+      padding: 15px 0;
+    }
+  }
+
+  @media (max-width: 767px){
+    .page-h1 {
+      font-size: 1.75em;
+      padding: 10px;
+    }
+
+    .listing-container {
+      top: 120px;
+      margin-bottom: 140px;
+    }
+
+
+  }
+  @media (max-width: 480px){
+    .page-h1 {
+      font-size: 1.4em;
+      padding: 0 0 10px 0;
+    }
+
+    .listing-container {
+      top: 120px;
+      margin-bottom: 140px;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">Cruvita</string>
+    <string name="msg_loading">Loading</string>
+    
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

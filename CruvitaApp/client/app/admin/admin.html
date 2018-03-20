@@ -1,0 +1,115 @@
+<div class="admin container-flex">
+  <alert ng-repeat="alert in messages" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  <h2>Administration</h2>
+  <uib-tabset class="col col-sm-12">
+    <uib-tab heading="Site Stats">
+      <div class="site-stats">
+        <section class="col-sm-12 profile-charts">
+          <article class="col-sm-4">
+            <h4 class="center">Total Views</h4>
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="totalViews" chart-labels="totalViewsLabels"></canvas>
+          </article>
+          <article class="col-sm-4">
+            <h4 class="center">Total Clicks</h4>
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="totalClicks" chart-labels="totalClicksLabels"></canvas>
+          </article>
+        </section>
+
+        <section class="col-sm-12">
+          <h4> Activity Records <small> {{allActivityRecords.length}} total</small></h4>
+          <article class="activityGrid" ui-grid="{data: allActivityRecords, columnDefs: allActivityRecordsColumnDefs, enableColumnMenus: false}" ui-grid-resize-columns></article>
+        </section>
+        <div class="clearfix"></div>
+      </div>
+    </uib-tab>
+    <uib-tab heading="Users">
+      <div class="active-users table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr><th>User</th><th>Email</th><th>Agent Type</th><th>Paid Interests</th><th>Add Interests</th><th>Delete</th></tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="user in users" ng-if="user.status === 'active'">
+              <td><a ng-href="/profile/{{user.slug}}" target="_blank" title="{{user.name}}"><strong>{{user.name}}</strong></a></td>
+              <td class="text-muted">{{user.email}}</td>
+              <td>{{user.agentType}}</td>
+              <td>
+                <ul class="zips">
+                  <li class="group" ng-repeat="zip in user.paidInterests.zips">
+                    <strong title="{{zip.amount | currency: $ : 0}}, {{zip.paidThrough | date: 'shortDate'}}">{{zip.zip}}  <a href ng-click="deleteZip(zip, user)"><fa name="close"></fa></a></strong>
+                  </li>
+                </ul>
+              </td>
+              <td class="addInt">
+                <div class="input-group input-group-sm">
+                  <input class="form-control" ng-model="user.ints">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success" ng-click="saveInterests(user, user.ints)" ng-disabled="!user.ints">Save</button>
+                  </span>
+                </div>
+                <div class="notUnique" ng-if="validator($index)">Zip {{isNotUnique.zip}} is taken</div>
+              </td>
+              <td><a ng-click="delete(user)" class="trash"><fa name="close"></fa></a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </uib-tab>
+    <uib-tab heading="Pending Users">
+      <div class="pending-users">
+        <div class="table-responsive">
+          <p>Admin Process: Take note of the User's State, copy the Users License Number, click on the Arello link, choose Number, input the data and run the search. If they come back as an active realtor, come back and approve them. If not, Deny/Delete them.</p>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr><th>User</th><th>Email</th><th>Agent Type</th><th>State Licenced</th><th>License Number</th><th>Approve</th><th>Deny</th></tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in users" ng-if="user.status === 'pending'">
+                <td><a ng-href="/profile/{{user.slug}}" target="_blank" title="{{user.name}}"><strong>{{user.name}}</strong></a></td>
+                <td class="text-muted">{{user.email}}</td>
+                <td>{{user.agentType}}</td>
+                <td>{{user.state}}</td>
+                <td>{{user.licenseNumber}} <a href="https://www.arello.com/" target="_blank">Go to Arello</a></td>
+                <td><a ng-click="approve(user)" class="check"><fa name="check"></fa></a></td>
+                <td><a ng-click="deny(user)" class="trash"><fa name="close"></fa></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </uib-tab>
+    <uib-tab heading="Utils">
+      <div class="api-key-creator">
+        <h4>Add an API Key to an Existing Agent</h4>
+          <input type="text" ng-model="model.apiInput" placeholder="Enter email of Agent" typeahead="address for address in autocompleteUsers($viewValue)" class="form-control input-lg search-bar" typeahead-wait-ms="400" typeahead-on-select="getAPIKey()">
+          <select ng-model="model.apiVersion">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        <div ng-show="apiKey">
+          {{apiKey}}
+        </div>
+      </div>
+      <div class="exp-zips">
+        <h4>Agents with Expiring Zips</h4>
+        <ul>
+          <li>Click to send an email to the Agent</li>
+          <li ng-repeat="zip in expZips">
+            <a tooltip="{{zip.zip}}" tooltip-placement="bottom" ng-click="sendEmailToOwner(zip)" ng-class="{expires: zip.expires < 1, warning: zip.expires < 10}">{{zip.owner.name}} {{zip.expires}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="paid-zips">
+        <h4>Unavailable Zip Codes</h4>
+        <input class="form-control" ng-model="zipFilter" placeholder="Enter Zip to Filter this list">
+        <ul>
+          <li ng-repeat="zip in paidZips | orderBy : zip.zip| filter: zipFilter">
+            <a tooltip="{{zip.owner.name}}, {{zip.amount | currency : $ : 0}}, {{zip.paidThrough | date: 'shortDate'}}" tooltip-placement="bottom">{{zip.zip}}</a>
+          </li>
+        </ul>
+      </div>
+    </uib-tab>
+  </uib-tabset>
+</div>

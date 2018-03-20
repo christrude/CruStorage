@@ -1,0 +1,49 @@
+.areas-section{
+  margin-top: 34px;
+  padding: 25px 15px;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -webkit-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  border-radius: 0 0 5px 5px;
+  .area-state {
+  	margin-top:20px;
+  }
+
+  .well{
+    position:relative;
+    background-color: #eee;
+    letter-spacing: 1px;
+    overflow: hidden;
+    height: auto;
+
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+
+    strong {
+      color: tint ($cru-blue, 40%)
+    }
+  }
+
+  .well.ninja {
+    opacity: 0; height: 0; min-height: 0; padding: 0;
+  }
+
+  .cities-info {
+    margin-left: 20px;
+    cursor: pointer;
+    color: tint($cru-blue, 20);
+    z-index: 5;
+  }
+
+  .closewell {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}

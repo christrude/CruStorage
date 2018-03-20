@@ -1,0 +1,36 @@
+<section class="generalContact" cg-busy="emailPromise">
+  <form name="contactForm" novalidate>
+      <div ng-hide="hideContactForm" class="fade-animate">
+        <div class="form-group" ng-class="contactForm.name.$invalid && (contactForm.$submitted || contactForm.name.$touched) ? 'has-error':''">
+            <label class="control-label" ng-show="contactForm.name.$invalid && (contactForm.$submitted || contactForm.name.$touched)">Enter Name</label>
+            <input type="text" class="form-control input-sm" name="name" ng-model="email.name" placeholder="Your Name*" required />
+        </div>
+
+        <div class="form-group inline" ng-class="contactForm.emailAddress.$invalid && (contactForm.$submitted || contactForm.emailAddress.$touched) ? 'has-error':''">
+            <label class="control-label" ng-show="contactForm.emailAddress.$invalid && (contactForm.$submitted || contactForm.emailAddress.$touched)">Invalid Email</label>
+            <input type="email" class="form-control input-sm" name="emailAddress" ng-model="email.from" placeholder="Your Email*" required />
+        </div>
+
+        <div class="form-group inline" ng-class="contactForm.phone.$invalid && (contactForm.$submitted || contactForm.phone.$touched) ? 'has-error':''">
+            <label class="control-label" ng-show="contactForm.phone.$invalid && (contactForm.$submitted || contactForm.phone.$touched)">Invalid Phone Number</label>
+            <input type="phone" class="form-control input-sm" name="phone" ng-model="email.num" placeholder="Your Number" />
+        </div>
+
+        <div class="form-group" ng-class="contactForm.body.$invalid && (contactForm.$submitted || contactForm.body.$touched) ? 'has-error':''" >
+            <label class="control-label" ng-show="contactForm.body.$invalid && (contactForm.$submitted || contactForm.body.$touched)">Enter Message</label>
+            <textarea class="form-control" id="messageInput" name="body" ng-model="email.body" ng-change="messageChanged = true" placeholder="Enter Message" required></textarea>
+          <span class="appendMessage" ng-if="listing && messageChanged">{{messages[0]}}</span>
+        </div>
+        <div ng-if="listing" class="confirmation checkbox">
+            <label><input type="checkbox" ng-model="agreed">By clicking 'Send Email' you agree to send this message to the Cruvita Home Sales Expert AND the Listing Agent for this property. You also agree to the Cruvita <a ng-href="/tos" target="_blank">Terms of Service</a> and <a ng-href="/pp" target="_blank">Privacy Policies.</a></label>
+
+            <button class="btn btn-success send-email" ng-if="listing" ng-click="submit()" ng-disabled="agreed != true || contactForm.$invalid">Contact an Agent</button>
+        </div>
+        <div ng-if="!listing">
+            <button class="btn btn-success" ng-click="submit()">Send Email</button>
+        </div>
+    </div>
+    <h3 class="alert alert-success fade-animate" ng-show="emailSuccess" role="alert">Request sent successfully!</h3>
+    <h3 class="alert alert-danger fade-animate" ng-show="emailFail" role="alert">Request failed to send!</h3>
+  </form>
+</section>

@@ -1,0 +1,42 @@
+  <div class="navbar navbar-static-top">
+    <div class="col-xs-4 col-md-3">
+      <a href="/" ng-click="resetPageDefaults()"><div class="cruvitaLogo"></div></a>
+    </div>
+
+    <div class="col-sm-2 col-md-4 no-padding">
+      <form class="headerSearch" ng-submit="updateBounds()">
+        <div id="nav-typeahead-container"></div>
+        <input ng-hide="location === 'home' || location === 'rankings'" ng-model="autocomplete.locationSelected" placeholder="Enter your city, county or zip code now!" typeahead-wait-ms="400" typeahead-on-select="updateBounds()" uib-typeahead="address for address in getLocation($viewValue)" class="form-control" typeahead-append-to="navTypeaheadContainer">
+      </form>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed"> <fa name="bars"></fa></button>
+    </div>
+    <span class="navbarHello" ng-if="isLoggedIn()">
+      <p><a ng-href="/profile/{{auth.getCurrentUser._id}}">Hello {{ auth.currentUser.name }}, Today is {{today | date}}</a> <a class="push-link" ng-show="isAdmin()" ng-href="/admin">Console <fa name="gear"></fa></a></p>
+    </span>
+
+    <div class="nav-collapse" uib-collapse="isCollapsed">
+      <ul class="headerMenu nav navbar-nav" ng-class="{logged: isLoggedIn()}">
+        <li>
+          <form class="headerSearch-collapsed" ng-submit="updateBounds()">
+            <input ng-hide="location === ''" type="text" ng-model="autocomplete.locationSelected" placeholder="Enter City, State or Zip code"
+            typeahead-wait-ms="400" typeahead-on-select="updateBounds()" uib-typeahead="address for address in getLocation($viewValue)" class="form-control">
+          </form>
+        </li>
+        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+          <a ng-click="goToRoute(item.link)" target="{{item.target}}">{{item.title}}</a>
+        </li>
+        <li ng-if="!isLoggedIn()" ng-class="{active: isActive('/login')}" ><a login>Agent Login/Register</a></li>
+        <li ng-if="isLoggedIn()" ng-class="{active: isActive('/logout')}" ><a ng-click="logout()">Logout</a></li>
+        <li class="hide-item" ng-if="isLoggedIn()">
+          <a ng-click="goToRoute('/profile/' + getCurrentUser._id)">Hello {{ auth.currentUser.name }}, Today is {{today | date}}</a>
+        </li>
+        <li class="hide-item" ng-if="isLoggedIn()">
+          <a class="push-link" ng-show="isAdmin()" ng-click="goToRoute('/admin')">Console <fa name="gear"></fa></a>
+        </li>
+      </ul>
+    </div>
+
+  </div>

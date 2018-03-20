@@ -1,0 +1,150 @@
+<section class="school-profile container" ng-cloak>
+    <article ng-if="!school" class="coverall">
+      <div class='uil-ring-css' style='transform:scale(.8);'><div></div></div>
+      <h2>Loading...</h2>
+    </article>
+  <div ng-if="school && !school.hasBoundaries" class="alert alert-warning alert-dismissible" ng-class="{hide: hidePen}" role="alert">
+    <button type="button" class="close"  ng-click="hidePen = true" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Warning!</strong> Because this is a specialty school with no related attendance zone, we cannot provide boundary-based information on it.
+  </div>
+  <section class="col-sm-12 pge-divider">
+    <div class="breadcrumb">
+      <span><a ng-href="/results?location={{goToState(school.address.state)}}&tab=schools" ng-click="goToState(school.address.state)">{{school.address.state}}</a></span>
+      <span><a ng-href="/results?location={{goToCity(school.address.city, school.address.state)}}&tab=schools">{{school.address.city}}</a></span>
+      <span>{{school.address.street}}</span>
+    </div>
+    <div class="col-md-4">
+
+      <div class="school" ng-cloak>
+
+        <div class="school-title-block">
+    			<h1 class="page-h1">{{school.sch_name | titleCase | ifElem}}</h1>
+          <div class="district">{{school.schoolDistrict | titleCase}}</div>
+    			<div>{{school.address.street}}</div>
+    			<div ng-cloak>{{school.address.city}}, {{school.address.state}} {{school.address.zip}}</div>
+          <div><a href="tel:+1{{school.phone}}">{{school.phone | tel}}</a></div>
+          <div ng-if="school.website"><a href="{{school.website}}" title="{{school.website}}" alt="{{school.website}}" target="_blank">School Website</a></div>
+          <br />
+          <h4>Grades Available {{school.gradeLow}} - {{school.gradeHigh}}</h4>
+          <h5>Is this a Title One school? <span ng-if="school.titleOne == 1">Yes</span><span ng-if="school.titleOne != 1">No</span></h5>
+          <h4 ng-if="schoolType">{{schoolType | titleCase}} School</h4>
+        </div>
+        <ul class="share-icons">
+          <li fb-like="share.Url"></li>
+          <li tweet="share.Name" tweet-url="share.Url"></li>
+          <li google-plus="share.Url"></li>
+          <!-- <li pin-it="share.Name" pin-it-image="share.ImageUrl" pin-it-url="share.Url"></li> -->
+        </ul>
+      </div>
+
+      <div class="nearby-homes" ng-if="school.hasBoundaries">
+        <h4>Homes Near This School</h4>
+        <nearby-homes list="nearHomes" link="'results?location=' + school.slug + '-' + schoolSuffix" school="true"></nearby-homes>
+      </div>
+      <div class="nearby-homes" ng-if="!school.hasBoundaries">
+        <h4>Homes Near This School</h4>
+        <nearby-homes list="nearHomes" link="'results?location=' + school.locations.county + '-y'" school="true"></nearby-homes>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div>
+        <h3>Cruvita School Grade:
+          <span ng-if="!scoreNoExists(school.score.overall)" class="pull-right">
+            <school-grade ng-if="school" school="school"></school-grade>
+            <small tooltip="Cruvita School Score">{{school.score.overall | number: 2}}</small>
+          </span>
+          <small ng-if="scoreNoExists(school.score.overall)">
+            No Score Available
+          </small>
+        </h3>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th><em>City/County Rank</em></th>
+              <th><em>State Rank</em></th>
+              <th><em>National Rank</em></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{school.rank.county.rank | number}}/{{school.rank.county.total | number}}</td>
+              <td>{{school.rank.state.rank | number}}/{{school.rank.state.total | number}}</td>
+              <td>{{school.rank.nation.rank | number}}/{{school.rank.nation.total | number}}</td>
+            </tr>
+            <tr>
+              <td><h4 class="school-rank medal" ng-class="setCountyRank(school)" title="Medal of Excellence for this City/County"></h4></td>
+              <td><h4 class="school-rank medal" ng-class="setStateRank(school)" title="Medal of Excellence for this State"></h4></td>
+              <td><h4 class="school-rank medal" ng-class="setNationRank(school)" title="Medal of Excellence for the Nation"></h4></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="school-map" id="map">
+        <ui-gmap-google-map options="mapOptions" center="map.center" zoom="map.zoom" draggable="true" ng-if="school">
+          <ui-gmap-marker coords="school.coordinates" idKey="school._id" options="options"></ui-gmap-marker>
+          <ui-gmap-polylines path='"boundary"' models="school.boundaries" idKey='"id"' static="true"></ui-gmap-polylines>
+        </ui-gmap-google-map>
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4 no-pad-right">
+
+      <div class="premiere-agents" >
+        <div ng-if="agent" class="col-md-12 no-padding">
+          <show-agent agent="agent" location="location" slug="school.slug" zip="school.address.zip" school="true" city="school.address.city" state="school.address.state"></show-agent>
+        </div>
+        <div ng-if="broker" class="col-md-12 no-padding">
+          <show-broker broker="broker" location="location" slug="school.slug" zip="school.address.zip" school="true" city="school.address.city" state="school.address.state"></show-broker>
+        </div>
+      </div>
+
+      <div ng-hide="agent || broker" class="post-adsense" data-ads>
+
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="agent-filler well" ng-if="!agent">
+        <h3>Real Estate Agents Do You Want More Leads?</h3>
+
+        <p>Exclusive ownership of zip codes is only $25/month. <strong>Click here to email <a ng-href="mailto:sales@cruvita.com?subject=Cruvita.com:  Interested in a Sales Opportunity!">sales@cruvita.com</a> or call 844.CRUVITA and ask for a Cruvita Agent to help you grow your business.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-sm-12 data-section-1 well">
+    <h2> School Data </h2>
+    <article class="col-sm-6">
+      <h4 class="center">Student Diversity: Ethnicity (%)</h4>
+      <canvas id="doughnut" class="chart chart-doughnut" chart-data="ethnicData" chart-labels="ethnicDataLabels" chart-colors="['#B90000', '#B93C00', '#009B64', '#B9B900', '#006CD5', '#8D005F', '#4B009C']"></canvas>
+    </article>
+    <article class="col-sm-6">
+      <h4 class="center">Student Diversity: Gender</h4>
+      <canvas id="pie" class="chart chart-pie" chart-data="genderData" chart-labels="genderDataLabels" chart-colors="['#2391FC', '#FF7212']"></canvas>
+    </article>
+    <article class="col-sm-12 school-data">
+      <h2 class="col-sm-4 col-xs-12">{{school.member}}<small>Total Students</small></h2>
+      <h2 class="col-sm-4 col-xs-12">{{school.stRatio | number:1}}<small>Student-Teacher Ratio</small></h2>
+      <h2 class="col-sm-4 col-xs-12">{{school.freeLunchP | decToPct}}<small>Percent Eligible for Free Lunch</small></h2>
+      <h2 class="col-sm-6 col-xs-12">{{school.langAch}}<small>Language Achievement Scores</small></h2>
+      <h2 class="col-sm-6 col-xs-12">{{school.mathAch}}<small>Math Achievement Scores</small></h2>
+    </article>
+  </section>
+  <section class="col-sm-12 data-section-2 well">
+    <h2> Area Data </h2>
+    <article class="col-sm-12 school-data">
+      <h2 class="col-sm-4 col-xs-12">{{school.medianIncome.district | currency:$}}<small>Median District Income</small></h2>
+      <h2 class="col-sm-4 col-xs-12">{{school.medianSaleValue | currency:$}}<span ng-if="school.medianSaleValue === 1000000"> +</span><small>Median Home Sales Price</small></h2>
+    </article>
+  </section>
+  <div class="clearfix"></div>
+  <p class="disc well">*School information is gathered from the US Department of Education. Last Updated on the Department of Education Website in July 2014, for more information go to <a href="http://www.ed.gov/edfacts" target="_blank">http://www.ed.gov/edfacts</a></p>
+  <!-- <section class="info-2-section">
+    <div class="back-stack2"></div>
+    <div class="col back-stack3">
+      <div class="container">
+        <ng-include src="'components/utils/scoreAndMedalInfo.html'"></ng-include>
+      </div>
+    </div>
+  </section> -->
+</section>

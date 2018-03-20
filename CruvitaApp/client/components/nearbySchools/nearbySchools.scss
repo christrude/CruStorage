@@ -1,0 +1,59 @@
+.nearby-schools-container {
+  display: block;
+
+
+  .nearby-school {
+    display: inline-block;
+    position: relative;
+    width: 45%;
+    margin: 0 5px;
+    cursor: pointer;
+
+    &.empty-slot {
+      background-color: rgba(150,150,150, .5);
+      text-align: center;
+      font-size: 1.5em;
+
+      .text-overlay {
+        background-color: rgba(0,0,0,.5);
+      }
+    }
+
+    img {
+      max-width: inherit;
+    }
+
+    h4 {
+      width: 70%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .schoolScore {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: block;
+      float: none;
+      width: auto;
+      text-align: right;
+
+      .score {
+      }
+      small {
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:992px){
+  .info-3-section .nearby-schools-container .nearby-school.homepage-schools {
+    width: 100%;
+  }
+  .info-3-section .nearby-schools-container {
+    .nearby-school.homepage-schools {
+      width: 100%;
+    }
+  }
+}

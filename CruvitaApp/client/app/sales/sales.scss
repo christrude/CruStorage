@@ -1,0 +1,25 @@
+.sales{
+  font-size: 1.5em;
+  font-weight: 100;
+  margin-top: 53px;
+  padding-bottom: 25px;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -webkit-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  border-radius: 0 0 5px 5px;
+
+  .hero-image img{width: 100%;}
+  h5 {font-size: 1.2em;}
+  .sales-list{
+    font-size: 1em;
+    margin-bottom: 2em;
+    & > li {
+      font-weight: 500;
+    }
+  }
+  .well {background-color: white;}
+  .special {padding-top: 10px;color: red;}
+}

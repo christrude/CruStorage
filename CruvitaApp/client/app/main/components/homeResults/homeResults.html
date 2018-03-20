@@ -1,0 +1,126 @@
+<section cg-busy="homeModel.homePromise">
+<!--   <article ng-if="!homeModel.homePromise" class="coverall">
+    <div class='uil-ring-css' style='transform:scale(.8);'><div></div></div>
+    <h2>Loading...</h2>
+  </article> -->
+	<div class="homeList" id="homeList" home-scroll>
+		<div class="map-overlay" ng-if="homeModel.homes.results && homeModel.homes.results.length === 0">
+			<h4 class="center">While we have Schools ranked Nationwide, we currently only list homes in certain areas. View them <a ng-href="/areas">here</a> </h4>
+
+			<p class="txt16 center">Want to be notified when Cruvita has homes in your area?</p>
+			<div align="center" class="cc-button">
+				<a href="http://eepurl.com/bSaX7f" target="dropdownIframe" class="button" ng-click="showIframe()">Get Notified of Updates</a>
+			</div>
+			<div class="ddIframe">
+				<span ng-click="hideIframe()"><i class="fa fa-close"></i></span>
+				<iframe name ="dropdownIframe" align="top" height="100%" width="100%"></iframe>
+			</div>
+		</div>
+		<h1 class="page-h1" ng-hide="profilePage">Search {{homeModel.homes.count}} Homes For Sale in {{mapModel.currentLocation.dispName | titleCase}}
+			<ul class="share-icons">
+	<!-- 		  <li fb-like="homeShare.Url"></li>
+	 -->		  <li tweet="homeShare.Name" tweet-url="homeShare.Url"></li>
+	<!-- 		  <li google-plus="homeShare.Url"></li>
+	 -->		</ul>
+		</h1>
+<!-- 		<span class="homesHeader">{{homeModel.homes.count}} Homes</span> -->
+
+		<div ng-repeat="home in homeModel.homes.results" ng-swipe-left="goToListing(home)">
+			<a ng-href="/listing/{{home.slug}}" class="media homeResult single" ng-if="home.multiple.children.length === 0" ng-mouseleave="home.offHover(home)" ng-mouseenter="home.onHover(home)" id="anchor{{$index}}" class="anchor">
+				<div class="media-left">
+					<img ng-if="home.listing.photos[0].photo[0].mediaurl[0]" class="resultThumb" ng-src="/api/images?url={{home.listing.photos[0].photo[0].mediaurl[0]}}&thumbnail=true&index=0"  alt="Home Photo Thumbnail"/>
+					<img ng-if="!home.listing.photos[0].photo[0].mediaurl[0]" class="resultThumb" ng-src="assets/images/homes_placeholder_small.png"  alt="Home Photo Thumbnail Placeholder"/>
+
+					<span class="scoreOverlay" ng-if="!deviceDetector.isMobile()">
+						<span class="score">Elementary <school-grade class="school-grade-container" school="home.schools.elementaryScore"></school-grade></span>
+						<span class="score">Middle <school-grade class="school-grade-container" school="home.schools.middleScore"></school-grade></span>
+						<span class="score">High <school-grade class="school-grade-container" school="home.schools.highScore"></school-grade></span>
+					</span>
+				</div>
+				<div class="homeResult-body">
+					<span ng-if="(home.listing.listingstatus[0] === 'Closed') || (home.listing.listingstatus[0] === 'Pending')" class="statusWarning">{{home.listing.listingstatus[0]}}</span>
+
+					<div class="result-info">
+						<h3 class="media-heading" ng-if="home.score">{{home.score * 100 | number:0}}%</h3>
+						<h3 class="media-heading" ng-if="home.listing.listprice[0]">{{home.listing.listprice[0] | currency: '$':0}}</h3>
+						<h3 class="media-heading" ng-if="!home.listing.listprice[0] && home.multiple.children.length === 0">Price Available Upon Request</h3>
+
+						<p class="t16" title="{{home.listing.address.fullstreetaddress | titleCase}}, {{home.listing.address.city | titleCase}}, {{home.listing.address.stateorprovince | titleCase}}">
+							{{home.listing.address.fullstreetaddress | titleCase}},
+							<span ng-show="home.listing.address.city">{{home.listing.address.city | titleCase}},</span>
+							{{home.listing.address.stateorprovince | titleCase}}
+						</p>
+
+
+						<p class="mobile-hide" ng-if="home.cruvitaDate">
+						Listed on Cruvita {{home.cruvitaDate | timeAgo}}
+						</p>
+						<p class="mobile-hide" title="{{home.listing.propertysubtype[0]}}">{{home.listing.propertysubtype[0]}}</p>
+						<p title="{{home.listing.bedrooms[0]}} beds, {{home.listing.bathrooms[0]}} baths, {{home.listing.livingarea[0]}} sqft" ng-if="!(home.multiple.children.length > 0)">
+							<span ng-show="home.listing.bedrooms[0]">{{home.listing.bedrooms[0]}} beds</span>
+							<span ng-show="home.listing.bathrooms[0]">, {{home.listing.bathrooms[0]}} baths</span>
+							<span ng-show="home.listing.livingarea[0]">, {{home.listing.livingarea[0]}} sqft</span>
+						</p>
+					</div>
+				</div>
+			</a>
+
+			<article class="media homeResult multiple" ng-mouseleave="home.offHover(home)" id="anchor{{$index}}" class="anchor"  ng-mouseenter="home.onHover(home)" ng-if="home.multiple.children.length > 0">
+				<a class="media-left">
+					<img ng-if="home.listing.photos[0].photo[0].mediaurl[0] && home.multiple.children.length === 0" class="resultThumb" ng-src="/api/images?url={{home.listing.photos[0].photo[0].mediaurl[0]}}&thumbnail=true&index=0"  alt="Home Photo Thumbnail"/>
+					<img ng-if="!home.listing.photos[0].photo[0].mediaurl[0] && home.multiple.children.length === 0" class="resultThumb" ng-src="assets/images/homes_placeholder_small.png"   alt="Home Photo Thumbnail Placeholder"/>
+					<img ng-if="home.multiple.children.length > 0" class="resultThumb" ng-src="assets/images/homes_placeholder_multiple_small.png" alt="Multi-Unit Photo Thumbnail"/>
+
+					<span class="scoreOverlay">
+						<span class="score">Elementary <school-grade class="school-grade-container" school="home.multiple.children[0].schools.elementaryScore"></school-grade></span>
+						<span class="score">Middle <school-grade class="school-grade-container" school="home.multiple.children[0].schools.middleScore"></school-grade></span>
+						<span class="score">High <school-grade class="school-grade-container" school="home.multiple.children[0].schools.highScore"></school-grade></span>
+					</span>
+				</a>
+				<div class="homeResult-body">
+					<span ng-if="(home.listing.listingstatus[0] === 'Closed') || (home.listing.listingstatus[0] === 'Pending')" class="statusWarning">{{home.listing.listingstatus[0]}}</span>
+
+					<div class="result-info" ng-if="home.multiple.children.length > 0">
+						<p title="{{home.listing.address.fullstreetaddress | titleCase}}, {{home.listing.address.city | titleCase}}, {{home.listing.address.stateorprovince | titleCase}}">{{home.listing.address.fullstreetaddress | titleCase}}</p>
+						<table class="multiple-table table">
+							<thead>
+								<tr>
+									<th>Unit</th>
+									<th>Price</th>
+									<th>Beds</th>
+									<th>Baths</th>
+									<th>SqFt</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="child in home.multiple.children" ng-click="goToMultipleListing(child.slug)">
+									<td>{{child.listing.address.unitnumber[0]}}</td>
+									<td>{{child.listing.listprice[0] | currency: '$':0}}</td>
+									<td>{{child.listing.bedrooms[0]}}</td>
+									<td>{{child.listing.bathrooms[0]}}</td>
+									<td>{{child.listing.livingarea[0]}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</article>
+		</div>
+
+		<div ng-if="homeModel.homes.count === 0">
+		No Homes Found
+		</div>
+		<div style="text-align:center;">
+			<uib-pagination ng-if="homeModel.homes.last > 1" total-items="homeModel.homes.count" items-per-page="50" ng-model="homeModel.homes.current" ng-change="homeModel.updateHomes()" max-size="5" rotate="false"></uib-pagination>
+		</div>
+
+<!--     <div class="info">
+      <ng-include src="'components/utils/scoreAndMedalInfo.html'"></ng-include>
+    </div> -->
+	</div>
+</section>
+<!-- <div class="clickHere" ng-if="!homeModel.agent" >
+  <h4 ><a ng-href="mailto:sales@cruvita.com">Realtors, click here to advertise with Cruvita for this zip code!</a></h4>
+</div>
+<show-agent ng-if="homeModel.agent" agent="homeModel.agent" location="location" class="main-agent"></show-agent> -->
+

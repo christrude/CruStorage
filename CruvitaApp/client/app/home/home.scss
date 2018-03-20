@@ -1,0 +1,367 @@
+/**************************************************/
+/****** Splash/Home Page Styles *******************/
+/**************************************************/
+
+
+.main-banner {
+  overflow: hidden;
+}
+
+#background_cycler {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1
+  }
+
+  img.active {
+    z-index: 3
+  }
+}
+
+.search {
+  margin: 8% 0;
+
+  h1 {
+    background-color: rgba(9, 57, 101, 0.9);
+    border-radius: 15px 15px 0 0;
+    color: white;
+    margin-bottom: 0;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .search-bar{
+    border-radius: 0;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+  }
+
+  /*.input-group-lg .input-group-btn .btn{border-radius: 0;}*/
+	.input-group {
+		li:not(:last-child)
+		{
+		  border-bottom: 1px solid #888;
+		}
+	}
+
+  .input-group-lg .input-group-btn:last-child .btn {
+    border-radius: 0 0 15px;
+  }
+
+  .addon{
+    background-color: rgba(9, 57, 101, 0.9);
+    border-radius: 0 0 5px 5px;
+    color: #fff;
+    display: inline-block;
+    height: 35px;
+    line-height: 33px;
+    margin-bottom: 0 !important;
+    margin-right: 1rem;
+    padding: 0 10px;
+    position: relative;
+
+    a {
+      color: rgba(255, 255, 255, .8);
+      text-decoration: underline;
+    }
+
+    a:hover, a:focus {
+      color: rgba(255, 255, 255, 1.0);
+      transition: all 0.2s ease 0s;
+    }
+
+  }
+
+}
+
+.hp-caption {
+  background-image: url(/assets/images/caption-bg.png);
+  text-align: center;
+  background-repeat: repeat;
+  color: #FFF;
+  padding: 5px 0 0;
+  width: 100%;
+  position:relative;
+
+  > div {
+    background-color: transparent;
+    margin: 0 auto;
+    padding: 0 0 20px;
+    width: 940px;
+  }
+}
+
+
+/* Youtube Reflexive */
+.vid-container {
+    position: relative;
+    padding-bottom: 50%;
+    padding-top: 35px; height: 0; overflow: hidden;
+}
+
+.vid-container iframe,
+.vid-container object,
+.vid-container embed {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 100%;
+}
+
+@media (min-width: 1200px) {
+  .hp-caption > div {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 979px) {
+  .hp-caption > div {
+    padding: 0 0 30px;
+    width: 724px;
+  }
+}
+
+@media (max-width: 956px) {
+  #background_cycler img {
+    width: 150%;
+  }
+}
+
+@media (max-width: 767px) {
+  #background_cycler {
+    top: 50px;
+  }
+  .search {
+    margin: 12% 0;
+  }
+  .search h1 {
+    font-size: 24px;
+  }
+  .hp-caption > div {
+    padding: 0 10px 30px;
+    width: auto;
+  }
+  .hp-caption h2 {
+    font-size: 24px;
+  }
+  .hp-caption h3 {
+    font-size: 18px;
+  }
+  .container { padding: 10px;}
+}
+
+@media (max-width: 636px) {
+#background_cycler img {
+  width: 250%;
+}
+}
+
+@media (max-width: 468px) {
+#background_cycler img {
+  width: 285%;
+}
+.search {
+  margin: 18% 0;
+}
+.search .search-bar {
+  font-size: 14px;
+}
+}
+
+.mid-content {
+  background-color: #f8f8f8;
+  border-top: 10px solid rgba(9, 58, 113, 0.7);
+  // border-bottom: 5px solid #093A65;
+  padding: 20px;
+
+  section.well {
+    margin-top: 20px;
+  }
+  .area-header {
+    text-align: center;
+    margin-top: 0;
+  }
+  .areas {
+    background-image: url("/assets/images/areas.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 300px;
+  }
+
+  .area-aside {
+    color: #002e5c;
+    font-size: 1.3em;
+    margin-top: 20px;
+    text-align: left;
+    vertical-align: top;
+
+    .well {
+      background-color: #fff;
+      -webkit-box-shadow: -1px 6px 10px 1px rgba(0,0,0,0.5);
+      -moz-box-shadow: -1px 6px 10px 1px rgba(0,0,0,0.5);
+      box-shadow: -1px 6px 10px 1px rgba(0,0,0,0.5);
+    }
+
+    ul {
+      float: left;
+      list-style-type: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .areas {
+      display: none;
+    }
+    .area-aside {
+      width: 100%;
+      margin-left: 0;
+      float: none;
+    }
+  }
+
+}
+
+
+.info-section {
+  h2 {
+    font-weight: 700;
+    margin: 20px 0;
+  }
+
+  .round-shape {
+    background-size: cover;
+    border-radius: 200px;
+    box-shadow: 2px 2px 5px rgba(100, 100, 100, 0.5);
+    display: block;
+    height: 220px;
+    margin: 20px auto;
+    overflow: hidden;
+    width: 220px;
+    border: 2px solid #9c4c03;
+  }
+  .round-shape.community {
+    background-image: url("/assets/images/community.jpg");
+  }
+  .round-shape.school {
+    background-image: url("/assets/images/high-school.jpg");
+  }
+  .round-shape.home {
+    background-image: url("/assets/images/home.jpg");
+  }
+
+
+  .btn {
+    margin: 10px auto;
+    display: block;
+  }
+
+  p {
+    -moz-hyphens: auto;
+    font-size: 1.125em;
+    line-height: 1.5;
+    margin: 0 0 1em;
+    padding: 0 20px;
+  }
+
+  h4 {
+    font-weight: 700;
+    margin: 0 auto;
+  }
+
+}
+
+.info-2-section {
+  padding: 15px 0;
+  position: relative;
+  background-color: white;
+
+  .btn {
+    margin: 10px auto;
+    display: block;
+  }
+
+  h2 {
+    font-weight: 700;
+    margin: 20px 0;
+  }
+
+  p {
+    color: white;
+    text-shadow: 0 1px #555;
+    font-size: 1.250em;
+  }
+
+  .col {
+    position: relative;
+  }
+}
+
+.info-3-section {
+  padding: 15px 0;
+  position: relative;
+
+  .btn {
+    margin: 10px auto;
+    display: block;
+  }
+
+  h2 {
+    font-weight: 700;
+    margin: 20px 0;
+  }
+
+  p {
+    color: white;
+    text-shadow: 0 2px 1px #555;
+    font-size: 1.35em;
+  }
+
+  .nearby-homes-container .nearby-home.homepage-homes, .nearby-schools-container .nearby-school.homepage-schools {
+    width: 32%;
+    margin: 5px;
+
+    .resultThumb {
+      max-height: 200px;
+    }
+
+    &.school .media {
+      background-color: rgba(0,0,0,0.2);
+      width: 100%;
+      height: 100%;
+      display: block;
+      padding: 10px;
+
+      .school-score {
+        margin: 0 auto;
+        border-radius: 5px;
+        padding: 2px 6px;
+        color: white;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .col {
+    position: relative;
+  }
+}
+
+
+

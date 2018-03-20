@@ -1,0 +1,45 @@
+.nearby-homes-container {
+  display: block;
+
+
+  .nearby-home {
+    display: inline-block;
+    position: relative;
+    width: 45%;
+    margin: 0 5px;
+    cursor: pointer;
+
+    &.empty-slot {
+      background-color: rgba(150,150,150, .5);
+      text-align: center;
+      font-size: 1.5em;
+
+      .text-overlay {
+        background-color: rgba(0,0,0,.5);
+      }
+    }
+
+    img {
+      max-width: inherit;
+    }
+
+    .text-overlay {
+      color: #fff;
+      font-size: .875em;
+      position: absolute;
+      bottom: 0;
+      text-shadow: 0 1px #000;
+      background-color: rgba(0,0,0,.3);
+      box-shadow: 0 -5px 4px rgba(0,0,0,.3);
+      padding: 0 5px;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width:992px){
+  .info-3-section .nearby-homes-container .nearby-home.homepage-homes {
+    width: 100%;
+  }
+
+}

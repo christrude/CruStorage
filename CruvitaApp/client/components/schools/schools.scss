@@ -1,0 +1,158 @@
+.school-rankings {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: #FFF;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    table-layout: fixed;
+  }
+
+  .table > thead > tr > th {
+    border: none;
+    vertical-align: top;
+    padding: 2px 8px;
+  }
+
+  .media{
+    border-bottom: 1px solid #efefef;
+
+    .media-left, .media-right{
+      display: inline-block;
+      width: 49%;
+      padding: 5px 15px;
+    }
+
+    .media-right{
+      .score{
+        float: right;
+        .school-score {
+          display: inline-block;
+          font-size: 1.4em;
+        }
+        .tip {
+          color: #9a9a9a;
+          font-size: 65%;
+          display: block;
+        }
+      }
+      ul.rankings-list {
+        list-style-type: none;
+        padding: 0 0 0 25px;
+
+        .medal {
+          left: -30px;
+          position: absolute;
+        }
+
+        li {
+          position: relative;
+          padding: 5px;
+          border-bottom: 1px dotted #ddd;
+        }
+        li:nth-of-type(last-child) {
+          border: none;
+        }
+      }
+    }
+  }
+
+
+  /* Zebra striping */
+  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+
+  th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+  }
+
+  td, th {
+    padding: 0 6px 8px;
+    text-align: left;
+  }
+
+  td+td, th+th{
+    width: auto;
+  }
+
+  td .btn-sm, td .btn-xs, .btn-group-sm > .btn {
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 3px 10px;
+    white-space: pre-wrap;
+    word-break: normal;
+  }
+
+  .sm-th {
+    font-weight: normal;
+    font-size: 10px;
+    margin: 0;
+    padding: 5px 0 0;
+  }
+
+  .title-align {
+    text-align: center;
+  }
+
+  .super-score {
+    background-color: #00b300;
+  }
+
+  .small-cell {width: 100px;}
+  .cell-fill {display: none;}
+
+  @media only screen and (max-width: 475px) {
+    .hide-legend {display: none;}
+    .legend-scale {width: 80px;}
+    .john-legend {
+      .icon{width: 10px;}
+      th {font-size: 9px;}
+    }
+  }
+
+
+  @media only screen and (max-width: 767px) and (max-device-width: 1024px) {
+    .title-align {
+      text-align: left;
+    }
+
+    .school-score {
+      text-align: center;
+      margin: 0;
+    }
+    /* Force table to not be like tables anymore */
+
+    tr {
+      border: 1px solid #ccc;
+    }
+
+    .cell-fill{width: 100%;}
+    tr.john-legend {font-size: .75em;}
+  }
+
+
+  .pagination {
+    margin: 10px 0 15px;
+  }
+
+  .pagination > li > a, .pagination > li > span {
+    padding: 4px 10px;
+  }
+
+  .blurb {
+    margin: 0 auto;
+    padding: 20px 0;
+    display: block;
+    width: 190px;
+    font-size: 1.4rem;
+    color: #002e5c;
+  }
+}

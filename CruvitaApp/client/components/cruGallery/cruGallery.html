@@ -1,0 +1,29 @@
+<div class="cruGallery">
+
+   <div class="mainimageshell">
+      <div class="viewwindow">
+          <ul class="fullsizelist">
+            <li ng-repeat="image in listing.photos[0].photo track by $index" ng-class="{active: isSelected($index)}"  ng-swipe-left="advanceRight($index, $last)" ng-swipe-right="advanceLeft($index, $first)" class="image">
+              <span class="arrow aleft" ng-click="advanceLeft($index, $first)"><fa name="angle-left"></fa></span>
+                <img class="large" ng-src="/api/images?url={{image.mediaurl[0]}}" alt="Photo of Home # {{$index}}"/>
+              <span class="arrow aright" ng-click="advanceRight($index, $last)"><fa name="angle-right"></fa></span>
+            </li>
+            <li ng-if="listing.photos.length === 0" class="unhide">
+              <img class="large" ng-src="/assets/images/homes_placeholder_large.png" alt="Photo of Home"/>
+            </li>
+          </ul>
+      </div>
+  </div>
+  <ul class="thumbswrapper">
+    <li ng-if="listing.photos.length === 0">
+      <img class="thumb" ng-src="/assets/images/homes_placeholder_small.png" />
+    </li>
+      <li ng-repeat="thumb in listing.photos[0].photo track by $index" >
+          <div class="thumbwrapper" >
+              <a ng-click="selectImage($index)">
+                  <img class="thumb" ng-src="/api/images?url={{thumb.mediaurl[0]}}" ng-class="{active: isSelected($index)}" alt="Photo of Home # {{$index}}"/>
+              </a>
+          </div>
+      </li>
+  </ul>
+</div>

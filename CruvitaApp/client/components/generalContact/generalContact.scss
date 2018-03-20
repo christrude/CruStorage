@@ -1,0 +1,29 @@
+.generalContact{
+  padding: 10px;
+
+  .inline{
+    width: 49%;
+    display: inline-block;
+  }
+  .confirmation{
+    font-size: .6rem;
+
+    label{
+      padding-bottom: 10px;
+    }
+  }
+
+  textarea.form-control {
+    min-height: 110px;
+  }
+
+  .appendMessage{
+    font-size: .875em;
+    color: rgba(50, 50, 50, .6);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    display: block;
+  }
+}

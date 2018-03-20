@@ -1,0 +1,20 @@
+<resources>
+    <style name="CruvitaBaseTheme" parent="android:Theme.Holo.Light">
+       
+    </style>
+
+    <!-- Application theme. -->
+    <style name="CruvitaTheme" parent="CruvitaBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+         <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="@android:style/Theme.Holo.Light.NoActionBar">
+        <item name="android:windowBackground">@color/darkblue</item>
+    </style>
+    
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/darkblue</item>
+    </style>
+
+</resources>

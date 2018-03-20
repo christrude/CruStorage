@@ -1,0 +1,111 @@
+.brokerList {
+  padding: 10px 10px 0 10px;
+  border-top: 1px solid rgba(0,0,0,.2);
+
+  .media-heading {margin-bottom: 15px;}
+  .media-left, .media-body {display: inline-block; margin-bottom: 15px;}
+  // .media-left { width: 40%;}
+  .media-body { width: 60%;}
+
+  .agent-pic{width: auto; max-height: 80px;}
+}
+
+.agent-info {
+  list-style: none;
+  padding-left: 10px;
+
+  span.fa {
+    padding: 0 4px;
+    color: #404069;
+
+    &.fa-mobile-phone {
+      font-size: 1.3em;
+    }
+
+    &.fa-envelope {
+      font-size: .9em;
+    }
+  }
+
+  li {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    a {overflow: hidden; width: 100%;}
+  }
+
+}
+
+.agent-info-name{ font-weight: 700; font-size: 1.05em;  line-height: 1em; position: relative;}
+
+
+
+.agent-social-container {
+  display: block;
+  padding: 10px 0;
+
+  a {
+    padding: 0 4px;
+  }
+}
+
+.agent-social-image {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  background-size: cover;
+}
+
+.agent-social-facebook {
+  .agent-social-image {
+    background-image: url("/assets/images/facebook-badge.png");
+  }
+}
+.agent-social-twitter {
+  .agent-social-image {
+    background-image: url("/assets/images/twitter-badge.png");
+
+  }
+}
+.agent-social-linkedin {
+  .agent-social-image {
+    background-image: url("/assets/images/linkedin-badge.png");
+
+  }
+}
+.agent-social-google {
+  .agent-social-image {
+    background-image: url("/assets/images/google-badge.png");
+
+  }
+}
+
+.breakbox {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  word-break: break-all;
+}
+
+
+@media screen and (max-width: 1280px) {
+  .sidebar{
+    font-size: .7rem;
+    h4{font-size: .9rem;}
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .agent-info{padding-left: 0;}
+}
+
+
+@media (max-width: 767px) {
+  .school-profile .premiere-agents .agentList .media-left {
+    width: 60px;
+  }
+
+  .agent-pic {
+    width: 55px;
+  }
+}

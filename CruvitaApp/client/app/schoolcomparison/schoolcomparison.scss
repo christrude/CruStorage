@@ -1,0 +1,64 @@
+.school-comparison {
+	margin-top: 52px;
+  position: relative;
+
+  h2 {
+    padding: 20px;
+    margin-bottom: 0;
+    a {
+      display: block;
+    }
+  }
+
+  .top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25%;
+
+    p {
+      margin:0;
+    }
+
+    .comparison-agent-pic {
+      float: right;
+      padding-right: 10px;
+      width: 20%;
+    }
+  }
+}
+
+.school-block {
+  width: 30%;
+  min-width: 250px;
+  float: left;
+  background-color: rgba(255, 255, 255, .7);
+  border: 1px solid rgba(50, 50, 50, .2);
+  border-radius: 10px;
+  margin: 15px 20px;
+  padding: 5px 15px;
+
+  .grade-block{
+    margin: 10px 0;
+
+    .school-rank {
+      width: 32%;
+      display: inline-block;
+      padding: 10px;
+
+      img {
+        margin: 0 auto;
+        display: block;
+      }
+    }
+  }
+
+  .school-grade {
+    font-size: 24px;
+    display: inline-block;
+    & + small {
+      display: block;
+      margin: 4px 0;
+    }
+  }
+}

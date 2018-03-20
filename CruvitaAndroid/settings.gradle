@@ -1,0 +1,3 @@
+rootProject.name='CruvitaAndroid'
+include ':android'
+include ':google-play-services_lib'

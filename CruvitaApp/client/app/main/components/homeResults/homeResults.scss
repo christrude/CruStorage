@@ -1,0 +1,210 @@
+.homeResult{
+  border-bottom: 1px solid shade($bkgd, 20%);
+  position:relative;
+  display: table;
+  table-layout: fixed;
+  height: 155px;
+  width: 100%;
+  background-color: #fff;
+
+
+  .scoreOverlay{
+    position: absolute;
+    display: flex;
+    cursor: default;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    bottom: 0;
+    left: 0;
+    height: 55px;
+    color: white;
+    background-color: #333;
+    padding: 0 0 2px 0;
+    max-width: 200px;
+    min-width: 100px;
+    width: 100%;
+    text-shadow: 0 1px #000;
+
+    .score{
+      padding: 0 5px;
+      width: 100%;
+      display: block;
+
+      em{float: right;}
+      &:hover{
+        background-color: rgba(200,200,200, .2);
+      }
+    }
+  }
+
+
+
+  h3 {
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
+  &:hover{
+    background-color: tint($cru-blue, 90%);
+    cursor: pointer;
+    & .agentList {background-color: tint($cru-blue, 90%);}
+  }
+
+  .media-left, &-body{
+    position: relative;
+    overflow: hidden;
+
+    &:after{clear:both;}
+  }
+  .media-left{
+    padding-right: 0;
+    width: 200px;
+  }
+  &-body{padding: 0 5px;}
+}
+
+a.homeResult {
+  color: #333;
+
+  &:hover {
+    color: tint($cru-blue, 10%);
+  }
+}
+
+.homeResult:nth-of-type(last-child){ border: none;}
+
+.result-info{
+  display:block;
+  font-weight: 300;
+  text-align: left;
+  overflow: auto;
+  padding: 8px 0 0;
+
+  p {
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    margin: 0;
+  }
+  p:after{clear:both;}
+
+  .t16 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+.resultThumb{
+  max-height: 120px;
+  max-width: 200px;
+  width: 100%;
+  //Figure out how to size the results properly.
+  // margin: 0 auto;
+  display: block;
+  object-fit: cover;
+}
+
+.homeResult .agent-info{
+  font-size: .8em;
+  padding: 20px 0 0 0;
+
+  li {
+    width: 50%;
+    float: left;
+  }
+}
+
+.multiple{
+  cursor: default;
+
+  .multiple-table{
+    font-size: .7em;
+
+    tbody tr:hover{background-color: #D1EAD1;}
+    td{
+      padding: 2px;
+    }
+  }
+}
+
+.statusWarning{
+  display: block;
+  padding: 2px;
+  background-color: rgba(225, 100, 100, .9);
+  color: white;
+  text-shadow: 0 1px 1px rgba(50, 50, 50, .5);
+  height: auto;
+  width: 100%;
+  top: 0;
+  position: relative;
+}
+
+.position-fixed{position: fixed; z-index: 10000;}
+
+@media screen and (min-width: 961px) {
+  .homeResult{
+
+    .scoreOverlay{
+      font-size: 11px;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .homeList {
+    .homeResult {
+      border-bottom: 3px solid #000;
+      box-sizing: content-box;
+      height: 170px;
+
+      .mobile-hide {display: none;}
+      .scoreOverlay {
+        font-size: 12px;
+        width: 50%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+
+      .media-left {
+        width: 100%;
+        position: absolute;
+      }
+
+      .homeResult-body {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: white;
+        text-shadow: 0 2px 1px #333;
+        p {
+          font-weight: 400;
+        }
+      }
+
+      .resultThumb, .scoreOverlay {
+        max-width: 100%;
+        width: 100%;
+        object-fit: cover;
+        max-height: 170px;
+        font-size: 12px;
+        background-color: rgba(100, 100, 100, .25);
+      }
+
+      .result-info {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+
+  .homeResult{
+    .hide-small {display: none;}
+  }
+}

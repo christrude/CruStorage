@@ -1,0 +1,10 @@
+<section id="ad-space">
+  <div ng-if="advertisements" ng-repeat="advertisement in advertisements">
+    <a target="_blank" href="{{advertisement.url}}" title="{{advertisement.url}}"><img ng-src="/api/images?url={{advertisement._id}}&contentType=png" class="ad-image"/></a>
+  </div>
+  <div ng-if="!advertisements[0]">
+    <a target="_blank" href="/about#info">
+      <img class="ad-image" src="assets/images/ad_placeholder.png">
+    </a>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<section class="agentList" sticky>
+  <div class="media breakbox">
+    <h4 class="media-heading" ng-if="school">Cruvita Home Sales Expert</h4>
+    <div class="media-left">
+      <a ng-href="/profile/{{agent.slug}}"><img class="agent-pic" ng-if="agent.pictureLocation" ng-src="/api/images?url={{agent.pictureLocation}}&contentType={{agent.pictureType}}&hashed=true&userImage=true" ng-load="loadTrack(agent)" alt="Cruvita Home Sales Expert"/>
+      <img class="agent-pic" ng-if="!agent.pictureLocation" src="assets/images/agent_placeholder_large.png" alt="Cruvita Home Sales Expert"/></a>
+      <img width="0" height="0" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="  ng-load="loadTrack(agent)"/>
+    </div>
+    <div class="media-body">
+      <ul class="agent-info">
+        <li class="agent-info-name"><fa name="male"></fa><a ng-href="/profile/{{agent.slug}}">{{agent.name}}</a></li>
+        <li class="agent-info-phone"><fa name="mobile-phone"></fa><a href="tel:+1{{agent.phone[0]}}" ng-click="clickTrackPhone(agent)">{{agent.phone[0] | tel}}</a></li>
+        <li class="agent-info-company"><fa name="building"></fa>{{agent.realtyName | titleCase}}</li>
+        <li class="agent-info-email"><fa name="envelope"></fa><a ng-href="mailto:{{agent.email}}?subject=Cruvita.com:  You have a new lead!" tooltip="{{agent.email}}" ng-click="clickTrackEmail(agent)">{{agent.email}}</a></li>
+
+        <li class="agent-info-website"><fa name="globe"></fa><a href="{{agent.website}}" target="_blank" ng-click="clickTrackWebsite(agent)" tooltip="{{agent.website}}">{{agent.website}}</a></li>
+        <li class="agent-info-license"><fa name="certificate"></fa>{{agent.licenseNumber}}</li>
+        <li class="agent-social-container">
+          <a ng-repeat="(key, value) in agent.social" class="agent-social-{{key}}" ng-click="clickTrackSM(agent, key, value)" ng-if="key !== 'remarketing' && value.length"><span class="agent-social-image"></span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

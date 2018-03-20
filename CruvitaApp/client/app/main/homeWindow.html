@@ -1,0 +1,12 @@
+<div class="homesPopover">
+  <img class="mapThumb" ng-src="/api/images?url={{mapModel.homeWindow.model.listing.photos[0].photo[0].mediaurl[0]}}&thumbnail=true"   alt="Home Photo Thumbnail"/>
+
+  <ul class="popoverInfo">
+    <li><strong>{{mapModel.homeWindow.model.listing.listprice[0] | currency: '$':0}}</strong></li>
+    <li>
+      <a ng-href="listing/{{mapModel.homeWindow.model.slug}}">{{mapModel.homeWindow.model.listing.address.fullstreetaddress | titleCase}}</a>
+    </li>
+    <li ng-if="mapModel.homeWindow.model.listing.bedrooms[0] && mapModel.homeWindow.model.listing.bathrooms[0]">{{mapModel.homeWindow.model.listing.bedrooms[0]}} Beds, {{mapModel.homeWindow.model.listing.bathrooms[0]}} Baths</li>
+    <li ng-if="mapModel.homeWindow.model.listing.livingarea[0]">{{mapModel.homeWindow.model.listing.livingarea[0]}} Sqft</li>
+  </ul>
+</div>

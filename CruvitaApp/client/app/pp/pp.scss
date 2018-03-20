@@ -1,0 +1,23 @@
+.privacy-policy {
+  margin-top: 53px;
+  padding-bottom: 25px;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -webkit-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.24);
+  border-radius: 0 0 5px 5px;
+
+  .dark-well{
+    background-color: #ddd;
+  }
+  .well { 
+    padding-top: 0; 
+    background-color: white; 
+
+    &.dark-well {
+      background-color: #ddd;
+    }
+  }
+}

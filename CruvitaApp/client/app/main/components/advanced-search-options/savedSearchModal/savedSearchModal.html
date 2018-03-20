@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h2 class="modal-title">Save your search</h2>
+</div>
+<form name="savedSearchForm" novalidate>
+  <div class="modal-body">
+    <h4>Want to be notified of changes to these search results in your email?</h4>
+    <p>Cruvita can contact you via email as much(3x daily) or as little as you want(every X days). Just enter your email and desired frequency below, and we'll email you! <small>Don't worry, unsubscribing from the email is very simple.</small></p>
+
+    <div class="form-group inline" ng-class="savedSearchForm.emailAddress.$invalid && (savedSearchForm.$submitted || savedSearchForm.emailAddress.$touched) ? 'has-error':''">
+        <label class="control-label" ng-show="savedSearchForm.emailAddress.$invalid && (savedSearchForm.$submitted || savedSearchForm.emailAddress.$touched)">Invalid Email</label>
+        <input type="email" class="form-control input-sm" name="emailAddress" ng-model="body.email" placeholder="Your Email*" required />
+    </div>
+
+    <div class="form-group inline" ng-class="savedSearchForm.frequency.$invalid && (savedSearchForm.$submitted || savedSearchForm.frequency.$touched) ? 'has-error':''">
+        <select class="form-control input-sm" name="frequency" ng-model="body.frequency">
+        <options>
+        </options>
+        </select>
+    </div>
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <label><input type="checkbox" ng-model="agreed">By clicking 'Send Email' you agree to send this message to the Cruvita Home Sales Expert AND the Listing Agent for this property. You also agree to the Cruvita <a ng-href="/tos" target="_blank">Terms of Service</a> and <a ng-href="/pp" target="_blank">Privacy Policies.</a></label>
+    <button class="btn btn-success" type="button" ng-click="close()" ng-disabled="agreed != true || savedSearchForm.$invalid">Save Search</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</form>

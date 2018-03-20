@@ -1,0 +1,61 @@
+<article class="nearby-homes-container">
+  <div ng-repeat="home in list | limitTo: 4" class="nearby-home" ng-if="!homepage">
+    <a class="media" ng-href="/listing/{{home.slug}}">
+      <img ng-if="home.listing.photos[0].photo[0].mediaurl[0]" class="resultThumb" ng-src="/api/images?url={{home.listing.photos[0].photo[0].mediaurl[0]}}&index=0" alt="Nearby Home Photo"/>
+      <img ng-if="!home.listing.photos[0].photo[0].mediaurl[0]" class="resultThumb" ng-src="assets/images/homes_placeholder_small.png" alt="Nearby Home Photo Placeholder" />
+      <div class="text-overlay">
+
+        <div class="result-info">
+          <h4 class="media-heading" ng-if="home.listing.listprice[0]">{{home.listing.listprice[0] | currency: '$':0}}</h4>
+          <h4 class="media-heading" ng-if="!home.listing.listprice[0] && home.multiple.children.length === 0">Price Available Upon Request</h4>
+
+          <p title="{{home.listing.address.fullstreetaddress | titleCase}}, {{home.listing.address.city | titleCase}}, {{home.listing.address.stateorprovince | titleCase}}">
+            {{home.listing.address.fullstreetaddress | titleCase}},
+            <span ng-show="home.listing.address.city">{{home.listing.address.city | titleCase}},</span>
+             {{home.listing.address.stateorprovince | titleCase}}
+          </p>
+
+          <p title="{{home.listing.bedrooms[0]}} beds, {{home.listing.bathrooms[0]}} baths, {{home.listing.livingarea[0]}} sqft" ng-if="!(home.multiple.children.length > 0)">
+            <span ng-show="home.listing.bedrooms[0]">{{home.listing.bedrooms[0]}} beds</span>
+            <span ng-show="home.listing.bathrooms[0]">, {{home.listing.bathrooms[0]}} baths</span>
+            <span ng-show="home.listing.livingarea[0]">, {{home.listing.livingarea[0]}} sqft</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </a>
+  <div ng-repeat="home in list | limitTo: 6" class="nearby-home homepage-homes" ng-if="homepage">
+    <a class="media" ng-href="/listing/{{home.slug}}">
+      <img ng-if="home.listing.photos[0].photo[0].mediaurl[0]" class="resultThumb" ng-src="/api/images?url={{home.listing.photos[0].photo[0].mediaurl[0]}}&index=0" alt="Nearby Home Photo"/>
+      <img ng-if="!home.listing.photos[0].photo[0].mediaurl[0]" class="resultThumb" ng-src="assets/images/homes_placeholder_small.png" alt="Nearby Home Photo Placeholder" />
+      <div class="text-overlay">
+
+        <div class="result-info">
+          <h4 class="media-heading" ng-if="home.listing.listprice[0]">{{home.listing.listprice[0] | currency: '$':0}}</h4>
+          <h4 class="media-heading" ng-if="!home.listing.listprice[0] && home.multiple.children.length === 0">Price Available Upon Request</h4>
+
+          <p title="{{home.listing.address.fullstreetaddress | titleCase}}, {{home.listing.address.city | titleCase}}, {{home.listing.address.stateorprovince | titleCase}}">
+            {{home.listing.address.fullstreetaddress | titleCase}},
+            <span ng-show="home.listing.address.city">{{home.listing.address.city | titleCase}},</span>
+             {{home.listing.address.stateorprovince | titleCase}}
+          </p>
+
+          <p title="{{home.listing.bedrooms[0]}} beds, {{home.listing.bathrooms[0]}} baths, {{home.listing.livingarea[0]}} sqft" ng-if="!(home.multiple.children.length > 0)">
+            <span ng-show="home.listing.bedrooms[0]">{{home.listing.bedrooms[0]}} beds</span>
+            <span ng-show="home.listing.bathrooms[0]">, {{home.listing.bathrooms[0]}} baths</span>
+            <span ng-show="home.listing.livingarea[0]">, {{home.listing.livingarea[0]}} sqft</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </a>
+  <a class="nearby-home empty-slot" ng-href="{{link}}&tab=homes" target="_blank" ng-if="school && list.length > 0">
+    <div class="media">
+    <img ng-if="!home.listing.photos[0].photo[0].mediaurl[0]" class="resultThumb" ng-src="assets/images/homes_placeholder_small.png" alt="Link to search Nearby Homes"/>
+    <div class="text-overlay">
+      <fa name="search"></fa>
+      Click to search for more homes near here.
+      </div>
+    </div>
+  </a>
+</article>

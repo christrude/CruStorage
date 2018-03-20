@@ -1,0 +1,20 @@
+<div class="areas-section container">
+  <div class="col-md-12 col-sm-12 no-padding">
+    <h3>Cruvita Listing Areas <fa name="info-circle" class="cities-info" ng-class="{hide: viewable}" ng-click="viewable = !viewable"></fa></h3>
+    <div class="well" ng-class="{ninja: !viewable}">
+      <p><fa ng-click="viewable = !viewable" name="check" class="closewell"></fa>
+      Currently we offer listings of homes for sale and homes for rent in Florida, Maryland, Michigan, North Carolina, Texas, Virginia, and Washington D.C.</p>
+      <p>Cruvita also has over 88,000 ranked schools nationwide. They can be easily searched on our <a href="/rankings">School Rankings page</a></p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+	<div class="col-md-12 col-sm-12 area-state" ng-repeat="area in ::areasQuartered">
+	  <h4>{{area.label | titleCase}}</h4>
+	  <div class="row" ng-repeat="locations in ::area.areas">
+		  <div class="col-md-3 col-sm-3" ng-repeat="location in ::locations">
+		  	<a ng-href="/results?location={{location.urlLocation}}-c">{{location.label}}</a>
+		  </div>
+	  </div>
+		<div class="clearfix"></div>
+	</div>
+</div>

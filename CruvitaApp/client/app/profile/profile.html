@@ -1,0 +1,302 @@
+<div class="userProfile" ng-cloak>
+  <section class="col col-xs-12 col-sm-9">
+    <div ng-if="user.status === 'pending'" class="alert alert-warning alert-dismissible" ng-class="{hide: hidePen}" role="alert">
+      <button type="button" class="close"  ng-click="hidePen = true" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Account Pending!</strong> Please be patient while an admin reviews your credentials.
+    </div>
+
+    <div class="profile-image-container">
+      <img ng-if="user.pictureLocation" ng-src="/api/images?url={{user.pictureLocation}}&contentType={{user.pictureType}}&hashed=true&userImage=true" alt="Agent Photo Thumbnail"/>
+      <img ng-if="!user.pictureLocation" ng-src="/assets/images/agent_placeholder_med.png" alt="Agent Photo Thumbnail Placeholder"/>
+      <div class="profile-social-container" ng-if="!edit">
+        <a ng-repeat="(key, value) in user.social" class="profile-social-{{key}}" ng-href="{{value}}" ng-if="key !== 'remarketing' && value.length" target="_blank"><span class="profile-social-image"></span></a>
+      </div>
+    </div>
+    <ul class="profile-info">
+      <h2>{{user.name}}</h2>
+      <li>
+        <ul><li ng-repeat="phone in user.phone"><fa name="mobile-phone"></fa><a href="tel:+1{{phone}}" ng-click="clickTrackPhone(agent)"> {{phone | tel}}</a></li></ul>
+      </li>
+      <li ng-if="user.website">
+        <fa name="globe"></fa><a ng-href="{{user.website}}" ng-click="clickTrackWebsite()" target="_blank">{{user.website}}</a>
+      </li>
+      <li ng-if="user.email">
+        <fa name="envelope"></fa><a ng-href="mailto:{{user.email}}" ng-click="clickTrackEmail()">{{user.email}}</a>
+      </li>
+      <li>
+        Licensed Agent/Broker with {{user.realtyName}}, #{{user.licenseNumber}}
+      </li>
+      <li class="share-list-item">
+        <!-- AddToAny BEGIN -->
+        <a class="a2a_dd btn btn-default" href="https://www.addtoany.com/share">Share...</a>
+        <script>
+        var a2a_config = a2a_config || {};
+        a2a_config.onclick = 1;
+        a2a_config.templates = {
+          email: {
+            subject: "${title}",
+            body: "Here's a great realtor I found on Cruvita.com: \n${link}"
+          }
+        };
+        a2a_config.num_services = 4;
+        a2a_config.color_main = "D7E5ED";
+        a2a_config.color_border = "AECADB";
+        a2a_config.color_link_text = "333333";
+        a2a_config.color_link_text_hover = "333333";
+        a2a_config.prioritize = ["facebook", "google_plus", "twitter", "email"];
+        </script>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
+      </li>
+    </ul>
+
+
+    <uib-tabset class="col col-sm-12" active="tabs.active">
+      <uib-tab index="0" heading="Statistics" ng-if="isYou">
+        <section class="col-sm-12 profile-charts">
+          <article class="col-sm-4">
+            <h4 class="center">Total Views</h4>
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="totalViews" chart-labels="totalViewsLabels"></canvas>
+          </article>
+          <article class="col-sm-4" ng-if="totalClicksData.length > 0">
+            <h4 class="center">Total Clicks</h4>
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="totalClicks" chart-labels="totalClicksLabels"></canvas>
+          </article>
+
+          <article class="col-sm-4">
+            <h4 class="center">Zip Codes</h4>
+            <canvas id="doughnut" class="chart chart-pie" chart-data="totalZipsData" chart-labels="totalZipsLabels"></canvas>
+          </article>
+
+          <article class="col-sm-4">
+            <h4 class="center">Cities</h4>
+            <canvas id="doughnut" class="chart chart-pie" chart-data="totalCitiesData" chart-labels="totalCitiesLabels"></canvas>
+          </article>
+        </section>
+
+        <section class="col-sm-12">
+          <h4> Activity Records</h4>
+          <article class="activityGrid" ui-grid="{data: allActivityRecords, columnDefs: allActivityRecordsColumnDefs, enableColumnMenus: false, enableSort: false}" ui-grid-resize-columns></article>
+        </section>
+      </uib-tab>
+      <uib-tab index="1" heading="Agent Bio" active="propertiesActiveTab">
+        <div uib-alert ng-model="alert" close="closeAlert();" ng-class="'alert-' + (alert.type || 'warning')" dismiss-on-timeout="3000" ng-if="alert">{{alert.msg}}</div>
+        <div class="bio-container">
+          <h2 class="bio-header">About {{user.name}}</h2>
+          <p ng-if="user.bio.length" class="bio">{{user.bio}}</p>
+          <p ng-if="!user.bio.length" class="bio">{{user.name}} hasn't filled out any information about themselves yet, be sure to check back soon, and in the meantime, be sure to check out these great homes.</p>
+
+          <ul class="profile-info">
+            <li>
+              <span class="keys">Phone Numbers:</span><ul><li ng-repeat="phone in user.phone"><fa name="mobile-phone"></fa><a href="tel:+1{{phone}}" ng-click="clickTrackPhone(agent)"> {{phone | tel}}</a></li></ul>
+            </li>
+            <li>
+              <span class="keys">Website:</span><a ng-href="{{user.website}}" ng-click="clickTrackWebsite()" target="_blank">{{user.website}}</a>
+            </li>
+            <li>
+              <span class="keys">Email:</span><a ng-href="mailto:{{user.email}}" ng-click="clickTrackEmail()">{{user.email}}</a>
+            </li>
+            <li ng-if="user.agentType === 'realtor'">
+              <span class="keys">Realty Name:</span>Licensed Agent with {{user.realtyName}}
+            </li>
+            <li ng-if="user.agentType === 'mortgage'">
+              <span class="keys">Brokerage:</span>Licensed Broker with {{user.realtyName}}
+            </li>
+            <li ng-if="user.agentType === 'realtor'">
+              <span class="keys">License Number:</span>#{{user.licenseNumber}}
+            </li>
+            <li ng-if="user.agentType === 'mortgage'">
+              <span class="keys">NMLSID:</span>#{{user.licenseNumber}}
+            </li>
+            <li>
+              <span class="keys">Email:</span><a ng-href="mailto:{{user.email}}" ng-click="clickTrackEmail()">{{user.email}}</a>
+            </li>
+            <li>
+              <span class="keys">State:</span>{{user.state}}
+            </li>
+          </ul>
+        </div>
+        <h3>Top 50 Homes in {{user.name}}'s Service Area</h3>
+        <div class="homes-list">
+          <home-results></home-results>
+        </div>
+      </uib-tab>
+      <uib-tab index="2" heading="Reviews" ng-hide="true">
+      </uib-tab>
+      <uib-tab index="3" heading="Area Properties" >
+        <h3>Top 50 Homes in {{user.name}}'s Service Area</h3>
+        <div class="homes-list">
+          <home-results></home-results>
+        </div>
+      </uib-tab>
+      <uib-tab index="4" heading="Edit profile" ng-if="isYou">
+        <form class="col col-sm-4">
+          <ul class="profile-info profile-list">
+            <li>
+              <div class="form-group">
+                <label class="keys">Name:</label>
+                <input class="form-control" ng-model="updatedUser.name" ng-disabled="false"></input>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="keys">Bio:</label>
+                <textarea class="form-control" ng-model="updatedUser.bio" ng-disabled="false"></textarea>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="keys">Phones:</label> <a ng-click="addPhone()"><fa name="plus"></fa></a>
+                <span class="phones-input" ng-repeat="phone in updatedUser.phone track by $index"><input class="form-control" ng-model="updatedUser.phone[$index]" ng-disabled="false"></input> <a ng-click="remPhone($index)"><fa name="close"></fa></a></span>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="keys">Website:</label>
+                <input class="form-control" ng-model="updatedUser.website" ng-disabled="false"></input>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="keys">Email:</label>
+                <input class="form-control" ng-model="updatedUser.email" ng-disabled="false"></input>
+              </div>
+            </li>
+            <li ng-if="updatedUser.agentType === 'realtor'">
+              <div class="form-group">
+                <label class="keys">Realty Name:</label>
+                <input class="form-control" ng-model="updatedUser.realtyName" ng-disabled="false"></input>
+              </div>
+            </li>
+
+            <li ng-if="updatedUser.agentType === 'mortgage'">
+              <div class="form-group">
+                <label class="keys">Brokerage Name:</label>
+                <input class="form-control" ng-model="updatedUser.realtyName" ng-disabled="false"></input>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="keys">State:</label>
+                <states ng-model="updatedUser.state" name="state" id="selectState"></states>
+              </div>
+            </li>
+            <li ng-if="updatedUser.agentType === 'realtor'">
+              <div class="form-group">
+                <label class="keys">License Number:</label>
+                <input class="form-control" ng-model="updatedUser.licenseNumber" ng-disabled="true"></input>
+              </div>
+            </li>
+            <li ng-if="updatedUser.agentType === 'mortgage'">
+              <div class="form-group">
+                <label class="keys">NMLSID:</label>
+                <input class="form-control" ng-model="updatedUser.licenseNumber" ng-disabled="true"></input>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label>Social:</label>
+                <ul class="profile-info">
+                  <li>
+                    <label class="keys">LinkedIn:</label>
+                    <input class="form-control" ng-model="updatedUser.social.linkedin"></input>
+                  </li>
+                  <li>
+                    <label class="keys">Facebook:</label>
+                    <input class="form-control" ng-model="updatedUser.social.facebook"></input>
+                  </li>
+                  <li>
+                    <label class="keys">Google:</label>
+                    <input class="form-control" ng-model="updatedUser.social.google"></input>
+                  </li>
+                  <li>
+                    <label class="keys">Twitter:</label>
+                    <input class="form-control" ng-model="updatedUser.social.twitter"></input>
+                  </li>
+                  <li>
+                    <label class="keys">Remarketing Pixels:</label>
+                    <!-- <button class="btn btn-sm btn-primary" ng-click="addRemarketing()"><fa name="plus"></fa></button>
+                    <button class="btn btn-sm btn-danger" ng-click="remRemarketing($index)" ng-show="updatedUser.social.remarketing.length > 0"><fa name="minus"></fa></button> -->
+                    <textarea class="form-control" ng-model="updatedUser.social.remarketing[0]"></textarea>
+                    <textarea class="form-control" ng-model="updatedUser.social.remarketing[1]"></textarea>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <button class="btn btn-sm btn-primary" ng-click="updateUser()">Save changes</button>
+            <button class="btn btn-sm btn-default" ng-click="clear()">Cancel</button>
+          </ul>
+          <div class="clearfix"></div>
+        </form>
+        <form name="form" class="col col-sm-4" ng-submit="changePassword(form)" novalidate ng-hide="!isYou">
+          <div class="container-flex-col">
+            <h3>Change Password</h3>
+            <div class="form-group col">
+              <label>Current Password</label>
+
+              <input type="password" name="password" class="form-control" ng-model="user.oldPassword" mongoose-error/>
+              <p class="help-block" ng-show="form.password.$error.mongoose">
+                  {{ errors.other }}
+              </p>
+            </div>
+
+            <div class="form-group col">
+              <label>New Password</label>
+
+              <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                     ng-minlength="3"
+                     required/>
+              <p class="help-block" ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
+                Password must be at least 3 characters.
+              </p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Save Password</button>
+          <p class="help-block"> {{ message }} </p>
+        </form>
+        <fieldset class="col col-sm-4 photo-upload" ng-hide="!isYou || (user.status === 'pending')">
+          <h3>Upload New Picture</h3>
+          <h5>Choose a Profile Picture: <br /><small>For best picture quality, minimum resolution should be 300x400. File can be no bigger than 2Mb.</small></h5>
+          <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="5MB">
+          <!--  -->
+          <div class="clearfix"></div>
+          <span class="alert alert-warning alert-sm pull-left" ng-show="picFile.size > 2048000">File Size is too large. Please upload an image less than 2MB in size</span>
+          <img ngf-src="picFile" ng-hide="picFile.size > 2048000" class="thumb" alt="Sample Upload Photo Thumbnail" />
+          <button class="btn btn-sm btn-primary save-pic-button" ng-hide="!picFile" ng-disabled="picFile.size > 2048000" ng-click="updateUser(picFile)">Save Pic</button>
+          <span ng-show="picFile.result">Upload Successful</span>
+        </fieldset>
+
+        <div class="clearfix"></div>
+      </uib-tab>
+
+      <div class="clearfix"></div>
+    </uib-tabset>
+
+    <div class="clearfix"></div>
+  </section>
+
+  <section class="col col-xs-12 col-sm-3">
+    <div class="well pi">
+      <h4>Expert Service Areas</h4>
+      <ul ng-if="user.paidInterests.zips.length > 0">
+        <li ng-repeat="zip in user.paidInterests.zips">{{zip.zip}}</li>
+      </ul>
+    </div>
+    <div class="well pi" ng-if="schoolsList">
+      <h4>Expert Service Area Schools</h4>
+      <div class="school-list">
+        <table>
+          <tr ng-repeat="school in schoolsList"><td><a ng-href="/school/{{school.slug}}">{{school.sch_name}}</a><span class="school-city">{{school.address.city}}, {{school.address.state}}</td><td class="grade"><school-grade school="school" ng-if="scoreExists(school.score.overall)"></school-grade></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="well pi">
+      <h4>School Comparison Search</h4>
+      <div class="form-group">
+        <input class="form-control" type="text" ng-model="searchLocation" placeholder="Enter Home Address">
+      </div>
+        <button class="btn btn-primary" ng-click="compare(searchLocation)">Search</button>
+    </div>
+  </section>
+  <div class="clearfix"></div>
+</div>

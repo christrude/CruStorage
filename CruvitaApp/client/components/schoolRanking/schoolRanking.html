@@ -1,0 +1,16 @@
+
+<td class="school-name">
+  <a href="#" ng-click="showPopover()" ng-cloak>{{school.sch_name | titleCase | ifElem}}</a>
+  <span ng-click="hidePopover()" class="popover {{type}}">
+    <p><a ng-href="school/{{school.slug}}" target="_blank">{{school.sch_name | titleCase}}</a>
+      <span class="school-score pull-right" ng-if="scoreExists(school.score.overall)"><school-grade school="school"></school-grade></span>
+      <span class="school-score pull-right" ng-if="!scoreExists(school.score.overall)"><small>N/A</small></span>
+    </p>
+    <p>{{school.address.street | titleCase}} <br/> {{school.address.city | titleCase}}, {{school.address.state}}, {{school.address.zip}}</p>
+    <p>{{school.phone | tel}}</p>
+    <p><a href="{{school.website}}" target="_blank">{{school.website}}</a></p>
+  </span>
+</td>
+<td><school-grade school="school"></school-grade></td>
+<td><span ng-if="scoreExists(school.score.overall)">{{school.rank.county.rank | number}} of {{school.rank.county.total | number}}</span></td>
+<td><i class="medal" ng-class="setCountyRank(school)"></i></td>
