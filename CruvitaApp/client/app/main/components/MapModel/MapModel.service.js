@@ -60,7 +60,6 @@ angular.module('cruvitaApp')
 		}
 
 		service.clearLocations = function() {
-			delete FilterModel.homeFilters.location;
 			delete FilterModel.schoolFilters.location;
 			delete service.locationType;
 			delete service.locationSlug;
@@ -68,7 +67,7 @@ angular.module('cruvitaApp')
 
     service.getParams = function(map) {
       var params = [];
-      if(service.map.bounds.southwest && (!deviceDetector.isMobile() || (service.homesActive && service.schoolsActive))) {
+      if(service.map.bounds.southwest && (!deviceDetector.isMobile() || (service.schoolsActive))) {
         params.push({type:'range', key: map.latitude, min: service.map.bounds.southwest.latitude, max: service.map.bounds.northeast.latitude});
         params.push({type:'range', key: map.longitude, min: service.map.bounds.southwest.longitude, max: service.map.bounds.northeast.longitude});
       }
@@ -112,8 +111,6 @@ angular.module('cruvitaApp')
     }
 
 		/* Create hover windows for both schools and homes */
-    service.homeWindow = {};
-
     service.schoolWindow = {};
 
 		/* Initialize Map */

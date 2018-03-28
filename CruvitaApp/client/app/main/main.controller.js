@@ -1,26 +1,17 @@
 'use strict';
 
 angular.module('cruvitaApp')
-  .controller('MainCtrl', function ($scope, $location, $state, $stateParams, Config, MapModel, HomeModel, SchoolModel, FilterModel, $timeout, deviceDetector, Myhome) {
+  .controller('MainCtrl', function ($scope, $location, $state, $stateParams, Config, MapModel, SchoolModel, FilterModel, $timeout, deviceDetector) {
   	// $location['$$url']
     MapModel.showAll = false;
     $scope.config = Config;
 		$scope.mapModel = MapModel;
-		$scope.homeModel = HomeModel;
 		$scope.schoolModel = SchoolModel;
 		$scope.filterModel = FilterModel;
     $scope.deviceDetector = deviceDetector;
     $scope.markerList = [];
 		var keyPromise;
 		MapModel.map = angular.copy(Config.mapDefaults);
-    $scope.goToListing = function (path) {
-      $state.go('listing', {'homeId': path});
-    };
-
-    $scope.goToMultipleListing = function (path, unit) {
-      $state.go('listing', {'homeId': path, 'unit': unit});
-    };
-
     $scope.scoreExists = function(score){
       if (score < 999999999){
         return true;
@@ -35,7 +26,6 @@ angular.module('cruvitaApp')
 
 		$scope.removeLocation = function() {
 			$scope.boundsOnly(function() {
-				HomeModel.updateHomes();
 				SchoolModel.updateSchools();
 			});
 		};
@@ -45,7 +35,6 @@ angular.module('cruvitaApp')
       MapModel.showAll = true;
       MapModel.map.polylines = [];
       delete FilterModel.schoolFilters.location;
-      delete FilterModel.homeFilters.location;
       boundUpdate(callback);
     };
 
@@ -56,26 +45,18 @@ angular.module('cruvitaApp')
 				MapModel.active = 0;
         SchoolModel.updateSchools();
       }
-			if (tab === 'homes') {
-				MapModel.active = 1;
-				HomeModel.updateHomes();
-			}
 			if (tab === 'map') {
 				MapModel.map.ready = false;
 				MapModel.active = 2;
-				HomeModel.updateHomes();
         SchoolModel.updateSchools();
         MapModel.initMap($ .location);
       }
 		};
 
 		var boundChange = function() {
-      MapModel.homeWindow.showWindow = false;
-      MapModel.homeWindow.showMultiWindow = false;
       MapModel.schoolWindow.showWindow = false;
       // $location.$$compose();
       boundUpdate(function() {
-				HomeModel.updateHomes();
 				SchoolModel.updateSchools();
 			});
 		};
@@ -103,27 +84,16 @@ angular.module('cruvitaApp')
 		MapModel.initMap($stateParams.location);
 
 		/* Initialize Filters */
-		HomeModel.homeFilterInit();
 		SchoolModel.schoolFilterInit();
 
 		/* Initialize Models */
 		SchoolModel.schools = null;
-		HomeModel.homes = null;
 		var initialTab = $stateParams.tab || 'schools';
 
     /* Initial Load */
 		if($stateParams.location) {
       MapModel.locationInit();
 			$scope.switchTab(initialTab);
-		}
-		else if($stateParams.myhome) {
-			$scope.myhomes = true;
-			initialTab = 'homes';
-			HomeModel.homePromise = Myhome.get({id: $stateParams.myhome}, function(response) {
-				MapModel.setMap(response.viewport);
-				MapModel.map.ready = true;
-				HomeModel.homesCallback(response.homes);
-			});
 		}
 		else if($stateParams.SWLAT) {
 			MapModel.map.ready = true;

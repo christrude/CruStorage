@@ -5,10 +5,7 @@
 'use strict';
 
 //App, Server monitoring tools
-// require('newrelic');
-if(process.env.NODE_ENV === 'production') {
-  require('newrelic');
-}
+
 process.on('uncaughtException', function (error) {
    console.log(error.stack);
 });

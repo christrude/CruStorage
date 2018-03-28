@@ -26,8 +26,6 @@
         <td class="title-align"><span tooltip="{{school.rank.nation.rank}} out of {{school.rank.nation.total}} in the US">{{school.rank.nation.rank}}<i class="medal" ng-class="setNationRank(school)"></i></span></td>
         <td ng-if="map">
           <span ng-if="!school.hasBoundaries" class="btn btn-xs btn-warning btn-disabled">Specialty School</span>
-          <button class="btn btn-sm btn-primary" ng-click="activateSchool(school)" ng-if="!school.selected && school.hasBoundaries">Select</button>
-          <button class="btn btn-sm btn-danger" ng-click="deactivateSchool(school)" ng-disabled="!school.hasBoundaries" ng-if="school.selected">Unselect</button>
         </td>
       </tr>
     </tbody>
@@ -40,11 +38,6 @@
     <div class="media-left">
       <h4><span class="ranking">{{$index + 1 + (schools.current - 1)*schools.options.perPage}}.&nbsp;</span><a ng-href="/school/{{school.slug}}" ng-cloak>{{school.sch_name | titleCase | ifElem}}</a></h4>
       <h5>{{school.address.city | titleCase}}, {{school.address.state | titleCase}}</h5>
-
-      <div ng-if="map">
-        <button class="btn btn-sm btn-primary" ng-click="activateSchool(school)" ng-if="!school.selected">View Homes for this School</button>
-        <button class="btn btn-sm btn-danger" ng-click="deactivateSchool(school)" ng-disabled="!school.hasBoundaries" ng-if="school.selected">Deselect this School</button>
-      </div>
     </div>
     <div class="media-right">
       <div class="score pull-right">

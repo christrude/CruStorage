@@ -46,8 +46,6 @@ angular.module('cruvitaApp')
 	    };
 
 	    school.onHover = function ()  {
-	      MapModel.homeWindow.showWindow = false;
-	      MapModel.homeWindow.showMultiWindow = false;
 	      MapModel.schoolWindow.showWindow = true;
 	      var topLeft = MapModel.getMarkerLocation(school.coordinates.latitude, school.coordinates.longitude, angular.element('#schoolPopoverWindow').height(), angular.element('#schoolPopoverWindow').width(), 25);
 	      MapModel.schoolWindow.top = topLeft.top - 15;

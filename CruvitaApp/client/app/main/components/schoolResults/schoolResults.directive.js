@@ -5,7 +5,7 @@ angular.module('cruvitaApp')
     return {
       templateUrl: 'app/main/components/schoolResults/schoolResults.html',
       restrict: 'EA',
-			controller: function($scope, $location, Config, MapModel, HomeModel, SchoolModel, FilterModel, $filter) {
+			controller: function($scope, $location, Config, MapModel, SchoolModel, FilterModel, $filter) {
         $scope.protocol = $location.protocol();
         $scope.schoolsUrl = $location.absUrl();
         // $scope.schoolsUrl = $filter('encodeURIComponent')($scope.schoolsUrl);
@@ -23,12 +23,10 @@ angular.module('cruvitaApp')
 						schoolLocation = school.locations.county + '-y';
 					}
           $location.search('location', schoolLocation);
-					$location.search('tab', 'homes');
 					/* Initialize location/map */
 					MapModel.initMap(schoolLocation);
 			    /* Initial Load */
 		      MapModel.locationInit();
-					HomeModel.updateHomes();
 					SchoolModel.updateSchools();
 		    };
 			}

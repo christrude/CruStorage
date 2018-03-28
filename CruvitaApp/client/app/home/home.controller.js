@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cruvitaApp')
-  .controller('HomeCtrl', function ($scope, $http, Autocomplete, geolocation, $timeout, $location, Config, Page, School, Homes) {
+  .controller('HomeCtrl', function ($scope, $http, Autocomplete, geolocation, $timeout, $location, Config, Page, School) {
 
     Page.setTitle('Search Homes for Sale by School District & Rating | Cruvita');
 
@@ -30,7 +30,6 @@ angular.module('cruvitaApp')
 
 
         var schoolQ = [];
-        var homeQ = [];
 
         schoolQ.push({
           "key": "coordinates.latitude",
@@ -44,48 +43,15 @@ angular.module('cruvitaApp')
           "max": data.data.longitude + .2
         })
 
-        homeQ.push({
-          "key": "listing.location.latitude",
-          "type": "range",
-          "min": data.data.latitude,
-          "max": data.data.latitude + .2
-        },{
-          "key":"listing.location.longitude",
-          "type": "range",
-          "min": data.data.longitude,
-          "max": data.data.longitude + .2
-        },{
-          "key": "listing.listingcategory",
-          "label": "For Sale",
-          "type": "equals",
-          "value": "Purchase"
-        })
-
         var schoolPromise = School.retrieve({page: 1}, {queries: schoolQ}, function(response) {
           $scope.nearby.schools = response.schools.results;
         })
-        var homesPromise = Homes.retrieve({}, {queries: homeQ}, function(response) {
-          $scope.nearby.homes = response.homes.results;
-
-        }).$promise;
 	    });
     };
 
 
     $scope.searchAreaSchools = function() {
       $http.get('//freegeoip.net/json/').then(function(data){
-        $location.search('SWLAT', data.data.latitude - 0.03);
-        $location.search('NELAT', data.data.latitude + 0.03);
-        $location.search('NELONG', data.data.longitude + 0.03);
-        $location.search('SWLONG', data.data.longitude - 0.03);
-        $location.search('zoom', 13);
-        $location.path('/results');
-      });
-    };
-
-    $scope.searchAreaHomes = function() {
-      $http.get('//freegeoip.net/json/').then(function(data){
-        $location.search('tab', 'homes');
         $location.search('SWLAT', data.data.latitude - 0.03);
         $location.search('NELAT', data.data.latitude + 0.03);
         $location.search('NELONG', data.data.longitude + 0.03);

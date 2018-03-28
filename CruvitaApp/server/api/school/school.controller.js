@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var School = require('./school.model');
-var Homes = require('../homes/homes.model');
 var User = require('../user/user.model');
 var Users = require('../user/user.controller');
 var ObjectId = require('mongoose').Types.ObjectId;
@@ -49,22 +48,6 @@ exports.show = function(req, res) {
 						}
 		        schoolCallback(null, school);
 		      });
-				},
-				homes: function(homeCallback) {
-					var homeQuery = {'listing.listingcategory':'PURCHASE', 'status':{$ne:'inactive'}};
-					if(foundSchool) {
-						if(foundSchool.hasBoundaries) {
-							homeQuery['schools.' + gradeLevel] = req.params.id
-						}
-						else {
-							homeQuery["listing.location.coordinates"] = {$near:[foundSchool.coordinates.latitude, foundSchool.coordinates.longitude],$maxDistance:2};
-						}
-			      Homes.find(homeQuery).sort({'cruvitaDate': -1}).limit(5).exec(function (err, nearHomes) {
-			        homeCallback(null, nearHomes);
-			      });
-			    } else {
-			    	homeCallback(null, []);
-			    }
 				}
 			}, function(err, results) {
 				callback(null, results);
@@ -177,24 +160,6 @@ exports.create = function(req, res) {
 				}, function(err, results) {
 		    	schoolsAgentsCallback(err, results);
 		  	});
-			},
-			homes: function(homeCallback) {
-				if(query.nearbyHomes) {
-					/* Not ideal, but easier for client to do this */
-					var locationQuery = req.body.queries.filter((o) => o.key.indexOf('locations.') !== -1)[0];
-					if(locationQuery) {
-						var homeQuery = {'listing.listingcategory':'PURCHASE', 'status':{$ne:'inactive'}};
-						homeQuery[locationQuery.key] = locationQuery.value;
-			      Homes.find(homeQuery).sort({'listing.listingdate': -1}).limit(10).exec(function (err, nearHomes) {
-			        homeCallback(null, nearHomes);
-			      });
-			    } else {
-			    	homeCallback(null, []);
-			    }
-				}
-				else {
-					homeCallback(null, []);
-				}
 			}
 		}, function(err, results) {
 			results.schools = results.schoolsAgents.schools;

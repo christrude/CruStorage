@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cruvitaApp')
-  .controller('SchoolCtrl', function ($scope, School, $stateParams, $state, $location, Activity, Config, Homes, RankClasses, Page, $filter, $window, Location, $q, HomeModel, $timeout, States) {
+  .controller('SchoolCtrl', function ($scope, School, $stateParams, $state, $location, Activity, Config, RankClasses, Page, $filter, $window, Location, $q, $timeout, States) {
   	$scope.map = { zoom: 13 };
     $scope.options = { icon: 'favicon.png' };
     $scope.mapOptions = Config.mapOptions;
@@ -64,7 +64,6 @@ angular.module('cruvitaApp')
       }
       $scope.agent = _.deepGet(responses[1], 'agent');
       $scope.broker = _.deepGet(responses[1], 'mortgage');
-	    $scope.nearHomes = responses[1].school.homes;
       $scope.map.center = {
         latitude: $scope.school.coordinates.latitude,
         longitude: $scope.school.coordinates.longitude
@@ -98,7 +97,7 @@ angular.module('cruvitaApp')
           break;
       }
 
-      Page.setTitle('Homes for Sale Near ' + $scope.school.sch_name + ' | Cruvita');
+      Page.setTitle('Another great School ' + $scope.school.sch_name + ' | Cruvita');
       Page.setDescription('Want to learn more about ' + $scope.school.sch_name + '? Not only will we help you find the the best school for your children, but help you find your dream home too!');
 
       $timeout(function(){
@@ -133,10 +132,6 @@ angular.module('cruvitaApp')
           }
         });
       }
-
-			HomeModel.homes = {
-				results: $scope.nearHomes
-			}
 
       var cityArray = $scope.school.address.city.split(" ");
 

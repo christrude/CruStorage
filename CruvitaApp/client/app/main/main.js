@@ -5,7 +5,7 @@ angular.module('cruvitaApp')
     $stateProvider
       .state('results', {
         parent: 'site',
-        url: '/results?location&myhome&tab&NELAT&NELONG&SWLAT&SWLONG&zoom&anchor&priceMin&propertysubtype&listingCategory&priceMax&rentPriceMin&rentPriceMax&bathMin&bedMin&edLevel&score&updatedDate',
+        url: '/results?location&myhome&tab&NELAT&NELONG&SWLAT&SWLONG&zoom&anchor&edLevel&score&updatedDate',
         views: {
           'content@': {
             templateUrl: 'app/main/main.html',

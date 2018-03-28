@@ -43,7 +43,7 @@ angular.module('cruvitaApp')
 
     $scope.resetPageDefaults = function() {
       Page.setTitle('Cruvita: Community. School. Home.');
-      Page.setDescription('The best site for school rankings and home searches');
+      Page.setDescription('The best site for school rankings');
     }
 
     $scope.logout = function() {

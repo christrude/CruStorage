@@ -23,14 +23,12 @@ module.exports = function(app) {
 
   // Insert routes below
   app.use('/api/savedSearch', require('./api/savedSearch'));
-  app.use('/api/myhomes', require('./api/myhome'));
   app.use('/api/comments', require('./api/comment'));
   app.use('/sitemaps', require('./api/sitemap'));
   app.use('/api/locations', require('./api/location'));
   app.use('/api/autocomplete', require('./api/autocomplete'));
   app.use('/api/images', require('./api/images'));
   app.use('/api/schools', require('./api/school'));
-  app.use('/api/homes', require('./api/homes'));
   app.use('/api/tokens', require('./api/token'));
   app.use('/api/users', require('./api/user'));
   app.use('/api/activity', require('./api/activity'));

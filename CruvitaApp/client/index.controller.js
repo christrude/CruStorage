@@ -15,7 +15,7 @@ angular.module('cruvitaApp')
 
       if ($scope.location === '') {
         $scope.location = 'home';
-      } else if ($scope.location === 'listing' || $scope.location === 'school'){
+      } else if ($scope.location === 'school'){
         $scope.location = $location.path();
       }
 
@@ -28,7 +28,7 @@ angular.module('cruvitaApp')
 
       $window.prerenderReady = true;
 
-      if ($scope.location === 'results' || $scope.location ==='listing') {
+      if ($scope.location === 'results') {
         $scope.navclass = true;
       } else {
         $scope.navclass = false;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cruvitaApp')
-  .service('Autocomplete', function ($rootScope, $http, Config, $state, $route, $resource, Homes, $timeout, $stateParams) {
+  .service('Autocomplete', function ($rootScope, $http, Config, $state, $route, $resource, $timeout, $stateParams) {
   	String.prototype.capitalize = function() {
   		var returnString = '';
   		var split = this.split(' ');
@@ -35,10 +35,10 @@ angular.module('cruvitaApp')
 	        service.lastRequested = val;
 	        service.lastSelected = res.data;
 	        angular.forEach(res.data, function(item) {
-	          addresses.push( 
+	          addresses.push(
 							'<div class="autocomplete-item">' +
 							'<div><i>' + item.type.capitalize() + (item.type === 'home' ? '' : (' in ' + item.components.state)) + '</i></div>' +
-							'<h4>' + item.dispName.capitalize() + '</h4>' + 
+							'<h4>' + item.dispName.capitalize() + '</h4>' +
 							'</div>'
 						);
 	        });
@@ -59,7 +59,7 @@ angular.module('cruvitaApp')
 				_.each(service.lastSelected, function(item) {
 					if(service.locationSelected.toString().indexOf(item.dispName.capitalize()) !== -1) {
 						service.locationSelected = item.dispName;
-					}	
+					}
 				});
 	    	var requestObject = service.getRequest();
 	    	service.lastSelected = null;
@@ -76,18 +76,6 @@ angular.module('cruvitaApp')
       		var slugObject = requestObject.slug + '-' + typeSuffix;
       		$state.go('results', {'location': slugObject, 'NELAT': undefined, 'NELONG': undefined, 'SWLAT': undefined, 'SWLONG': undefined, 'zoom': undefined, 'anchor': undefined});
 	    	}
-	    	else {
-	    		Homes.blankHome({address: service.locationSelected}, {}, function(response) {
-		        if (response.slug) {
-		    			$state.go('listing', {'homeId': response.slug});
-		        } else {
-		        	$state.go('results', {'location': slugObject, 'NELAT': undefined, 'NELONG': undefined, 'SWLAT': undefined, 'SWLONG': undefined, 'zoom': undefined, 'anchor': undefined});
-							if($state.current.name === 'results') {
-			      		$state.reload();
-			      	}
-		        }
-		      });
-	    	}
     	},
     	schoolsComponentMap: {
 	  		city: 'supported.city',
@@ -103,40 +91,6 @@ angular.module('cruvitaApp')
 	  		latitude: 'coordinates.latitude',
 	  		longitude: 'coordinates.longitude',
 	  		edLevel: 'ed_level'
-	  	},
-	  	homesComponentMap: {
-	  		elementary: 'schools.elementary',
-	  		elementaryScore: 'schools.elementaryScore',
-	  		middle: 'schools.middle',
-	  		middleScore: 'schools.middleScore',
-	  		high: 'schools.high',
-	  		highScore: 'schools.highScore',
-	  		city: 'listing.address.city',
-	  		locationcity: 'locations.city',
-	  		locationstate: 'locations.state',
-	  		locationcounty: 'locations.county',
-	  		locationzip: 'locations.zip',
-	  		state: 'listing.address.stateorprovince',
-	  		county: 'listing.location.county',
-	  		zip: 'listing.address.postalcode',
-	  		latitude: 'listing.location.latitude',
-	  		longitude: 'listing.location.longitude',
-    		rentPriceMin: 'listing.listprice',
-    		rentPriceMax: 'listing.listprice',
-    		priceMin: 'listing.listprice',
-    		priceMax: 'listing.listprice',
-    		bathMin: 'listing.bathrooms',
-    		bedMin: 'listing.bedrooms',
-    		sqFtMin: 'listing.livingarea',
-    		sqFtMax: 'listing.livingarea',
-    		lotMin: 'listing.lotsize',
-    		lotMax: 'listing.lotsize',
-    		yearMin: 'listing.yearbuilt',
-    		yearMax: 'listing.yearbuilt',
-    		listingDate: 'listing.listingdate',
-    		updatedDate: 'listing.modificationtimestamp',
-    		propertysubtype: 'listing.propertysubtype',
-    		listingCategory: 'listing.listingcategory'
 	  	}
     };
     return service;

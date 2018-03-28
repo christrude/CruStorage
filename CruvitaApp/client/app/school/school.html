@@ -37,14 +37,14 @@
         </ul>
       </div>
 
-      <div class="nearby-homes" ng-if="school.hasBoundaries">
+     <!--  <div class="nearby-homes" ng-if="school.hasBoundaries">
         <h4>Homes Near This School</h4>
         <nearby-homes list="nearHomes" link="'results?location=' + school.slug + '-' + schoolSuffix" school="true"></nearby-homes>
-      </div>
-      <div class="nearby-homes" ng-if="!school.hasBoundaries">
+      </div> -->
+<!--       <div class="nearby-homes" ng-if="!school.hasBoundaries">
         <h4>Homes Near This School</h4>
         <nearby-homes list="nearHomes" link="'results?location=' + school.locations.county + '-y'" school="true"></nearby-homes>
-      </div>
+      </div> -->
     </div>
 
     <div class="col-md-4">
@@ -98,16 +98,15 @@
           <show-broker broker="broker" location="location" slug="school.slug" zip="school.address.zip" school="true" city="school.address.city" state="school.address.state"></show-broker>
         </div>
       </div>
-
-      <div ng-hide="agent || broker" class="post-adsense" data-ads>
-
-      </div>
-
       <div class="clearfix"></div>
       <div class="agent-filler well" ng-if="!agent">
         <h3>Real Estate Agents Do You Want More Leads?</h3>
 
         <p>Exclusive ownership of zip codes is only $25/month. <strong>Click here to email <a ng-href="mailto:sales@cruvita.com?subject=Cruvita.com:  Interested in a Sales Opportunity!">sales@cruvita.com</a> or call 844.CRUVITA and ask for a Cruvita Agent to help you grow your business.</strong></p>
+      </div>
+
+      <div ng-hide="agent || broker" class="post-adsense" data-ads>
+
       </div>
     </div>
   </section>

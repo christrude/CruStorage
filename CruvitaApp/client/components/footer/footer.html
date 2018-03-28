@@ -15,20 +15,6 @@
   </div>
 </div>
 <div class="footer-secondary" ng-controller="FooterCtrl">
-  <div class="links link-lists-rent">
-    <h6>Rentals</h6>
-    <ul>
-      <li ng-repeat="location in footerAreas"><a ng-href="/results?location={{location.urlLocation}}-c&tab=homes&listingCategory=he:Rent">{{location.label}} rentals</a></li>
-    </ul>
-    <a href="#" ng-click="readMoreRentals();" class="rent-more">More<fa name="angle-down"></a>
-  </div>
-  <div class="links link-lists-homes">
-    <h6>Real Estate</h6>
-    <ul>
-      <li ng-repeat="location in footerAreas | orderBy:'-'"><a ng-href="/results?location={{location.urlLocation}}-c&tab=homes">{{location.label}} real estate</a></li>
-    </ul>
-    <a href="#" ng-click="readMoreHomes();" class="home-more">More<fa name="angle-down"></a>
-  </div>
   <div class="links link-lists-schoolsD">
     <h6>Schools Districts</h6>
     <ul>

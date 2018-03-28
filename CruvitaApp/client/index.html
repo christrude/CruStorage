@@ -19,7 +19,7 @@
     <meta name="description" content="{{ Page.description() }}" />
     <meta name="alexaVerifyID" content="2Y-Yr4E1rnueYYp8rtdyLg7YiCo"/>
     <base href="/">
-
+    <link rel="alternate" href="https://cruvita.com" hreflang="en-us" />
     <link rel="manifest" href="/manifest.json">
 
     <meta name="msapplication-config" content="none"/>
@@ -38,7 +38,7 @@
     <link rel="publisher" href="https://plus.google.com/111883509410505705073"/>
 
     <meta itemprop="name" content="Cruvita: Community. School. Home."/>
-    <meta itemprop="description" content="The Leading Home Listing Site for School Rankings and Home Listings. Invest in your children’s future by investing in the right home"/>
+    <meta itemprop="description" content="The Leading Site for School Rankings. Invest in your children’s future by investing in the right home"/>
     <meta itemprop="image" content="https://www.cruvita.com/assets/images/cruvita_logo_325x250.png" />
 
     <link rel="start" title="Cruvita home" href="/"/>
@@ -87,36 +87,6 @@
     <div class="clearfix"></div>
 
     <footer ui-view="footer" class="footer"></footer>
-
-    <section class="wrap-overlay" ng-class="{show: maint}">
-      <div class="maint">
-        <div class="hero-image"><img src="/assets/images/cruvita_white_brand_800x250.png"></div>
-
-        <div class="dotContainer">
-          <div class="dotLoader">
-            <div class="dot">&nbsp;</div>
-            <div class="dot">&nbsp;</div>
-            <div class="dot">&nbsp;</div>
-            <div class="dot">&nbsp;</div>
-            <div class="dot">&nbsp;</div>
-            <div class="dot">&nbsp;</div>
-          </div>
-        </div>
-        <h2>Things are getting better here at Cruvita!</h2>
-        <h3>You speak and we listen, and because of that we are currently updating Cruvita to make it a better experience for you.</h3>
-        <h3>This process should take a few hours, check back soon to find your Community, Home and School</h3>
-      </div>
-    </section>
-
-
-      <script>
-        (function(l,i,s,t,h,u,b){l['ListHubAnalyticsObject']=h;l[h]=l[h]||function(){
-        (l[h].q=l[h].q||[]).push(arguments)},l[h].d=1*new Date();u=i.createElement(s),
-        b=i.getElementsByTagName(s)[0];u.async=1;u.src=t;b.parentNode.insertBefore(u,b)
-        })(window,document,'script','//tracking.listhub.net/la.min.js','lh');
-
-        lh('init', {provider:'M-2570', test:false});
-      </script>
 
       <!--[if lt IE 9]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -195,22 +165,16 @@
         <script src="app/feedback/feedback.js"></script>
         <script src="app/home/home.controller.js"></script>
         <script src="app/home/home.js"></script>
-        <script src="app/listing/listing.controller.js"></script>
-        <script src="app/listing/listing.js"></script>
         <script src="app/main/components/FilterModel/FilterModel.service.js"></script>
-        <script src="app/main/components/HomeModel/HomeModel.service.js"></script>
         <script src="app/main/components/MapModel/MapModel.service.js"></script>
         <script src="app/main/components/SchoolModel/SchoolModel.service.js"></script>
         <script src="app/main/components/advanced-search-options/advanced-search-options.directive.js"></script>
         <script src="app/main/components/advanced-search-options/savedSearchModal/savedSearchModal.controller.js"></script>
-        <script src="app/main/components/homeResults/homeResults.directive.js"></script>
         <script src="app/main/components/mapResults/mapResults.directive.js"></script>
         <script src="app/main/components/schoolResults/schoolResults.directive.js"></script>
         <script src="app/main/main.controller.js"></script>
         <script src="app/main/main.js"></script>
         <script src="app/mapWidget/mapWidget.controller.js"></script>
-        <script src="app/myhome/myhome.controller.js"></script>
-        <script src="app/myhome/myhome.js"></script>
         <script src="app/pp/pp.controller.js"></script>
         <script src="app/pp/pp.js"></script>
         <script src="app/profile/profile.controller.js"></script>
@@ -239,13 +203,10 @@
         <script src="components/email/email.service.js"></script>
         <script src="components/footer/footer.controller.js"></script>
         <script src="components/generalContact/generalContact.directive.js"></script>
-        <script src="components/homes/homes.service.js"></script>
         <script src="components/location/location.service.js"></script>
         <script src="components/login/login.directive.js"></script>
         <script src="components/mongoose-error/mongoose-error.directive.js"></script>
-        <script src="components/myhome/myhome.service.js"></script>
         <script src="components/navbar/navbar.controller.js"></script>
-        <script src="components/nearbyHomes/nearbyHomes.directive.js"></script>
         <script src="components/nearbySchools/nearbySchools.directive.js"></script>
         <script src="components/page/page.service.js"></script>
         <script src="components/savedSearch/savedSearch.service.js"></script>

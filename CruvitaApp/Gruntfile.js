@@ -281,8 +281,7 @@ module.exports = function (grunt) {
     // uglify task were not previously defined. Doing that now.
     uglify: {
       options: {
-        report: 'min',
-        mangle: false
+        report: 'min'
       },
       generated:{
         files: {

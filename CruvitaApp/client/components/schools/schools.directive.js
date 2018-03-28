@@ -16,16 +16,6 @@ angular.module('cruvitaApp')
       controller: function ($scope, RankClasses, deviceDetector) {
         $scope.deviceDetector = deviceDetector;
 
-        $scope.activateSchool = function(school) {
-          $scope.selectSchool({school: school});
-          school.selected = true;
-        };
-
-        $scope.deactivateSchool = function(school) {
-          school.selected = false;
-          $scope.unselectSchool({school: school});
-        };
-
         $scope.setScoreRanks = function(school){
           return RankClasses.scoreClasses(school);
         };
@@ -41,7 +31,7 @@ angular.module('cruvitaApp')
         $scope.setNationRank = function(school){
           return RankClasses.rankClasses(school, 'nation');
         };
-        
+
         $scope.scoreExists = function(score){
           if (score < 999999999){
             return true;
