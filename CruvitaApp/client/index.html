@@ -67,10 +67,10 @@
     <!-- endinjector -->
     <!-- build:css(client) app/vendor.min.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
-        <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+        <link rel="stylesheet" href="../node_modules/angular-busy/dist/angular-busy.css" />
+        <link rel="stylesheet" href="../node_modules/angular-ui-grid/ui-grid.css" />
         <!-- endbower -->
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css" />
     <!-- endbuild -->
     <!--[if IE]>
           <link rel="stylesheet" href="ie-all.css">
@@ -88,142 +88,102 @@
 
     <footer ui-view="footer" class="footer"></footer>
 
-      <!--[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
-      <![endif]-->
-
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       <script async src='//maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC2kNnCsCpbfG_4h0sreZ9Mxk8CMCXv2gQ'></script>
+        <!-- NPM COMPONENTS -->
 
-      <!-- build:js(client) app/vendor.min.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/lodash/lodash.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-messages/angular-messages.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
-        <script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
-        <script src="bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
-        <script src="bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
-        <script src="bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
-        <script src="bower_components/js-rich-marker/src/richmarker.js"></script>
-        <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
-        <script src="bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
-        <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
-        <script src="bower_components/angular-fontawesome/dist/angular-fontawesome.js"></script>
-        <script src="bower_components/moment/moment.js"></script>
-        <script src="bower_components/angular-moment/angular-moment.js"></script>
-        <script src="bower_components/angular-touch/angular-touch.js"></script>
-        <script src="bower_components/angular-timeago/src/timeAgo.js"></script>
-        <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-        <script src="bower_components/angularjs-geolocation/src/geolocation.js"></script>
-        <script src="bower_components/json3/lib/json3.js"></script>
-        <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-        <script src="bower_components/ng-load/ng-load.js"></script>
-        <script src="bower_components/Chart.js/dist/Chart.js"></script>
-        <script src="bower_components/chart.js/dist/Chart.js"></script>
-        <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
-        <script src="bower_components/lodash-deep/lodash-deep.js"></script>
-        <script src="bower_components/angulike/angulike.js"></script>
-        <script src="bower_components/inflection/inflection.min.js"></script>
-        <script src="bower_components/ngInflection/dist/ngInflection.js"></script>
-        <script src="bower_components/re-tree/re-tree.js"></script>
-        <script src="bower_components/ng-device-detector/ng-device-detector.js"></script>
-        <script src="bower_components/fastclick/lib/fastclick.js"></script>
-        <script src="bower_components/jspdf/dist/jspdf.debug.js"></script>
-        <script src="bower_components/html2canvas/build/html2canvas.js"></script>
-        <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
-        <!-- endbower -->
-      <!-- endbuild -->
+        
 
-      <!-- build:js({.tmp,client}) app/app.min.js-->
-        <script src="app/app.js"></script>
-        <!-- injector:js -->
-        <script src="app/404/404.controller.js"></script>
-        <script src="app/404/404.js"></script>
-        <script src="app/about/about.controller.js"></script>
-        <script src="app/about/about.js"></script>
-        <script src="app/admin/admin.controller.js"></script>
-        <script src="app/admin/admin.js"></script>
-        <script src="app/areas/areas.controller.js"></script>
-        <script src="app/areas/areas.js"></script>
-        <script src="app/channel/channel.service.js"></script>
-        <script src="app/clearChannel/clearChannel.service.js"></script>
-        <script src="app/config.js"></script>
-        <script src="app/cruvitaSchoolFinder/cruvitaSchoolFinder.controller.js"></script>
-        <script src="app/cruvitaSchoolFinder/cruvitaSchoolFinder.js"></script>
-        <script src="app/drawChannel/drawChannel.service.js"></script>
-        <script src="app/feedback/feedback.controller.js"></script>
-        <script src="app/feedback/feedback.js"></script>
-        <script src="app/home/home.controller.js"></script>
-        <script src="app/home/home.js"></script>
-        <script src="app/main/components/FilterModel/FilterModel.service.js"></script>
-        <script src="app/main/components/MapModel/MapModel.service.js"></script>
-        <script src="app/main/components/SchoolModel/SchoolModel.service.js"></script>
-        <script src="app/main/components/advanced-search-options/advanced-search-options.directive.js"></script>
-        <script src="app/main/components/advanced-search-options/savedSearchModal/savedSearchModal.controller.js"></script>
-        <script src="app/main/components/mapResults/mapResults.directive.js"></script>
-        <script src="app/main/components/schoolResults/schoolResults.directive.js"></script>
-        <script src="app/main/main.controller.js"></script>
-        <script src="app/main/main.js"></script>
-        <script src="app/mapWidget/mapWidget.controller.js"></script>
-        <script src="app/pp/pp.controller.js"></script>
-        <script src="app/pp/pp.js"></script>
-        <script src="app/profile/profile.controller.js"></script>
-        <script src="app/profile/profile.js"></script>
-        <script src="app/rankings/rankings.controller.js"></script>
-        <script src="app/rankings/rankings.js"></script>
-        <script src="app/restorePassword/restorePassword.controller.js"></script>
-        <script src="app/restorePassword/restorePassword.js"></script>
-        <script src="app/sales/sales.controller.js"></script>
-        <script src="app/sales/sales.js"></script>
-        <script src="app/school/school.controller.js"></script>
-        <script src="app/school/school.js"></script>
-        <script src="app/schoolcomparison/schoolcomparison.controller.js"></script>
-        <script src="app/schoolcomparison/schoolcomparison.js"></script>
-        <script src="app/schoolwidget/schoolwidget-external.js"></script>
-        <script src="app/tos/tos.controller.js"></script>
-        <script src="app/tos/tos.js"></script>
-        <script src="components/activity/Activity.service.js"></script>
-        <script src="components/advertisement/advertisement.directive.js"></script>
-        <script src="components/agents/agents.directive.js"></script>
-        <script src="components/auth/auth.service.js"></script>
-        <script src="components/auth/user.service.js"></script>
-        <script src="components/autocomplete/autocomplete.service.js"></script>
-        <script src="components/brokers/brokers.directive.js"></script>
-        <script src="components/cruGallery/cruGallery.directive.js"></script>
-        <script src="components/email/email.service.js"></script>
-        <script src="components/footer/footer.controller.js"></script>
-        <script src="components/generalContact/generalContact.directive.js"></script>
-        <script src="components/location/location.service.js"></script>
-        <script src="components/login/login.directive.js"></script>
-        <script src="components/mongoose-error/mongoose-error.directive.js"></script>
-        <script src="components/navbar/navbar.controller.js"></script>
-        <script src="components/nearbySchools/nearbySchools.directive.js"></script>
-        <script src="components/page/page.service.js"></script>
-        <script src="components/savedSearch/savedSearch.service.js"></script>
-        <script src="components/school/school.service.js"></script>
-        <script src="components/schoolGrade/schoolGrade.directive.js"></script>
-        <script src="components/schoolRanking/schoolRanking.directive.js"></script>
-        <script src="components/schoolUtil/comparison.service.js"></script>
-        <script src="components/schoolUtil/schoolUtil.service.js"></script>
-        <script src="components/schools/ranks.service.js"></script>
-        <script src="components/schools/schoolUtil/comparison.service.js"></script>
-        <script src="components/schools/schoolUtil/schoolUtil.service.js"></script>
-        <script src="components/schools/schools.directive.js"></script>
-        <script src="components/states/states.directive.js"></script>
-        <script src="components/utils/states.service.js"></script>
-        <script src="index.controller.js"></script>
-        <!-- endinjector -->
-      <!-- endbuild -->
+        <!-- -->
+        <!-- build:js({.tmp,client}) app/app.min.js-->
+            <script src="app/app.js"></script>
+            <!-- injector:js -->
+            <script src="app/404/404.controller.js"></script>
+            <script src="app/404/404.js"></script>
+            <script src="app/about/about.controller.js"></script>
+            <script src="app/about/about.js"></script>
+            <script src="app/admin/admin.controller.js"></script>
+            <script src="app/admin/admin.js"></script>
+            <script src="app/areas/areas.controller.js"></script>
+            <script src="app/areas/areas.js"></script>
+            <script src="app/channel/channel.service.js"></script>
+            <script src="app/clearChannel/clearChannel.service.js"></script>
+            <script src="app/config.js"></script>
+            <script src="app/cruvitaSchoolFinder/cruvitaSchoolFinder.controller.js"></script>
+            <script src="app/cruvitaSchoolFinder/cruvitaSchoolFinder.js"></script>
+            <script src="app/drawChannel/drawChannel.service.js"></script>
+            <script src="app/feedback/feedback.controller.js"></script>
+            <script src="app/feedback/feedback.js"></script>
+            <script src="app/home/home.controller.js"></script>
+            <script src="app/home/home.js"></script>
+            <script src="app/listing/listing.controller.js"></script>
+            <script src="app/listing/listing.js"></script>
+            <script src="app/main/components/advanced-search-options/advanced-search-options.directive.js"></script>
+            <script src="app/main/components/advanced-search-options/savedSearchModal/savedSearchModal.controller.js"></script>
+            <script src="app/main/components/FilterModel/FilterModel.service.js"></script>
+            <script src="app/main/components/HomeModel/HomeModel.service.js"></script>
+            <script src="app/main/components/homeResults/homeResults.directive.js"></script>
+            <script src="app/main/components/MapModel/MapModel.service.js"></script>
+            <script src="app/main/components/mapResults/mapResults.directive.js"></script>
+            <script src="app/main/components/SchoolModel/SchoolModel.service.js"></script>
+            <script src="app/main/components/schoolResults/schoolResults.directive.js"></script>
+            <script src="app/main/main.controller.js"></script>
+            <script src="app/main/main.js"></script>
+            <script src="app/mapWidget/mapWidget.controller.js"></script>
+            <script src="app/myhome/myhome.controller.js"></script>
+            <script src="app/myhome/myhome.js"></script>
+            <script src="app/pp/pp.controller.js"></script>
+            <script src="app/pp/pp.js"></script>
+            <script src="app/profile/profile.controller.js"></script>
+            <script src="app/profile/profile.js"></script>
+            <script src="app/rankings/rankings.controller.js"></script>
+            <script src="app/rankings/rankings.js"></script>
+            <script src="app/restorePassword/restorePassword.controller.js"></script>
+            <script src="app/restorePassword/restorePassword.js"></script>
+            <script src="app/sales/sales.controller.js"></script>
+            <script src="app/sales/sales.js"></script>
+            <script src="app/school/school.controller.js"></script>
+            <script src="app/school/school.js"></script>
+            <script src="app/schoolcomparison/schoolcomparison.controller.js"></script>
+            <script src="app/schoolcomparison/schoolcomparison.js"></script>
+            <script src="app/schoolwidget/schoolwidget-external.js"></script>
+            <script src="app/tos/tos.controller.js"></script>
+            <script src="app/tos/tos.js"></script>
+            <script src="components/activity/Activity.service.js"></script>
+            <script src="components/advertisement/advertisement.directive.js"></script>
+            <script src="components/agents/agents.directive.js"></script>
+            <script src="components/auth/auth.service.js"></script>
+            <script src="components/auth/user.service.js"></script>
+            <script src="components/autocomplete/autocomplete.service.js"></script>
+            <script src="components/brokers/brokers.directive.js"></script>
+            <script src="components/cruGallery/cruGallery.directive.js"></script>
+            <script src="components/email/email.service.js"></script>
+            <script src="components/footer/footer.controller.js"></script>
+            <script src="components/generalContact/generalContact.directive.js"></script>
+            <script src="components/homes/homes.service.js"></script>
+            <script src="components/location/location.service.js"></script>
+            <script src="components/login/login.directive.js"></script>
+            <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+            <script src="components/myhome/myhome.service.js"></script>
+            <script src="components/navbar/navbar.controller.js"></script>
+            <script src="components/nearbyHomes/nearbyHomes.directive.js"></script>
+            <script src="components/nearbySchools/nearbySchools.directive.js"></script>
+            <script src="components/page/page.service.js"></script>
+            <script src="components/savedSearch/savedSearch.service.js"></script>
+            <script src="components/school/school.service.js"></script>
+            <script src="components/schoolGrade/schoolGrade.directive.js"></script>
+            <script src="components/schoolRanking/schoolRanking.directive.js"></script>
+            <script src="components/schools/ranks.service.js"></script>
+            <script src="components/schools/schools.directive.js"></script>
+            <script src="components/schools/schoolUtil/comparison.service.js"></script>
+            <script src="components/schools/schoolUtil/schoolUtil.service.js"></script>
+            <script src="components/schoolUtil/comparison.service.js"></script>
+            <script src="components/schoolUtil/schoolUtil.service.js"></script>
+            <script src="components/states/states.directive.js"></script>
+            <script src="components/utils/states.service.js"></script>
+            <script src="index.controller.js"></script>
+            <!-- endinjector -->
+        <!-- endbuild -->
 
       <script>window.prerenderReady = false;</script>
 

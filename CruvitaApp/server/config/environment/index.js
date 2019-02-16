@@ -56,9 +56,7 @@ var all = {
     clientID:     process.env.GOOGLE_ID || 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  'http://localhost:9000/auth/google/callback'
-  },
-  imageLocation: '../CruvitaIngest/images/',
-  userImageLocation: '../CruvitaIngest/user-images/'
+  }
 };
 
 // Export the config object based on the NODE_ENV

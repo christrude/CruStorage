@@ -1,10 +1,10 @@
 /*Custom Imports*/
-@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 @import '_variables.scss';
 @import 'compass/css3';
 
 // bower:scss
-@import '../bower_components/font-awesome/scss/font-awesome.scss';
+@import '../../node_modules/font-awesome/scss/font-awesome.scss';
 // endbower
 
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic);
@@ -1218,18 +1218,21 @@ a, a:hover{text-decoration: none; cursor: pointer;}
 
 // Component styles are injected through grunt
 // injector
-@import '404/404.scss';
 @import '_variables.scss';
+@import '404/404.scss';
 @import 'about/about.scss';
 @import 'admin/admin.scss';
 @import 'areas/areas.scss';
 @import 'cruvitaSchoolFinder/cruvitaSchoolFinder.scss';
 @import 'feedback/feedback.scss';
 @import 'home/home.scss';
+@import 'listing/listing.scss';
 @import 'main/components/advanced-search-options/advanced-search-options.scss';
+@import 'main/components/homeResults/homeResults.scss';
 @import 'main/components/mapResults/mapResults.scss';
 @import 'main/components/schoolResults/schoolResults.scss';
 @import 'main/main.scss';
+@import 'myhome/myhome.scss';
 @import 'pp/pp.scss';
 @import 'profile/profile.scss';
 @import 'rankings/rankings.scss';
@@ -1245,6 +1248,7 @@ a, a:hover{text-decoration: none; cursor: pointer;}
 @import '../components/cruGallery/cruGallery.scss';
 @import '../components/generalContact/generalContact.scss';
 @import '../components/login/login.scss';
+@import '../components/nearbyHomes/nearbyHomes.scss';
 @import '../components/nearbySchools/nearbySchools.scss';
 @import '../components/schoolGrade/schoolGrade.scss';
 @import '../components/schoolRanking/schoolRanking.scss';

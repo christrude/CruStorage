@@ -8,11 +8,14 @@ module.exports = function (grunt) {
     ngtemplates: 'grunt-angular-templates',
     cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
-    wiredep: 'grunt-wiredep',
     injector: 'grunt-injector',
     uglify: 'grunt-contrib-uglify',
-    ngAnnotate: 'grunt-ng-annotate'
+    ngAnnotate: 'grunt-ng-annotate',
+    webpack: 'grunt-webpack',
   });
+
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-compass');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -23,7 +26,7 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: {
       // configurable paths
-      client: require('./bower.json').appPath || 'client',
+      client: 'client',
       dist: 'dist'
     },
     // Empties folders to start fresh
@@ -124,7 +127,6 @@ module.exports = function (grunt) {
       dist: {
         src: [
         '<%= yeoman.dist %>/**/*.js',
-        '!<%= yeoman.dist %>/public/bower_components/**/*.js',
         '!<%= yeoman.dist %>/public/app/*.vendor.js'
         ]
       },
@@ -162,15 +164,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Debugging with node inspector
-    'node-inspector': {
-      custom: {
-        options: {
-          'web-host': 'localhost'
-        }
-      }
-    },
-
     // Use nodemon to run server in debug mode with an initial breakpoint
     nodemon: {
       debug: {
@@ -197,14 +190,45 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
-    wiredep: {
-      build: {
-        src: ['<%= yeoman.client %>/index.html', '<%= yeoman.client %>/app/app.scss'],
-        devDependencies: true,
-        exclude: [/bootstrap-sass/, /bootstrap.js/, /bootstrap.css/ ]
-      }
-    },
+    // wiredep: {
+    //   build: {
+    //     src: ['<%= yeoman.client %>/index.html', '<%= yeoman.client %>/app/app.scss'],
+    //     devDependencies: true,
+    //     exclude: [/bootstrap-sass/, /bootstrap.js/, /bootstrap.css/ ]
+    //   }
+    // },
 
+    webpack: {
+      options: {},
+      dev: require("./config/webpack.dev.js"),
+    },
+    // amd?, 
+    // bail?, 
+    // cache?, 
+    // context?, 
+    // dependencies?, 
+    // devServer?,
+    // devtool?, 
+    // entry, 
+    // externals?, 
+    // loader?, 
+    // module?, 
+    // name?, 
+    // node?, 
+    // output?, 
+    // parallelism?, 
+    // performance?,
+    // plugins?, 
+    // profile?, 
+    // recordsInputPath?, 
+    // recordsOutputPath?, 
+    // recordsPath?, 
+    // resolve?, 
+    // resolveLoader?, 
+    // stats?, 
+    // target?, 
+    // watch?, 
+    // watchOptions? 
     // // Renames files for browser caching purposes
     // rev: {
     //   dist: {
@@ -234,7 +258,7 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= yeoman.dist %>/public/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/public/{,*/}*.js', '!<%= yeoman.dist %>/public/bower_components/*.js'],
+      js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>/public',
@@ -347,7 +371,6 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'bower_components/**/*',
             '{app,components}/**/*.css',
             'assets/images/{,*/}*.{webp}',
             'assets/fonts/**/*',
@@ -370,7 +393,7 @@ module.exports = function (grunt) {
         }, {//font-awesomefix
             expand: true,
             dot: true,
-            cwd: '<%= yeoman.client %>/bower_components/font-awesome',
+            cwd: '../<%= yeoman.client %>/node_modules/font-awesome',
             src: ['fonts/*.*'],
             dest: '<%= yeoman.dist %>/public'
         }]
@@ -405,7 +428,6 @@ module.exports = function (grunt) {
       options: {
         relative: false
       },
-      // Inject application script files into index.html (doesn't include bower)
       scripts: {
         options: {
           transform: function(filePath) {
@@ -511,6 +533,8 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-compass');
 /*
 **********************************************************************
 **********************************************************************
@@ -548,7 +572,7 @@ module.exports = function (grunt) {
       'clean:serve',
       'injector:sass',
       'injector:scripts',
-      'wiredep',
+      'webpack',
       'concurrent:serve',
       'autoprefixer',
       'express:dev',
@@ -559,7 +583,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
+    'webpack',
     'injector:sass',
     'concurrent:dist',
     'useminPrepare',
