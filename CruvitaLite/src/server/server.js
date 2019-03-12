@@ -2,6 +2,22 @@
  * Main application file
  */
 
+// Set default node environment to development
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+const express = require('express');
+const mailer = require('express-mailer');
+const mongoose = require('mongoose');
+const html2canvas = require('html2canvas');
+const auth = require('http-auth');
+const cluster = require('cluster');
+const http = require('http');
+const cors = require('cors');
+const webpack = require('webpack');
+const config = require('./config/environment');
+const webpackconfig = require('./config/webpack.dev');
+
+
 'use strict';
 
 //App, Server monitoring tools
@@ -10,27 +26,17 @@ process.on('uncaughtException', function (error) {
    console.log(error.stack);
 });
 
-// Set default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var express = require('express');
-var mailer = require('express-mailer');
-var mongoose = require('mongoose');
-var config = require('./config/environment');
-var html2canvas = require("html2canvas");
 
 // var memwatch = require('memwatch');
 
 // Authentication module.
-var auth = require('http-auth');
 var basic = auth.basic({
     realm: "Cruvita"
   }, function (username, password, callback) {
     callback(username === "cruvita" && password === "community1809");
   }
 );
-var cluster = require('cluster');
-var http = require('http');
 var numCPUs = require('os').cpus().length;
 numCPUs = numCPUs > 8 ? 8 : numCPUs;
 if (cluster.isMaster && process.env.NODE_ENV !== 'development') {
@@ -43,20 +49,6 @@ if (cluster.isMaster && process.env.NODE_ENV !== 'development') {
     console.log('workers ' + worker.process.pid + ' died');
   });
 } else {
-  // var heapDiffFn = function() {
-  // var hd = new memwatch.HeapDiff();
-  // setTimeout(function() {
-  //     var diff = hd.end();
-  //     console.log(JSON.stringify(diff));
-  //     heapDiffFn();
-  //   }, 20000);
-  // }
-  // heapDiffFn();
-  // Workers can share any TCP connection
-  // In this case its a HTTP server
-  // Connect to database
-	var cors = require('cors');
-
   mongoose.connect(config.mongo.uri, config.mongo.options);
   // memwatch.on('leak', function(info) {
   //   console.log(info);
@@ -66,32 +58,25 @@ if (cluster.isMaster && process.env.NODE_ENV !== 'development') {
   if(config.seedDB) { require('./config/seed'); }
 
   // Setup server
-  var app = express();
+  const port = 3000;
+  const app = express();
+  const compiler = webpack(webpackconfig);
 
-  //Had to comment this out because it's not installing, and it errors here. Same with memwatch
-  // var toobusy = require('toobusy');
-
-  // app.use(function(req, res, next) {
-  //   if (toobusy()) res.send(503, "I'm busy right now, sorry.");
-  //   else next();
-  // });
   //Express auth piece
   if(!config.noAuth) {
     app.use(auth.connect(basic));
   }
   if(app.get('env') === 'development' || 'test') {
+    app.use(require('webpack-dev-middleware')(compiler, {
+      noInfo: true,
+      publicPath: webpackconfig.output.publicPath
+    }))
 		app.use(cors());
     mongoose.set('debug', true);
   }
 
-  app.use(require('prerender-node'));
-  //.set('prerenderToken ', '4Qi9VFVVJLAqGgj9XG76'));
-  //app.use(require('prerender-node').set('prerenderServiceUrl', 'http://service.prerender.io'));
+  // app.use(require('prerender-node'));
 
-  // app.get('/', function(req,res) {
-  //   res.send("Hello from express - " + req.user + "!" );
-  // });
-  // app.use(auth.connect(basic));
 
   var server = require('http').createServer(app);
   require('./config/express')(app);

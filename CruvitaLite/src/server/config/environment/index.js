@@ -34,11 +34,10 @@ var all = {
 
   // MongoDB connection options
   mongo: {
-    options: {
-      db: {
-        safe: true
-      }
-    }
+    db: {
+      safe: true
+    },
+    useNewUrlParser: true
   },
 
   facebook: {

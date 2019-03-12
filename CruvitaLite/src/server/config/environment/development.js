@@ -7,7 +7,6 @@ module.exports = {
   mongo: {
     uri: 'mongodb://cruvita:community1809!@45.37.164.152:27017/lsa',
     //uri: 'mongodb://localhost:27017/lsa',
-		options: {}
   },
   boundaryLocation: '../CruvitaIngest/',
   noAuth: true

@@ -25,7 +25,8 @@ module.exports = function(app) {
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
   app.use(compression());
-  app.use(bodyParser());
+  app.use(bodyParser.urlencoded());
+  app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
@@ -43,9 +44,9 @@ module.exports = function(app) {
 //   }));
 
   if ('production' === env || 'staging' === env) {
-    app.use(favicon(path.join(config.root, 'public', 'favicon.png')));
-    app.use(express.static(path.join(config.root, 'public')));
-    app.set('appPath', config.root + '/public');
+    app.use(favicon(path.join(config.root, 'dist', 'favicon.png')));
+    app.use(express.static(path.join(config.root, 'dist')));
+    app.set('appPath', 'dist');
     app.use(morgan('dev'));
   }
 

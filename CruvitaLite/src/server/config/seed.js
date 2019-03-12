@@ -48,30 +48,7 @@ User.create({
     console.log('finished populating users');
 });
 
-
-// Advertisement.find({}).remove(function() {
-//   Advertisement.create({
-//     company: 'Buy our stuff Inc.',
-//     url:'http://www.buyourstuff.com',
-//     paidInterests: {
-//       zips: [22032, 22030]
-//     }
-//   }, function(err, doc) {
-//     fs.readFile('server/images/advertisement.png', function (err, data) {
-//       var code = doc._id.toString().hashCode();
-//       if (err) throw err;
-//       if(!fs.existsSync(config.imageLocation + (code % 10000).toString())) {
-//         fs.mkdirSync(config.imageLocation + (code % 10000).toString());
-//         fs.writeFile(config.imageLocation + (code % 10000).toString() + '/' + code.toString() + '.png', data);
-//       }
-//       else {
-//         fs.writeFile(config.imageLocation + (code % 10000).toString() + '/' + code.toString() + '.png', data);
-//       }
-//     });
-//   });
-// });
-
-Token.find({}).remove(function() {
+Token.find({}).deleteOne(function() {
   Token.create({
       expire: new Date(),
       refresh:'4k6us8i0odbso9aa7jkf2jd47',
