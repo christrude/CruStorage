@@ -1,0 +1,99 @@
+<p>
+  home works!
+</p>
+
+
+<div class="main-banner">
+  <div id="background_cycler">
+    <img  alt="Cruvita Brand Image" src="/assets/images/bnnr1.jpg" class="active"/>
+    <img  alt="Cruvita Brand Image" src="/assets/images/bnnr2.jpg"/>
+    <img  alt="Cruvita Brand Image" src="/assets/images/bnnr3.jpg"/>
+  </div>
+</div>
+
+<section class="search">
+  <div class="container">
+    <div class="col-md-12 no-padding">
+      <h1>Find the Right School. <br />Find the Right Home.</h1>
+    </div>
+
+      <div class="col-md-12 no-padding">
+
+        <form ng-submit="getResults()" class="input-group input-group-lg">
+
+        <div id="typeahead-container"></div>
+          <input type="text" ng-model="autocomplete.locationSelected" placeholder="Enter your city, county, zip code, or school you are interested in!" uib-typeahead="address for address in autocomplete.autocomplete($viewValue)" class="form-control input-lg search-bar" typeahead-wait-ms="400" typeahead-on-select="getResults()">
+
+          <span class="input-group-btn">
+            <button class="btn btn-primary search-button" type="submit">Search</button>
+          </span>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="col-md-12 no-padding">
+  <section class="mid-content">
+    <div class="container">
+      <section class="info-3-section col-sm-12">
+        <h2 class="center">Great Local Schools</h2>
+        <nearby-schools list="nearby.schools" homepage="true"></nearby-schools>
+        <button class="btn btn-primary btn-lg" type="submit" ng-click="searchAreaSchools()">See More Schools</button>
+      </section>
+    </div>
+    <div class="container">
+
+      <section class="info-section col-sm-12">
+        <h2 class="center">Why Cruvita?</h2>
+        <h4 class="center">The family friendly home listing search engine and school score generator.</h4>
+        <div class="col-sm-4 col-md-4 center">
+          <div class="round-shape community"></div>
+          <p>Initially, the Cruvita&trade; team gathers the economic information surrounding a specific school.</p>
+          <h4>Find a Community</h4>
+        </div>
+        <div class="col-sm-4 col-md-4 center">
+          <div class="round-shape school"></div>
+          <p>Next, the team researches schools considering a variety of aspects that make each school unique.</p>
+          <h4>Find a School</h4>
+        </div>
+        <div class="col-sm-4 col-md-4 center">
+          <div class="round-shape home"></div>
+          <p>Finally, the team tabulates the economic and educational information to give you the nation's only unique scoring system that allows you to easily find a home.</p>
+          <h4>Find a Home</h4>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="info-2-section col-sm-12">
+    <h2 class="center">Here's How It Works.</h2>
+    <div class="center vid-container"><iframe width="xxx" height="xxx" src="https://www.youtube.com/embed/o0mjtZMLts8" frameborder="0" allowfullscreen></iframe></div>
+  </section>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+function cycleImages(){
+      var $active = $('#background_cycler .active');
+      var $next = ($('#background_cycler .active').next().length > 0) ? $('#background_cycler .active').next() : $('#background_cycler img:first');
+      $next.css('z-index',2);//move the next image up the pile
+    $active.fadeOut(1500,function(){//fade out the top image
+    $active.css('z-index',1).show().removeClass('active');//reset the z-index and unhide the image
+      $next.css('z-index',3).addClass('active');//make the next image the top one
+      });
+    }
+
+    $(window).load(function(){
+    $('#background_cycler').fadeIn(0);
+      // run every 7s
+      setInterval('cycleImages()', 7000);
+    })
+
+//$('#background_cycler').hide();//hide the background while the images load, ready to fade in later
+</script>
