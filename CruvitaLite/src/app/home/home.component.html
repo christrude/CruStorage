@@ -17,20 +17,19 @@
       <h1>Find the Right School. <br />Find the Right Home.</h1>
     </div>
 
-      <div class="col-md-12 no-padding">
+    <div class="col-md-12 no-padding">
 
-        <form ng-submit="getResults()" class="input-group input-group-lg">
+      <form ng-submit="getResults()" class="input-group input-group-lg">
 
         <div id="typeahead-container"></div>
-          <input type="text" ng-model="autocomplete.locationSelected" placeholder="Enter your city, county, zip code, or school you are interested in!" uib-typeahead="address for address in autocomplete.autocomplete($viewValue)" class="form-control input-lg search-bar" typeahead-wait-ms="400" typeahead-on-select="getResults()">
+        <input type="text" ng-model="autocomplete.locationSelected" placeholder="Enter your city, county, zip code, or school you are interested in!" uib-typeahead="address for address in autocomplete.autocomplete($viewValue)" class="form-control input-lg search-bar" typeahead-wait-ms="400" typeahead-on-select="getResults()">
 
-          <span class="input-group-btn">
-            <button class="btn btn-primary search-button" type="submit">Search</button>
-          </span>
+        <span class="input-group-btn">
+          <button class="btn btn-primary search-button" type="submit">Search</button>
+        </span>
 
-        </form>
+      </form>
 
-      </div>
     </div>
   </div>
 </section>
@@ -40,7 +39,7 @@
     <div class="container">
       <section class="info-3-section col-sm-12">
         <h2 class="center">Great Local Schools</h2>
-        <nearby-schools list="nearby.schools" homepage="true"></nearby-schools>
+        <!-- <nearby-schools list="nearby.schools" homepage="true"></nearby-schools> -->
         <button class="btn btn-primary btn-lg" type="submit" ng-click="searchAreaSchools()">See More Schools</button>
       </section>
     </div>

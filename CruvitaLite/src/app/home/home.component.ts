@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SchoolsService } from 'src/services/schools.service';
 import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +9,12 @@ import 'rxjs/add/operator/toPromise';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private schoolsService: SchoolsService) { }
 
   ngOnInit() {
-    this.http.get('//freegeoip.net/json/').toPromise.then(function(data){
-
+    this.http.get('//freegeoip.net/json/').subscribe(function(data: any){
+        console.log('asdf', data);
         // For if we have too many hits per day, switch to this
         //$http.get('//api.ipify.org?format=jsonp&callback=?', function(data) {
         //   console.log(JSON.stringify(data, null, 2));
@@ -38,9 +38,10 @@ export class HomeComponent implements OnInit {
           "min": data.data.longitude,
           "max": data.data.longitude + .2
         })
-        console.log('school service', SchoolsService);
-        const schoolPromise = SchoolsService.retrieve({page: 1}, {queries: schoolQ}, function(response) {
+
+        const schoolPromise = this.schoolsService.retrieve({page: 1}, {queries: schoolQ}, function(response) {
           this.nearby.schools = response.schools.results;
+          console.log(this.nearby.schools);
         })
 	    });
   }
